@@ -9,10 +9,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.5",
-    "@emotion/styled": "^11.10.5",
-    "@mui/material": "^5.11.7",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.11",
+    "@mui/lab": "^5.0.0-alpha.123",
+    "@mui/material": "^5.11.13",
+    "@mui/x-data-grid": "^6.0.1",
     "@pagopa/mui-italia": "^0.8.12",
+    "@types/lodash": "^4.14.191",
     "axios": "^0.27",
     "date-fns": "^2.29.3",
     "lodash": "^4.17.21",
@@ -21,6 +25,7 @@
     "react-hook-form": "^7.43.0",
     "react-i18next": "^12.1.4",
     "react-router-dom": "^6.8.0",
+    "tslib": "^2.5.0",
     "zustand": "^4.3.2"
   },
   "devDependencies": {
