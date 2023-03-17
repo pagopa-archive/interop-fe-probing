@@ -1,7 +1,8 @@
 import {
+  Footer,
   FooterLinksType,
-  FooterPostLogin,
   Languages,
+  PreLoginFooterLinksType,
 } from "@pagopa/mui-italia";
 
 const lngs: Languages = {
@@ -22,11 +23,15 @@ const lngs: Languages = {
   },
 };
 
+const pagoPALink = {
+  href: "https://www.pagopa.it/",
+  ariaLabel: "Link: vai al sito di PagoPA S.p.A.",
+};
 const postLoginLinks: FooterLinksType[] = [
   {
-    label: "Privacy Policy",
-    href: "#privacy-policy",
-    ariaLabel: "Privacy Policy",
+    label: "Informativa Privacy",
+    href: "#informativa-privacy",
+    ariaLabel: "Vai al link: Informativa Privacy",
     linkType: "internal",
   },
   {
@@ -49,19 +54,167 @@ const postLoginLinks: FooterLinksType[] = [
   },
 ];
 
-const pagoPALink = {
-  href: "https://www.pagopa.it/",
-  ariaLabel: "Link: vai al sito di PagoPA S.p.A.",
+const preLoginLinks: PreLoginFooterLinksType = {
+  // First column
+  aboutUs: {
+    title: undefined,
+    links: [
+      {
+        label: "Chi siamo",
+        href: "#chi-siamo",
+        ariaLabel: "Vai al link: Chi siamo",
+        linkType: "internal",
+      },
+      {
+        label: "PNRR",
+        href: "#pnrr",
+        ariaLabel: "Vai al link: PNRR",
+        linkType: "internal",
+      },
+      {
+        label: "Media",
+        href: "#media",
+        ariaLabel: "Vai al link: Media",
+        linkType: "internal",
+      },
+      {
+        label: "Lavora con noi",
+        href: "#lavora-con-noi",
+        ariaLabel: "Vai al link: Lavora con noi",
+        linkType: "internal",
+      },
+    ],
+  },
+  // Third column
+  resources: {
+    title: "Risorse",
+    links: [
+      {
+        label: "Informativa Privacy",
+        href: "#informativa-privacy",
+        ariaLabel: "Vai al link: Informativa Privacy",
+        linkType: "internal",
+      },
+      {
+        label: "Certificazioni",
+        href: "#certificazioni",
+        ariaLabel: "Vai al link: Certificazioni",
+        linkType: "internal",
+      },
+      {
+        label: "Sicurezza delle informazioni",
+        href: "#sicurezza-delle-informazioni",
+        ariaLabel: "Vai al link: Sicurezza delle informazioni",
+        linkType: "internal",
+      },
+      {
+        label: "Diritto alla protezione dei dati personali",
+        ariaLabel: "Vai al link: Diritto alla protezione dei dati personali",
+        linkType: "internal",
+        onClick: () => {
+          console.log("onClick");
+        },
+      },
+      {
+        label: "Preferenze Cookie",
+        href: "#preferenze-cookie",
+        ariaLabel: "Vai al link: Preferenze Cookie",
+        linkType: "internal",
+        onClick: () => {
+          console.log("onClick");
+        },
+      },
+      {
+        label: "Termini e Condizioni",
+        href: "#terms-conditions",
+        ariaLabel: "Vai al link: Termini e Condizioni",
+        linkType: "internal",
+      },
+      {
+        label: "Società trasparente",
+        href: "#societa-trasparente",
+        ariaLabel: "Vai al link: Società trasparente",
+        linkType: "internal",
+      },
+      {
+        label: "Responsible Disclosure Policy",
+        href: "#responsible-disclosure-policy",
+        ariaLabel: "Vai al link: Responsible Disclosure Policy",
+        linkType: "internal",
+      },
+      {
+        label: "Modello 321",
+        href: "#modello-321",
+        ariaLabel: "Vai al link: Modello 321",
+        linkType: "internal",
+      },
+    ],
+  },
+  // Fourth column
+  followUs: {
+    title: "Seguici su",
+    socialLinks: [
+      {
+        icon: "linkedin",
+        title: "LinkedIn",
+        href: "https://www.linkedin.com/company/pagopa/",
+        ariaLabel: "Link: vai al sito LinkedIn di PagoPA S.p.A.",
+      },
+      {
+        title: "Twitter",
+        icon: "twitter",
+        href: "https://twitter.com/pagopa",
+        ariaLabel: "Link: vai al sito Twitter di PagoPA S.p.A.",
+      },
+      {
+        icon: "instagram",
+        title: "Instagram",
+        href: "https://www.instagram.com/pagopa/",
+        ariaLabel: "Link: vai al sito Instagram di PagoPA S.p.A.",
+      },
+      {
+        icon: "medium",
+        title: "Medium",
+        href: "https://medium.com/pagopa",
+        ariaLabel: "Link: vai al sito Medium di PagoPA S.p.A.",
+      },
+    ],
+    links: [
+      {
+        label: "Accessibilità",
+        href: "#accessibilità",
+        ariaLabel: "Vai al link: Accessibilità",
+        linkType: "internal",
+      },
+    ],
+  },
 };
 
-const Footer = () => {
+const AppFooter = () => {
   return (
-    <FooterPostLogin
+    <Footer
+      loggedUser={false}
       languages={lngs}
       onLanguageChanged={() => {}}
       companyLink={pagoPALink}
-      links={postLoginLinks}
+      postLoginLinks={postLoginLinks}
+      preLoginLinks={preLoginLinks}
+      currentLangCode="it"
+      onExit={(exitAction) => {
+        console.log("Executing exit Action");
+        exitAction();
+      }}
+      productsJsonUrl="https://dev.selfcare.pagopa.it/assets/products.json"
+      hideProductsColumn={false}
+      legalInfo={
+        <span>
+          <strong>PagoPA S.p.A.</strong> - Società per azioni con socio unico -
+          Capitale sociale di euro 1,000,000 interamente versato - Sede legale
+          in Roma, Piazza Colonna 370, CAP 00187 - N. di iscrizione a Registro
+          Imprese di Roma, CF e P.IVA 15376371009
+        </span>
+      }
     />
   );
 };
-export default Footer;
+export default AppFooter;

@@ -31,7 +31,7 @@ const Header = () => {
     <Grid container direction={"column"}>
       <Grid item>
         <HeaderAccount
-          enableLogin={false}
+          loggedUser={false}
           rootLink={link}
           onAssistanceClick={handleAssistanceClick}
         />

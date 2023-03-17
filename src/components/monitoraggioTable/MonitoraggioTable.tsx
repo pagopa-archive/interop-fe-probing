@@ -1,12 +1,15 @@
 import { DataGrid, gridClasses } from "@mui/x-data-grid";
 
+// TODO: to be replaced with the table component from mui italia
 const MonitoraggioTable = (props: any) => {
   return (
     <DataGrid
+      autoHeight
       rows={props.rows}
       columns={props.columns}
       disableRowSelectionOnClick
       disableColumnMenu
+      pageSizeOptions={[4]}
       initialState={{
         pagination: { paginationModel: { pageSize: 4 } },
       }}

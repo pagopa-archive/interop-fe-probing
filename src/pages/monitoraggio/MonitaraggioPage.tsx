@@ -1,9 +1,7 @@
 import Typography from "@mui/material/Typography";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Button, Grid } from "@mui/material";
 import MonitoraggioSearchForm from "../../components/forms/monitoraggioSearchForm/monitoraggioSearchForm";
 import MonitoraggioTable from "../../components/monitoraggioTable/MonitoraggioTable";
-import { useEffect } from "react";
 import CircleIcon from "@mui/icons-material/Circle";
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -46,7 +44,6 @@ const columns = [
     flex: 1,
     sortable: true,
     renderCell: (params: any) => {
-      console.log(params.row.status);
       return params.row.status === "active" ? (
         <Button
           size="small"
@@ -127,23 +124,15 @@ const rows = [
 const MonitaraggioPage = () => {
   return (
     <Grid container direction="column" spacing={1} sx={{ height: "100%" }}>
-      <Grid item>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Typography
-            sx={{
-              "fontWeight": "bold",
-              "color": "#5C6F82",
-              "textDecoration": "underline",
-            }}
-          >
-            Probing
-          </Typography>
-          <Typography>Monitoraggio</Typography>
-        </Breadcrumbs>
-      </Grid>
-      <Grid item>
-        <Typography sx={{ fontSize: "1.6em", fontWeight: "bold" }}>
-          Monitoraggio
+      <Grid item sx={{ textAlign: "center" }} my={5}>
+        <Typography
+          sx={{ fontSize: "1.6em", fontWeight: "bold", color: "#17324D" }}
+        >
+          Stato degli e-service
+        </Typography>
+        <Typography variant="body1" sx={{ color: "#17324D" }}>
+          In questa pagina puoi monitorare lo stato degli e-service messi a
+          disposizione degli erogatori su PDND Interoperabilità
         </Typography>
       </Grid>
       <Grid item>
