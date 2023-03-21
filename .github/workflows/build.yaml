@@ -30,10 +30,10 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: |
-          yarn install  
+          npm install  
       - name: Build project
         run: |
-          yarn run build     
+          npm run build     
       - name: Copy files S3 Hosting bucket
         run: |
           aws s3 sync dist/* ${{ env.S3_ENDPOINT_URL }}
