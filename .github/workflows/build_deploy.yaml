@@ -1,8 +1,10 @@
-name: "Build and deploy Frontend for Dev environment"
+name: "FE CI/CD Dev Environment"
 on:
   push:
     branches:
       - "**"
+      - "!main"
+      - "!master"
     paths:
       - '**'
 
@@ -11,9 +13,7 @@ jobs:
     if: ${{ github.ref_name != 'develop' }}
     name: Build frontend
     runs-on: ubuntu-latest
-    environment: dev
     permissions:
-      id-token: write
       contents: read
     steps:
       - name: Checkout
@@ -59,4 +59,4 @@ jobs:
           aws s3 sync dist/* s3://${{ env.S3_BUCKET_NAME }} --delete
       - name: Create invalidation for Cloudfront Distribution
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
+          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*"
