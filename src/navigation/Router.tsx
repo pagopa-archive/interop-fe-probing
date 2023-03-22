@@ -1,20 +1,20 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "../pages/layout/MainLayout";
-import MonitaraggioPage from "../pages/monitoraggio/MonitaraggioPage";
+import MonitoringPage from "../pages/monitoring/MonitoringPage";
 /**
  * Create the routing of the page
  */
 const router = createBrowserRouter([
   {
-    path: "/monitaraggio",
+    path: "/monitoring",
     element: <MainLayout />,
     children: [
-      { index: true, path: "/monitaraggio", element: <MonitaraggioPage /> },
+      { index: true, path: "/monitoring", element: <MonitoringPage /> },
     ],
   },
   {
     path: "/",
-    element: <Navigate replace to="/monitaraggio" />,
+    element: <Navigate replace to="/monitoring" />,
   },
 ]);
 export { router };

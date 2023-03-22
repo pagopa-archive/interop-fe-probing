@@ -19,13 +19,13 @@ const listItems = [
     type: "dropdown",
     subitems: [
       {
-        title: "Monitoraggio",
-        url: "/monitoraggio",
+        title: "Monitoring",
+        url: "/monitoring",
         active: true,
       },
       {
         title: "Some other page",
-        url: "/monitoraggio",
+        url: "/monitoring",
         active: false,
       },
     ],
@@ -35,8 +35,8 @@ const listItems = [
     type: "dropdown",
     subitems: [
       {
-        title: "Monitoraggio",
-        url: "/monitoraggio",
+        title: "Monitoring",
+        url: "/monitoring",
         active: false,
       },
     ],
@@ -104,8 +104,8 @@ const Sidebar = () => {
                         disablePadding
                         sx={
                           subitem.active
-                            ? { "color": "#0073E6" }
-                            : { "color": "black" }
+                            ? { color: "#0073E6" }
+                            : { color: "black" }
                         }
                       >
                         <ListItemButton>
