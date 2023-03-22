@@ -56,7 +56,7 @@ jobs:
           npm run build     
       - name: Copy files to S3 Hosting bucket
         run: |
-          aws s3 sync dist/* s3://${{ env.S3_BUCKET_NAME }} --delete
+          aws s3 sync dist/ s3://${{ env.S3_BUCKET_NAME }} --delete
       - name: Create invalidation for Cloudfront Distribution
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*"
