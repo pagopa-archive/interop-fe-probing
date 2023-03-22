@@ -1,18 +1,38 @@
-name: "Build and deploy frontend"
+name: "Build and deploy Frontend for Dev environment"
 on:
   push:
     branches:
       - "**"
-      - "!main"
-      - "!master"
     paths:
       - '**'
-      - '.github/workflows/*.yml'
 
 jobs:
-  deploy:
-    name: Build and deploy frontend manually
+  build_fe:
+    if: ${{ github.ref_name != 'develop' }}
+    name: Build frontend
     runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: |
+          npm install  
+      - name: Build project
+        run: |
+          npm run build
+  deploy_dev:
+    if: ${{ github.ref_name == 'develop' }}
+    name: Build and deploy frontend in development environment
+    runs-on: ubuntu-latest
+    environment: dev
     permissions:
       id-token: write
       contents: read
@@ -34,9 +54,9 @@ jobs:
       - name: Build project
         run: |
           npm run build     
-      - name: Copy files S3 Hosting bucket
+      - name: Copy files to S3 Hosting bucket
         run: |
-          aws s3 sync dist/* ${{ env.S3_ENDPOINT_URL }}
+          aws s3 sync dist/* s3://${{ env.S3_BUCKET_NAME }} --delete
       - name: Create invalidation for Cloudfront Distribution
         run: |
           aws cloudfront create-invalidation --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION }} --paths "/*"
