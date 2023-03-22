@@ -1,4 +1,4 @@
-name: "FE CI/CD Dev Environment"
+name: "Dev CI/CD"
 on:
   push:
     branches:
