@@ -41,6 +41,4 @@ const stores = {
   useSnackbarStore,
 };
 
-export type { SnackbarType, SpinnerType };
-
 export default stores;
