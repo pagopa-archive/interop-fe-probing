@@ -4,7 +4,6 @@ import {
   ProductSwitchItem,
   RootLinkType,
 } from "@pagopa/mui-italia";
-import { Grid } from "@mui/material";
 
 const link: RootLinkType = {
   title: "PagoPA S.p.A.",
