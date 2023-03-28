@@ -9,17 +9,11 @@ import { Outlet } from "react-router-dom";
  */
 const MainLayout = () => {
   return (
-    <Grid container direction={"column"}>
-      <Grid item gridArea="header">
-        <Header />
-      </Grid>
-      <Grid item mx={15} sx={{ px: 4, py: 2 }}>
-        <Outlet />
-      </Grid>
-      <Grid item gridArea="footer" mx={15}>
-        <Footer />
-      </Grid>
-    </Grid>
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
   );
 };
 

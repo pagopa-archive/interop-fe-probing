@@ -187,29 +187,31 @@ const preLoginLinks: PreLoginFooterLinksType = {
 
 const AppFooter = () => {
   return (
-    <Footer
-      loggedUser={false}
-      languages={lngs}
-      onLanguageChanged={() => {}}
-      companyLink={pagoPALink}
-      postLoginLinks={postLoginLinks}
-      preLoginLinks={preLoginLinks}
-      currentLangCode="it"
-      onExit={(exitAction) => {
-        console.log("Executing exit Action");
-        exitAction();
-      }}
-      productsJsonUrl="https://dev.selfcare.pagopa.it/assets/products.json"
-      hideProductsColumn={false}
-      legalInfo={
-        <span>
-          <strong>PagoPA S.p.A.</strong> - Società per azioni con socio unico -
-          Capitale sociale di euro 1,000,000 interamente versato - Sede legale
-          in Roma, Piazza Colonna 370, CAP 00187 - N. di iscrizione a Registro
-          Imprese di Roma, CF e P.IVA 15376371009
-        </span>
-      }
-    />
+    <footer>
+      <Footer
+        loggedUser={false}
+        languages={lngs}
+        onLanguageChanged={() => {}}
+        companyLink={pagoPALink}
+        postLoginLinks={postLoginLinks}
+        preLoginLinks={preLoginLinks}
+        currentLangCode="it"
+        onExit={(exitAction) => {
+          console.log("Executing exit Action");
+          exitAction();
+        }}
+        productsJsonUrl="https://dev.selfcare.pagopa.it/assets/products.json"
+        hideProductsColumn={false}
+        legalInfo={
+          <span>
+            <strong>PagoPA S.p.A.</strong> - Società per azioni con socio unico
+            - Capitale sociale di euro 1,000,000 interamente versato - Sede
+            legale in Roma, Piazza Colonna 370, CAP 00187 - N. di iscrizione a
+            Registro Imprese di Roma, CF e P.IVA 15376371009
+          </span>
+        }
+      />
+    </footer>
   );
 };
 export default AppFooter;

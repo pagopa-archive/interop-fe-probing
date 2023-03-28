@@ -24,21 +24,17 @@ const productsList: ProductSwitchItem[] = [
 
 const Header = () => {
   return (
-    <Grid container direction={"column"}>
-      <Grid item>
-        <HeaderAccount
-          enableAssistanceButton={false}
-          loggedUser={false}
-          rootLink={link}
-          onAssistanceClick={() => {
-            console.log("Clicked/Tapped on Assistance");
-          }}
-        />
-      </Grid>
-      <Grid item>
-        <HeaderProduct productsList={productsList} />
-      </Grid>
-    </Grid>
+    <header>
+      <HeaderAccount
+        enableAssistanceButton={false}
+        loggedUser={false}
+        rootLink={link}
+        onAssistanceClick={() => {
+          console.log("Clicked/Tapped on Assistance");
+        }}
+      />
+      <HeaderProduct productsList={productsList} />
+    </header>
   );
 };
 export default Header;
