@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 const link: RootLinkType = {
   title: "PagoPA S.p.A.",
   label: "PagoPA S.p.A.",
-  href: "http://localhost:5173/",
+  href: "https://www.pagopa.it/it/",
   ariaLabel: "",
 };
 
@@ -23,17 +23,16 @@ const productsList: ProductSwitchItem[] = [
 ];
 
 const Header = () => {
-  const handleAssistanceClick = () => {
-    console.log("Assistance clicked");
-  };
-
   return (
     <Grid container direction={"column"}>
       <Grid item>
         <HeaderAccount
+          enableAssistanceButton={false}
           loggedUser={false}
           rootLink={link}
-          onAssistanceClick={handleAssistanceClick}
+          onAssistanceClick={() => {
+            console.log("Clicked/Tapped on Assistance");
+          }}
         />
       </Grid>
       <Grid item>
