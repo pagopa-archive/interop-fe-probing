@@ -1,5 +1,5 @@
-import { getServicesType } from "./apiRequestTypes";
-import { http as interopAxiosClient } from "./interopAxiosClient";
+import { getServicesType } from './apiRequestTypes'
+import { http as interopAxiosClient } from './interopAxiosClient'
 
 /**
  * Return services based on the filters and the pagination input
@@ -9,12 +9,12 @@ const getServicesApi = async (payload: getServicesType) => {
   return await interopAxiosClient
     .getServices(payload)
     .then((result: any) => {
-      return result.data;
+      return result.data
     })
     .catch((error: any) => {
-      throw error;
-    });
-};
+      throw error
+    })
+}
 /**
  * Return the producers based on a like search on the input
  * @param {string} data
@@ -23,16 +23,16 @@ const getProducers = async (payload: string) => {
   return await interopAxiosClient
     .getProducers(payload)
     .then((result: any) => {
-      return result.data;
+      return result.data
     })
     .catch((error: any) => {
-      throw error;
-    });
-};
+      throw error
+    })
+}
 
 const apiRequests = {
   getServicesApi,
   getProducers,
-};
+}
 
-export default apiRequests;
+export default apiRequests

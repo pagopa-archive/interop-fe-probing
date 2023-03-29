@@ -1,17 +1,15 @@
-import { RouterProvider } from "react-router-dom";
-import { router } from "./navigation/Router";
-import { Backdrop, CircularProgress, Snackbar, Alert } from "@mui/material";
-import stores from "./store/Store";
+import { RouterProvider } from 'react-router-dom'
+import { router } from './navigation/Router'
+import { Backdrop, CircularProgress, Snackbar, Alert } from '@mui/material'
+import stores from './store/Store'
 
 function App() {
-  const updateSnackbar = stores.useSnackbarStore(
-    (state) => state.updateSnackbar
-  );
+  const updateSnackbar = stores.useSnackbarStore((state) => state.updateSnackbar)
 
   return (
     <div className="App">
       <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={stores.useSpinnerStore((state) => state.activated)}
         dataid-test="spinner"
       >
@@ -20,13 +18,13 @@ function App() {
       <RouterProvider router={router} />
       <Snackbar
         open={stores.useSnackbarStore((state) => state.activated)}
-        onClose={() => updateSnackbar(false, "", "error")}
+        onClose={() => updateSnackbar(false, '', 'error')}
       >
         <Alert
-          onClose={() => updateSnackbar(false, "", "error")}
+          onClose={() => updateSnackbar(false, '', 'error')}
           severity={stores.useSnackbarStore((state) => state.severity)}
           sx={{
-            width: "100%",
+            width: '100%',
           }}
           variant="outlined"
         >
@@ -34,7 +32,7 @@ function App() {
         </Alert>
       </Snackbar>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
