@@ -8,7 +8,7 @@ import {
 } from '@pagopa/interop-fe-commons'
 import { Chip } from '@mui/material'
 import { ButtonNaked } from '@pagopa/mui-italia'
-import { map, size, parseInt } from 'lodash'
+import { map, size, parseInt, toLower } from 'lodash'
 import { useQuery } from '@tanstack/react-query'
 import apiRequests from '../../api/apiRequests'
 import { getServicesType, GetServicesResponseType } from '../../api/apiRequestTypes'
@@ -151,7 +151,7 @@ export const MonitoringTable: React.FC = () => {
               service.producerName as string,
               <Chip
                 key={service.id}
-                label={service.state?.toLowerCase()}
+                label={toLower(service.state)}
                 color={
                   service.state === 'ONLINE'
                     ? 'success'
