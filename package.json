@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.27",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/base": "^5.0.0-alpha.118",
@@ -18,11 +19,13 @@
     "@mui/system": "^5.11.9",
     "@mui/x-date-pickers": "^6.0.2",
     "@pagopa/mui-italia": "^0.9.1",
+    "@pagopa/interop-fe-commons": "^0.0.3",
     "date-fns": "^2.29.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.2",
     "react-router-dom": "^6.9.0",
+    "@tanstack/react-query": "^4.28.0",
     "@types/lodash": "^4.14.191",
     "react-i18next": "^12.1.4",
     "lodash": "^4.17.21",
