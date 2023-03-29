@@ -1,6 +1,6 @@
-import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
-import { Outlet } from "react-router-dom";
+import Header from '../../components/header/Header'
+import Footer from '../../components/footer/Footer'
+import { Outlet } from 'react-router-dom'
 
 /**
  * Main layout of the application with header and footer
@@ -13,7 +13,7 @@ const MainLayout = () => {
       <Outlet />
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default MainLayout;
+export default MainLayout
