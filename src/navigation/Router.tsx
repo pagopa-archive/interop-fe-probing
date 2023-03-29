@@ -1,11 +1,15 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import MainLayout from '../pages/layout/MainLayout'
+import MonitoringPage from '../pages/monitoring/MonitoringPage'
 import ErrorPage from '../pages/ErrorPage'
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
-    children: [{ path: '*', element: <ErrorPage /> }],
+    children: [
+      { path: '/monitoring', element: <MonitoringPage /> },
+      { path: '*', element: <ErrorPage /> },
+    ],
   },
   {
     path: '/',
