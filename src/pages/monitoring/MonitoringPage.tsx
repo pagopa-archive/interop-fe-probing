@@ -1,15 +1,15 @@
 import { Grid, Typography } from '@mui/material'
 import MonitoringTable from '../../components/monitoringTable/MonitoringTable'
+import { useTranslation } from 'react-i18next'
 
 const MonitoringPage = () => {
+  const { t } = useTranslation(['monitorPage'])
+
   return (
     <Grid container sx={{ height: '100%' }} justifyContent="center">
       <Grid item sx={{ textAlign: 'center' }} my={5}>
-        <Typography variant="h4">Stato degli e-service</Typography>
-        <Typography variant="body1">
-          In questa pagina puoi monitorare lo stato degli e-service messi a disposizione degli
-          erogatori su PDND Interoperabilità
-        </Typography>
+        <Typography variant="h4"> {t('title')}</Typography>
+        <Typography variant="body1">{t('subtitle')}</Typography>
       </Grid>
       <Grid item my={5} xs={10}>
         <MonitoringTable />

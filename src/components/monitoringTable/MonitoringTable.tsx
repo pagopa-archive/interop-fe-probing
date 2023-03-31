@@ -8,13 +8,17 @@ import {
 } from '@pagopa/interop-fe-commons'
 import { Chip } from '@mui/material'
 import { ButtonNaked } from '@pagopa/mui-italia'
-import { map, size, parseInt, toLower } from 'lodash'
+import map from 'lodash/map'
+import parseInt from 'lodash/parseInt'
+import size from 'lodash/size'
+import toLower from 'lodash/toLower'
 import { useQuery } from '@tanstack/react-query'
 import apiRequests from '../../api/apiRequests'
 import { getServicesType, GetServicesResponseType } from '../../api/apiRequestTypes'
 import { useEffect, useState } from 'react'
 import stores from '../../store/Store'
-import { format } from 'date-fns'
+import format from 'date-fns/format'
+import { useTranslation } from 'react-i18next'
 
 type EServiceListQueryFilters = {
   eserviceName?: string
@@ -24,14 +28,15 @@ type EServiceListQueryFilters = {
 }
 
 export const MonitoringTable: React.FC = () => {
+  const { t } = useTranslation(['monitorTable', 'general'])
   const [producerOptions, setProducerOptions] = useState([])
 
   const headLabels = [
-    'Nome e-service',
-    'Versione',
-    'Erogatore',
-    'Stato e-service',
-    'Data ultima rilevazione',
+    t('serviceName'),
+    t('serviceVersion'),
+    t('serviceProducer'),
+    t('serviceState'),
+    t('lastDetectionDate'),
     '',
   ]
 
@@ -39,24 +44,24 @@ export const MonitoringTable: React.FC = () => {
     {
       name: 'eserviceName',
       type: 'freetext',
-      label: 'Cerca per nome e-service',
+      label: t('serviceNameFilter'),
     },
     {
       name: 'producerName',
       type: 'autocomplete-single',
-      label: 'Cerca per erogatore e-service',
+      label: t('serviceProducerFilter'),
       onTextInputChange: fetchProducers,
       options: producerOptions,
     },
     {
       name: 'versionNumber',
       type: 'numeric',
-      label: 'Cerca per versione e-service',
+      label: t('serviceVersionFilter'),
     },
     {
       name: 'state',
       type: 'autocomplete-multiple',
-      label: 'Cerca stato e-service',
+      label: t('serviceStateFilter'),
       options: [
         { value: 'ONLINE', label: 'online' },
         { value: 'OFFLINE', label: 'offline' },
@@ -87,7 +92,7 @@ export const MonitoringTable: React.FC = () => {
           setProducerOptions(res)
         })
         .catch((err) => {
-          updateSnackbar(true, 'Errore nella richiesta', 'error')
+          updateSnackbar(true, t('errorRequest'), 'error')
         })
         .finally(() => {
           updateSpinner(false)
@@ -129,7 +134,7 @@ export const MonitoringTable: React.FC = () => {
     if (activatedSpinner && status !== 'loading') {
       updateSpinner(false)
       if (status === 'error') {
-        updateSnackbar(true, 'Errore nella richiesta', status)
+        updateSnackbar(true, t('errorRequest'), status)
       }
     }
   }, [status, isFetching])
@@ -140,7 +145,7 @@ export const MonitoringTable: React.FC = () => {
       <Table
         isEmpty={data?.content ? data.content.length === 0 : true}
         headLabels={headLabels}
-        noDataLabel="La ricerca non ha prodotto risultati"
+        noDataLabel={t('noResultsTable')}
       >
         {map(data?.content, (service) => (
           <TableRow
@@ -173,7 +178,7 @@ export const MonitoringTable: React.FC = () => {
               component="a"
               href={'/monitoring/serviceDetails'}
             >
-              Approfondisci
+              {t('readMore')}
             </ButtonNaked>
           </TableRow>
         ))}
