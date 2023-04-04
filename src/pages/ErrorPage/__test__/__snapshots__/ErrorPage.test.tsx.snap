@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ErrorPage > render component 1`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column css-1mm5gp4-MuiGrid-root"
+  >
+    <div
+      class="MuiGrid-root MuiGrid-item css-bjrcl7-MuiGrid-root"
+    >
+      <h4
+        class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+      >
+         
+        title
+      </h4>
+      <p
+        class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+      >
+        subtitle
+      </p>
+    </div>
+  </div>
+</div>
+`;
