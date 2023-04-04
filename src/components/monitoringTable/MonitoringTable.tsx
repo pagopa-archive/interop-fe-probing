@@ -21,8 +21,8 @@ import stores from '../../store/Store'
 import format from 'date-fns/format'
 import { useTranslation } from 'react-i18next'
 import { TableSkeleton } from '../skeleton/TableSkeleton'
-import { useNavigate } from 'react-router-dom'
-import { resolvePathVariables } from '../../utils/routerUtils'
+import { Link } from 'react-router-dom'
+import { generatePath } from 'react-router'
 
 type EServiceListQueryFilters = {
   eserviceName?: string
@@ -36,14 +36,9 @@ export const MonitoringTable: React.FC = () => {
   const [producersAutocompleteTextInput, setProducersAutocompleteTextInput] =
     useAutocompleteTextInput()
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
-  const navigate = useNavigate()
 
   async function fetchProducers(value: string): Promise<FilterOption[]> {
-    if (producersAutocompleteTextInput) {
-      let response = apiRequests.getProducers(value)
-      return response
-    }
-    return []
+    return apiRequests.getProducers(value)
   }
 
   const { data: producerOptions } = useQuery({
@@ -119,13 +114,6 @@ export const MonitoringTable: React.FC = () => {
     onError: (error) => updateSnackbar(true, 'Errore nella richiesta', 'error'),
   })
 
-  const goDetails = (serviceId: string) =>
-    navigate(
-      resolvePathVariables('/monitoring/serviceDetails/:serviceId', {
-        serviceId: serviceId,
-      })
-    )
-
   return (
     <>
       <Filters {...handlers} />
@@ -165,8 +153,10 @@ export const MonitoringTable: React.FC = () => {
               <ButtonNaked
                 size="small"
                 color="primary"
-                component="button"
-                onClick={() => goDetails(toString(service.id))}
+                component={Link}
+                to={generatePath('/monitoring/serviceDetails/:serviceId', {
+                  serviceId: toString(service.id),
+                })}
               >
                 {t('readMore')}
               </ButtonNaked>
