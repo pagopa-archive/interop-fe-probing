@@ -1,0 +1,13 @@
+{
+  "serviceName":"Nome e-service",
+  "serviceVersion":"Versione",
+  "serviceProducer": "Erogatore",
+  "serviceState" : "Stato e-service",
+  "lastDetectionDate" : "Data ultima rilevazione",
+  "serviceNameFilter":"Cerca per nome e-service",
+  "serviceProducerFilter":"Cerca per erogatore e-service",
+  "serviceVersionFilter":"Cerca per versione e-service",
+  "serviceStateFilter":"Cerca stato e-service",
+  "noResultsTable":"La ricerca non ha prodotto risultati",
+  "readMore":"Approfondisci"
+}

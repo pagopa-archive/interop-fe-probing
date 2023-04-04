@@ -1,0 +1,13 @@
+{
+  "serviceName":"E-service name",
+  "serviceVersion":"Version",
+  "serviceProducer": "Producer",
+  "serviceState" : "E-service state",
+  "lastDetectionDate" : "Last detection date",
+  "serviceNameFilter":  "Search for e-service's name",
+  "serviceProducerFilter":  "Search for e-service's producer",
+  "serviceVersionFilter": "Search for e-service's version",
+  "serviceStateFilter": "Search for e-service's state",
+  "noResultsTable":"The search has not produced any result",
+  "readMore":"Read more"
+}
