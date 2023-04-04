@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { theme } from '@pagopa/interop-fe-commons'
-import { ThemeProvider, CssBaseline } from '@mui/material'
+import { ThemeProvider, CssBaseline, Backdrop, CircularProgress } from '@mui/material'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { Backdrop, CircularProgress } from '@mui/material'
+import { queryClientConfig } from './config/query-client'
 import './i18n'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient(queryClientConfig)
 
 const FirstLoadingSpinner: React.FC = () => {
   return (
