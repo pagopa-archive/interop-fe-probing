@@ -44,7 +44,7 @@ export const MonitoringTable: React.FC = () => {
   const { data: producerOptions } = useQuery({
     queryKey: ['producers', producersAutocompleteTextInput],
     queryFn: () => fetchProducers(producersAutocompleteTextInput),
-    onError: (error) => updateSnackbar(true, 'Errore nella richiesta', 'error'),
+    onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
   })
 
   const headLabels = [
@@ -111,7 +111,7 @@ export const MonitoringTable: React.FC = () => {
   const { data: services, isInitialLoading } = useQuery({
     queryKey: ['services', paginationParams, filtersParams],
     queryFn: () => fetchServices(paginationParams, filtersParams),
-    onError: (error) => updateSnackbar(true, 'Errore nella richiesta', 'error'),
+    onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
   })
 
   return (
