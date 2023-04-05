@@ -19,7 +19,7 @@ i18n
     },
     // language by default
     fallbackLng: 'it',
-
+    load: 'languageOnly',
     ns: ['footer', 'monitorTable', 'general', 'errorPage', 'monitorPage'],
 
     interpolation: {

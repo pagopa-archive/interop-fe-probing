@@ -199,7 +199,7 @@ const AppFooter = () => {
         companyLink={pagoPALink}
         postLoginLinks={postLoginLinks}
         preLoginLinks={preLoginLinks}
-        currentLangCode={i18n.language as LangCode}
+        currentLangCode={i18n.languages ? (i18n.languages[0] as LangCode) : 'it'}
         onExit={(exitAction) => {
           console.log('Executing exit Action')
           exitAction()
