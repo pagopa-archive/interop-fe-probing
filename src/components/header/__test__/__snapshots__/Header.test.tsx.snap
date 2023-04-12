@@ -1,0 +1,70 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > render component 1`] = `
+<div>
+  <header>
+    <div
+      class="MuiStack-root css-1fmjzam-MuiStack-root"
+    >
+      <div
+        class="MuiContainer-root css-ur2jdm-MuiContainer-root"
+      >
+        <div
+          class="MuiStack-root css-hxrfoi-MuiStack-root"
+        >
+          <a
+            aria-label=""
+            class="MuiButtonBase-root MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-root MuiButton-naked MuiButton-nakedText MuiButton-sizeSmall MuiButton-nakedSizeSmall css-1074q1t-MuiButtonBase-root-MuiButton-root"
+            href="https://www.pagopa.it/it/"
+            rel="noreferrer"
+            tabindex="0"
+            target="_blank"
+            title="PagoPA S.p.A."
+          >
+            PagoPA S.p.A.
+          </a>
+          <div
+            class="MuiStack-root css-yh6xev-MuiStack-root"
+          >
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeSmall MuiButton-containedSizeSmall css-11qr2p8-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              title="Accedi"
+              type="button"
+            >
+              Accedi
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiBox-root css-1u2a3dz"
+    >
+      <div
+        class="MuiContainer-root css-ur2jdm-MuiContainer-root"
+      >
+        <div
+          class="MuiStack-root css-176y9rv-MuiStack-root"
+        >
+          <div
+            class="MuiStack-root css-1yo1jo6-MuiStack-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-sx5zcp-MuiTypography-root"
+            >
+              PDND Interoperabilità
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-jta2rl"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+</div>
+`;
