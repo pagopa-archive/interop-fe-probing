@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
-function reducer(ui: any, { preloadedState, store, ...renderOptions }: any = {}) {
+function renderWithRouterAndQuery(ui: any, { preloadedState, store, ...renderOptions }: any = {}) {
   function Wrapper({ children }: any) {
     return (
       <Router>
@@ -15,4 +15,4 @@ function reducer(ui: any, { preloadedState, store, ...renderOptions }: any = {})
   return render(ui, { wrapper: Wrapper, ...renderOptions })
 }
 
-export { reducer }
+export { renderWithRouterAndQuery }

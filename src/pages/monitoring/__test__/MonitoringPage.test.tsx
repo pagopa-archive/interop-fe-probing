@@ -1,10 +1,10 @@
 import { describe, expect, test } from 'vitest'
 import MonitoringPage from '../MonitoringPage'
-import { reducer } from '../../../mocks/mockReducer'
+import { renderWithRouterAndQuery } from '../../../mocks/mockWrapper'
 
 describe('MonitoringPage', () => {
   test('render component', () => {
-    const { container } = reducer(<MonitoringPage />)
+    const { container } = renderWithRouterAndQuery(<MonitoringPage />)
     expect(container).toMatchSnapshot()
   })
 })

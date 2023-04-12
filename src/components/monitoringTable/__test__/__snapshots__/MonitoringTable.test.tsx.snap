@@ -8,11 +8,9 @@ exports[`ErrorPage > render component 1`] = `
     <div
       class="MuiGrid-root MuiGrid-item css-bjrcl7-MuiGrid-root"
     >
-      <h4
+      <h1
         class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-      >
-         
-      </h4>
+      />
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
       />
