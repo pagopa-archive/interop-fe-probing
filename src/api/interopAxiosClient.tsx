@@ -12,7 +12,7 @@ class Http {
   }
 
   getServices<T = any, R = AxiosResponse<T>>(payload: getServicesType): Promise<R> {
-    return this.http.get<T, R>('/eservices/searchEservices', {
+    return this.http.get<T, R>('/eservices', {
       params: {
         offset: payload.offset,
         limit: payload.limit,
@@ -26,7 +26,7 @@ class Http {
   }
 
   getProducers<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
-    return this.http.get<T, R>('/eservices/getProducers', {
+    return this.http.get<T, R>('/producers', {
       params: {
         producerName: payload,
       },
