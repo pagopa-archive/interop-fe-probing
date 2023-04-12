@@ -8,7 +8,9 @@ const MonitoringPage = () => {
   return (
     <Grid container sx={{ height: '100%' }} justifyContent="center">
       <Grid item sx={{ textAlign: 'center' }} my={5}>
-        <Typography variant="h4"> {t('title')}</Typography>
+        <Typography variant="h4" component="h1">
+          {t('title')}
+        </Typography>
         <Typography variant="body1">{t('subtitle')}</Typography>
       </Grid>
       <Grid item my={5} xs={10}>

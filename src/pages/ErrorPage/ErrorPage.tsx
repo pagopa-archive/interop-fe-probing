@@ -6,7 +6,9 @@ const Errorpage = () => {
   return (
     <Grid container direction="column" sx={{ height: '100%' }}>
       <Grid item sx={{ textAlign: 'center' }} my={5}>
-        <Typography variant="h4"> {t('title')}</Typography>
+        <Typography variant="h4" component="h1">
+          {t('title')}
+        </Typography>
         <Typography variant="body1">{t('subtitle')}</Typography>
       </Grid>
     </Grid>

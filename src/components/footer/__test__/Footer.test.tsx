@@ -4,21 +4,6 @@ import userEvent from '@testing-library/user-event'
 import { screen, render, cleanup } from '@testing-library/react'
 
 describe('Footer', () => {
-  afterEach(cleanup)
-
-  beforeEach(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          i18n: {
-            changeLanguage: vi.fn(),
-          },
-          t: vi.fn(),
-        }
-      },
-    }))
-  })
-
   test('render component', () => {
     const { container } = render(<Footer />)
     expect(container).toMatchSnapshot()

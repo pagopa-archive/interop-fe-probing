@@ -1,4 +1,6 @@
 import '@testing-library/jest-dom'
+import { cleanup } from '@testing-library/react'
+import { vi } from 'vitest'
 
 import { server } from '../mocks/server.js'
 
@@ -9,3 +11,18 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 // Clean up after the tests are finished.
 afterAll(() => server.close())
+
+afterEach(cleanup)
+
+beforeEach(() => {
+  vi.mock('react-i18next', () => ({
+    useTranslation: () => {
+      return {
+        i18n: {
+          changeLanguage: vi.fn(),
+        },
+        t: vi.fn(),
+      }
+    },
+  }))
+})

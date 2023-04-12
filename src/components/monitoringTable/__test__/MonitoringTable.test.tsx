@@ -15,14 +15,6 @@ describe('ErrorPage', () => {
   afterEach(cleanup)
 
   beforeEach(() => {
-    vi.mock('react-i18next', () => ({
-      useTranslation: () => {
-        return {
-          t: vi.fn(),
-        }
-      },
-    }))
-
     vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
   })
 
