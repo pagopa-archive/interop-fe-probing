@@ -1,87 +1,6 @@
-import { Grid } from "@mui/material";
-import { VegaLite, VisualizationSpec } from "react-vega";
-import ChartsLegend from "./ChartsLegend";
+import { useEffect, useRef } from "react";
 
-const mainSpec: VisualizationSpec = {
-  "title": {
-    "text": "Performance dell’e-service",
-    "anchor": "start",
-  },
-  "encoding": {
-    "x": {
-      // connected field from the values properties
-      "field": "value",
-      // "quantitative" if the field is a number
-      // "nominal" if the field is a string
-      // "temporal" if the field is a date time object
-      "type": "quantitative",
-      // if the title is null it is removed
-      "title": null,
-      // remove the axis
-      "axis": null,
-    },
-    "y": {
-      "field": "status",
-      "title": null,
-      "type": "ordinal",
-      "axis": null,
-      // without sorting
-      // the bars can be sorted by some value; by default ascending order
-      "sort": null,
-    },
-    "color": {
-      // to hide the legend
-      "legend": null,
-      "field": "status",
-      "type": "nominal",
-      "title": null,
-      // color the bar parts
-      "scale": {
-        "domain": [
-          "E-service online",
-          "Monitoraggio sospeso",
-          "E-service offline",
-        ],
-        "range": ["#17324D", "#A2ADB8", "#FE6666"],
-        "type": "ordinal",
-      },
-    },
-  },
-  "config": {
-    "view": {
-      // hide the borders
-      "stroke": "transparent",
-    },
-  },
-  // put the values in the right of the bar rectangles as a different layer
-  "layer": [
-    {
-      "mark": "bar",
-    },
-    {
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "dx": 3,
-        "fill": "#17324D",
-        "fontWeight": "bold",
-        "fontSize": 15,
-        "text": { "signal": "datum.value + '%'" },
-      },
-    },
-  ],
-  // height and width of the plot
-  "height": 120,
-  "width": 300,
-};
-
-// elements for the legend component
-const legendElements = [
-  { label: "E-service online", color: "#17324D" },
-  { label: "Monitoraggio sospeso", color: "#A2ADB8" },
-  { label: "E-service offline", color: "#FE6666" },
-];
+import { select, max, scaleLinear, scaleBand } from "d3";
 
 interface IService {
   status: string;
@@ -91,28 +10,83 @@ interface IService {
 interface IProps {
   data: Array<IService>;
 }
+// margin convention often used with D3
+const margin = { top: 20, right: 30, bottom: 20, left: 30 };
+const width = 300;
+const height = 200;
 
-const BarChart = ({ data }: IProps) => {
-  // create specification with the main spec and the value
-  // and return the ready chart
-  const createChart = () => {
-    let spec: VisualizationSpec = {
-      ...mainSpec,
-      "data": {
-        // type of the data, it can be "json", "csv", "tsv", "dsv"
-        "values": [...data],
-      },
-    };
-    return <VegaLite spec={spec} actions={false} />;
-  };
+const color = ["#17324D", "#A2ADB8", "#FE6666"];
+
+export const BarChart: React.FC<IProps> = ({ data }) => {
+  const d3svg = useRef(null);
+
+  useEffect(() => {
+    if (data && d3svg.current) {
+      let svg = select(d3svg.current);
+
+      // scales
+      const xMax = max(data, (d: IService) => d.value) as number;
+
+      const xScale = scaleLinear().domain([0, xMax]).range([0, width]);
+
+      const yScale = scaleBand()
+        .domain(data.map((d) => d.status))
+        .rangeRound([0, height - margin.left])
+        .paddingInner(0.25);
+
+      // draw header
+      svg
+        .append("g")
+        .attr("class", "bar-header")
+        .attr("transform", `translate(0, ${margin.top})`)
+        .append("text")
+        .append("tspan")
+        .attr("font-family", "Titillium Web")
+        .attr("font-size", "18px")
+        .attr("color", "#17324D")
+        .attr("font-weight", "700")
+        .text("Performance dell’e-service");
+
+      // draw bars
+      svg
+        .append("g")
+        .attr("transform", `translate(0, ${margin.top * 2})`)
+        .selectAll(".bar")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("y", (d: IService) => yScale(d.status) as number)
+        .attr("width", (d: IService) => xScale(d.value) as number)
+        .attr("height", yScale.bandwidth())
+        .style("fill", function (d: IService, i: number) {
+          return color[i % 4]; // use colors in sequence
+        });
+
+      // labels in right of the bars
+      svg
+        .selectAll(".rect")
+        .data(data)
+        .enter()
+        .append("text")
+        .text((d: IService) => d.value + "%")
+        .attr("x", (d: IService) => xScale(d.value) as number)
+        .attr("y", (d: IService) => yScale(d.status) as number)
+        .attr("font-family", "Titillium Web")
+        .attr("font-size", "24px")
+        .attr("color", "#17324D")
+        .attr("font-weight", "600")
+        .attr("transform", `translate(10, ${yScale.bandwidth() * 1.5})`);
+    }
+  }, [data]);
 
   return (
-    <Grid container direction="column" rowSpacing={2}>
-      <Grid item>{createChart()}</Grid>
-      <Grid item>
-        <ChartsLegend legendElements={legendElements} />
-      </Grid>
-    </Grid>
+    <svg
+      className="bar-chart-container"
+      width={width + margin.left + margin.right}
+      height={height + margin.top + margin.bottom}
+      role="img"
+      ref={d3svg}
+    ></svg>
   );
 };
-export default BarChart;

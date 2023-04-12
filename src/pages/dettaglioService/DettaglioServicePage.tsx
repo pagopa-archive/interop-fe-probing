@@ -1,6 +1,8 @@
 import { Grid, Typography } from "@mui/material";
-import BarChart from "../../components/charts/BarChart";
-import LineChart from "../../components/charts/LineChart";
+import { BarChart } from "../../components/charts/BarChart";
+import { LineChart } from "../../components/charts/LineChart";
+import ChartsLegend from "../../components/chartsVega/ChartsLegend";
+// import BarChart from "../../components/charts/BarChart";
 import InformationBlock from "../../components/informationBlock/InformationBlock";
 
 // data for the charts
@@ -36,7 +38,7 @@ const data = {
       "name": "es1",
       "status": "KO",
       "response_time": 0,
-      "check_time": "2023-12-04T14:20:15.995Z",
+      "check_time": "2023-12-04T14:21:15.995Z",
     },
     {
       "name": "es1",
@@ -48,13 +50,13 @@ const data = {
       "name": "es1",
       "status": "OK",
       "response_time": 0,
-      "check_time": "2023-12-06T14:20:15.995Z",
+      "check_time": "2023-12-06T14:30:15.995Z",
     },
     {
       "name": "es1",
       "status": "OK",
       "response_time": 100,
-      "check_time": "2023-12-06T14:20:15.995Z",
+      "check_time": "2023-12-06T14:35:15.995Z",
     },
     {
       "name": "es1",
@@ -66,7 +68,7 @@ const data = {
       "name": "es1",
       "status": "n/d",
       "response_time": 0,
-      "check_time": "2023-12-08T14:20:15.995Z",
+      "check_time": "2023-12-08T14:21:15.995Z",
     },
     {
       "name": "es1",
@@ -78,13 +80,13 @@ const data = {
       "name": "es1",
       "status": "OK",
       "response_time": 0,
-      "check_time": "2023-12-09T14:20:15.995Z",
+      "check_time": "2023-12-09T14:25:15.995Z",
     },
     {
       "name": "es1",
       "status": "OK",
       "response_time": 40,
-      "check_time": "2023-12-09T14:20:15.995Z",
+      "check_time": "2023-12-09T14:30:15.995Z",
     },
     {
       "name": "es1",
@@ -104,6 +106,13 @@ const serviceData = {
   statusService: "attivo",
   statoLastDetection: "03/12/2022, ore 13:30",
 };
+
+// elements for the legend component
+const legendElements = [
+  { label: "E-service online", color: "#17324D" },
+  { label: "Monitoraggio sospeso", color: "#A2ADB8" },
+  { label: "E-service offline", color: "#FE6666" },
+];
 
 const DettaglioServicePage = () => {
   return (
@@ -132,12 +141,19 @@ const DettaglioServicePage = () => {
         >
           Monitoraggio
         </Typography>
-        <Grid item container justifyContent="space-around">
+        <Grid item container justifyContent="center" gap={10}>
           <Grid item>
             <LineChart data={data.values} />
           </Grid>
           <Grid item>
-            <BarChart data={data.percentages} />
+            <Grid container direction="column" rowSpacing={2}>
+              <Grid item>
+                <BarChart data={data.percentages} />
+              </Grid>
+              <Grid item>
+                <ChartsLegend legendElements={legendElements} />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
