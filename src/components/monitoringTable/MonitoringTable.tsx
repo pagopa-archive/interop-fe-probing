@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { TableSkeleton } from '../skeleton/TableSkeleton'
 import { Link } from 'react-router-dom'
 import { generatePath } from 'react-router'
+import RefreshIcon from '@mui/icons-material/Refresh'
 
 type EServiceListQueryFilters = {
   eserviceName?: string
@@ -108,7 +109,11 @@ export const MonitoringTable: React.FC = () => {
     return response
   }
 
-  const { data: services, isInitialLoading } = useQuery({
+  const {
+    data: services,
+    isInitialLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['services', paginationParams, filtersParams],
     queryFn: () => fetchServices(paginationParams, filtersParams),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
@@ -120,49 +125,60 @@ export const MonitoringTable: React.FC = () => {
       {isInitialLoading ? (
         <TableSkeleton headLabels={headLabels} />
       ) : (
-        <Table
-          isEmpty={services?.content ? services.content.length === 0 : true}
-          headLabels={headLabels}
-          noDataLabel={t('noResultsTable')}
-        >
-          {map(services?.content, (service) => (
-            <TableRow
-              key={service.id}
-              cellData={[
-                service.eserviceName as string,
-                service.versionNumber as string,
-                service.producerName as string,
-                <Chip
-                  key={service.id}
-                  label={toLower(service.state)}
-                  color={
-                    service.state === 'ONLINE'
-                      ? 'success'
-                      : service.state === 'OFFLINE'
-                      ? 'error'
-                      : 'warning'
-                  }
-                />,
-                service.responseReceived
-                  ? format(new Date(service.responseReceived), 'dd-MM-yyyy') +
-                    ', ore ' +
-                    format(new Date(service.responseReceived), 'HH:mm')
-                  : '',
-              ]}
-            >
-              <ButtonNaked
-                size="small"
-                color="primary"
-                component={Link}
-                to={generatePath('/monitoring/serviceDetails/:serviceId', {
-                  serviceId: toString(service.id),
-                })}
+        <>
+          <ButtonNaked
+            sx={{ float: 'right' }}
+            color="primary"
+            onClick={() => refetch()}
+            size="small"
+            startIcon={<RefreshIcon />}
+          >
+            {t('refresh', { ns: 'general' })}
+          </ButtonNaked>
+          <Table
+            isEmpty={services?.content ? services.content.length === 0 : true}
+            headLabels={headLabels}
+            noDataLabel={t('noResultsTable')}
+          >
+            {map(services?.content, (service) => (
+              <TableRow
+                key={service.id}
+                cellData={[
+                  service.eserviceName as string,
+                  service.versionNumber as string,
+                  service.producerName as string,
+                  <Chip
+                    key={service.id}
+                    label={toLower(service.state)}
+                    color={
+                      service.state === 'ONLINE'
+                        ? 'success'
+                        : service.state === 'OFFLINE'
+                        ? 'error'
+                        : 'warning'
+                    }
+                  />,
+                  service.responseReceived
+                    ? format(new Date(service.responseReceived), 'dd-MM-yyyy') +
+                      ', ore ' +
+                      format(new Date(service.responseReceived), 'HH:mm')
+                    : '',
+                ]}
               >
-                {t('readMore')}
-              </ButtonNaked>
-            </TableRow>
-          ))}
-        </Table>
+                <ButtonNaked
+                  size="small"
+                  color="primary"
+                  component={Link}
+                  to={generatePath('/monitoring/serviceDetails/:serviceId', {
+                    serviceId: toString(service.id),
+                  })}
+                >
+                  {t('readMore')}
+                </ButtonNaked>
+              </TableRow>
+            ))}
+          </Table>
+        </>
       )}
 
       <Pagination

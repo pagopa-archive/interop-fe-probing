@@ -1,3 +1,4 @@
 {
-  "errorRequest":"Error during request"
+  "errorRequest":"Error during request",
+  "refresh":"Refresh"
 }
