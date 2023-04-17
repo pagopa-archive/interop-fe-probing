@@ -121,11 +121,9 @@ export const MonitoringTable: React.FC = () => {
 
   return (
     <>
-      <Filters {...handlers} />
-      {isInitialLoading ? (
-        <TableSkeleton headLabels={headLabels} />
-      ) : (
-        <>
+      <Filters
+        {...handlers}
+        rightContent={
           <ButtonNaked
             sx={{ float: 'right' }}
             color="primary"
@@ -135,52 +133,55 @@ export const MonitoringTable: React.FC = () => {
           >
             {t('refresh', { ns: 'general' })}
           </ButtonNaked>
-          <Table
-            isEmpty={services?.content ? services.content.length === 0 : true}
-            headLabels={headLabels}
-            noDataLabel={t('noResultsTable')}
-          >
-            {map(services?.content, (service) => (
-              <TableRow
-                key={service.id}
-                cellData={[
-                  service.eserviceName as string,
-                  service.versionNumber as string,
-                  service.producerName as string,
-                  <Chip
-                    key={service.id}
-                    label={toLower(service.state)}
-                    color={
-                      service.state === 'ONLINE'
-                        ? 'success'
-                        : service.state === 'OFFLINE'
-                        ? 'error'
-                        : 'warning'
-                    }
-                  />,
-                  service.responseReceived
-                    ? format(new Date(service.responseReceived), 'dd-MM-yyyy') +
-                      ', ore ' +
-                      format(new Date(service.responseReceived), 'HH:mm')
-                    : '',
-                ]}
+        }
+      />
+      {isInitialLoading ? (
+        <TableSkeleton headLabels={headLabels} />
+      ) : (
+        <Table
+          isEmpty={services?.content ? services.content.length === 0 : true}
+          headLabels={headLabels}
+          noDataLabel={t('noResultsTable')}
+        >
+          {map(services?.content, (service) => (
+            <TableRow
+              key={service.id}
+              cellData={[
+                service.eserviceName as string,
+                service.versionNumber as string,
+                service.producerName as string,
+                <Chip
+                  key={service.id}
+                  label={toLower(service.state)}
+                  color={
+                    service.state === 'ONLINE'
+                      ? 'success'
+                      : service.state === 'OFFLINE'
+                      ? 'error'
+                      : 'warning'
+                  }
+                />,
+                service.responseReceived
+                  ? format(new Date(service.responseReceived), 'dd-MM-yyyy') +
+                    ', ore ' +
+                    format(new Date(service.responseReceived), 'HH:mm')
+                  : '',
+              ]}
+            >
+              <ButtonNaked
+                size="small"
+                color="primary"
+                component={Link}
+                to={generatePath('/monitoring/serviceDetails/:serviceId', {
+                  serviceId: toString(service.id),
+                })}
               >
-                <ButtonNaked
-                  size="small"
-                  color="primary"
-                  component={Link}
-                  to={generatePath('/monitoring/serviceDetails/:serviceId', {
-                    serviceId: toString(service.id),
-                  })}
-                >
-                  {t('readMore')}
-                </ButtonNaked>
-              </TableRow>
-            ))}
-          </Table>
-        </>
+                {t('readMore')}
+              </ButtonNaked>
+            </TableRow>
+          ))}
+        </Table>
       )}
-
       <Pagination
         totalPages={getTotalPageCount(services?.totalElements ? services.totalElements : 0)}
         {...paginationProps}
