@@ -6,7 +6,6 @@ Per l'installazione delle dipendenze utilizzare il comando `npm install`
 
 ## Lancio dell'applicazione in locale
 Per il lancio dell'applicazione in locale utilizzare il comando `npm run dev` e valorizzare le variabili d'ambiente nel seguente modo:
-- VITE_API_ENDPOINT: dominio del backend
 - VITE_REACT_QUERY_STALE_TIME: tempo (in millisecondi) di vita dei dati in cache
 - VITE_PAGINATION_LIMIT: limite massimo sul numero di elementi da mostrare nelle tabelle
 
