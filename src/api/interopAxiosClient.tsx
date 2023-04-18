@@ -6,9 +6,7 @@ class Http {
   private instance: AxiosInstance | null = null
 
   private get http(): AxiosInstance {
-    return this.instance != null
-      ? this.instance
-      : createAxiosInstance(import.meta.env.VITE_API_ENDPOINT)
+    return this.instance != null ? this.instance : createAxiosInstance()
   }
 
   getServices<T = any, R = AxiosResponse<T>>(payload: getServicesType): Promise<R> {
