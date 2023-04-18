@@ -125,7 +125,6 @@ export const MonitoringTable: React.FC = () => {
         {...handlers}
         rightContent={
           <ButtonNaked
-            sx={{ float: 'right' }}
             color="primary"
             onClick={() => refetch()}
             size="small"
