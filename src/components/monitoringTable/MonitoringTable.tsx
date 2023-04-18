@@ -23,6 +23,7 @@ import { useTranslation } from 'react-i18next'
 import { TableSkeleton } from '../skeleton/TableSkeleton'
 import { Link } from 'react-router-dom'
 import { generatePath } from 'react-router'
+import RefreshIcon from '@mui/icons-material/Refresh'
 
 type EServiceListQueryFilters = {
   eserviceName?: string
@@ -108,7 +109,11 @@ export const MonitoringTable: React.FC = () => {
     return response
   }
 
-  const { data: services, isInitialLoading } = useQuery({
+  const {
+    data: services,
+    isInitialLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['services', paginationParams, filtersParams],
     queryFn: () => fetchServices(paginationParams, filtersParams),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
@@ -116,7 +121,19 @@ export const MonitoringTable: React.FC = () => {
 
   return (
     <>
-      <Filters {...handlers} />
+      <Filters
+        {...handlers}
+        rightContent={
+          <ButtonNaked
+            color="primary"
+            onClick={() => refetch()}
+            size="small"
+            startIcon={<RefreshIcon />}
+          >
+            {t('refresh', { ns: 'general' })}
+          </ButtonNaked>
+        }
+      />
       {isInitialLoading ? (
         <TableSkeleton headLabels={headLabels} />
       ) : (
@@ -164,7 +181,6 @@ export const MonitoringTable: React.FC = () => {
           ))}
         </Table>
       )}
-
       <Pagination
         totalPages={getTotalPageCount(services?.totalElements ? services.totalElements : 0)}
         {...paginationProps}

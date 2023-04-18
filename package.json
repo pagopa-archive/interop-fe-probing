@@ -19,7 +19,7 @@
     "@mui/material": "^5.11.10",
     "@mui/system": "^5.11.9",
     "@mui/x-date-pickers": "^6.0.2",
-    "@pagopa/interop-fe-commons": "^0.1.0",
+    "@pagopa/interop-fe-commons": "^1.0.0",
     "@pagopa/mui-italia": "^0.9.1",
     "@tanstack/react-query": "^4.28.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -47,7 +47,7 @@
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
     "@vitest/coverage-c8": "^0.29.8",
-    "typescript": "^4.9.3",
+    "typescript": "^5.0.3",
     "vite": "^4.0.0",
     "vitest": "^0.29.8"
   }
