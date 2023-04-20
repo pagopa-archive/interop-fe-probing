@@ -161,9 +161,7 @@ export const MonitoringTable: React.FC = () => {
                   }
                 />,
                 service.responseReceived
-                  ? format(new Date(service.responseReceived), 'dd-MM-yyyy') +
-                    ', ore ' +
-                    format(new Date(service.responseReceived), 'HH:mm')
+                  ? format(new Date(service.responseReceived), "dd/MM/yyyy', ore 'HH:mm")
                   : '',
               ]}
             >
