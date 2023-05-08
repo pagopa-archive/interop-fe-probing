@@ -13,7 +13,7 @@ type getServicesType = {
  * @typedef {Object} ServicesResponseType
  */
 type ServicesResponseType = {
-  id?: number
+  eserviceRecordId?: number
   eserviceName?: string
   versionNumber?: string
   producerName?: string
