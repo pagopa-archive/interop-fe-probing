@@ -144,13 +144,13 @@ export const MonitoringTable: React.FC = () => {
         >
           {map(services?.content, (service) => (
             <TableRow
-              key={service.id}
+              key={service.eserviceRecordId}
               cellData={[
                 service.eserviceName as string,
                 service.versionNumber as string,
                 service.producerName as string,
                 <Chip
-                  key={service.id}
+                  key={service.eserviceRecordId}
                   label={toLower(service.state)}
                   color={
                     service.state === 'ONLINE'
@@ -169,8 +169,8 @@ export const MonitoringTable: React.FC = () => {
                 size="small"
                 color="primary"
                 component={Link}
-                to={generatePath('/monitoring/serviceDetails/:serviceId', {
-                  serviceId: toString(service.id),
+                to={generatePath('/monitoring/serviceDetails/:eserviceRecordId', {
+                  eserviceRecordId: toString(service.eserviceRecordId),
                 })}
               >
                 {t('readMore')}
