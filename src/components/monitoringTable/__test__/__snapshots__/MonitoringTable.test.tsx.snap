@@ -280,7 +280,7 @@ exports[`ErrorPage > render component 1`] = `
             class="MuiStack-root css-1xvxq01-MuiStack-root"
           />
           <button
-            class="MuiButtonBase-root MuiButton-root MuiButton-naked MuiButton-nakedPrimary MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-root MuiButton-naked MuiButton-nakedPrimary MuiButton-sizeSmall MuiButton-nakedSizeSmall css-1ckh8x9-MuiButtonBase-root-MuiButton-root"
+            class="MuiButtonBase-root MuiButton-root MuiButton-naked MuiButton-nakedPrimary MuiButton-sizeSmall MuiButton-nakedSizeSmall MuiButton-root MuiButton-naked MuiButton-nakedPrimary MuiButton-sizeSmall MuiButton-nakedSizeSmall css-14wetfy-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
