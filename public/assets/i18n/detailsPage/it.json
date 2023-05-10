@@ -1,0 +1,16 @@
+{
+  "subtitle": "In questa pagina puoi verificare lo stato dell’e-service in tempo reale ed esplorare lo storico delle performance",
+  "producerName": "Erogatore",
+  "versionNumber": "Versione",
+  "eserviceName": "Scheda e-service",
+  "viewInCatalog": "Visualizza sul catalogo",
+  "realTimeTitle": "In tempo reale",
+  "reload": "Ricarica",
+  "probingEnabled": "STATO DEL MONITORAGGIO",
+  "state": "STATO DEL'E SERVICE",
+  "responseReceived": "Data ultima rilevazione",
+  "chartsTitle": "Storico del monitoraggio",
+  "lineChartTitle": "Tempi di risposta dell’e-service",
+  "barChartTitle": "Performance dell’e-service",
+  "goBack": "Torna alla lista degli e-service"
+}

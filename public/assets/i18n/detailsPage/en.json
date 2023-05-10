@@ -1,0 +1,16 @@
+{
+  "subtitle": "On this page you can check the state of the e-service in real time and explore the performance history",
+  "producerName": "Producer",
+  "versionNumber": "Version",
+  "eserviceName": "E-service card",
+  "viewInCatalog": "View on catalog",
+  "realTimeTitle": "Real time",
+  "reload": "Reload",
+  "probingEnabled": "Monitoring state",
+  "state": "e-service state",
+  "responseReceived": "Last recorded date",
+  "chartsTitle": "Monitoring history",
+  "lineChartTitle": "e-service response time",
+  "barChartTitle": "e-service performances",
+  "goBack": "Go back to e-service list"
+}

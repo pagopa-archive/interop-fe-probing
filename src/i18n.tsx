@@ -15,12 +15,12 @@ i18n
   .use(initReactI18next)
   .init({
     backend: {
-      loadPath: 'assets/i18n/{{ns}}/{{lng}}.json',
+      loadPath: 'http://localhost:5173/assets/i18n/{{ns}}/{{lng}}.json',
     },
     // language by default
     fallbackLng: 'it',
     load: 'languageOnly',
-    ns: ['footer', 'monitorTable', 'general', 'errorPage', 'monitorPage'],
+    ns: ['footer', 'monitorTable', 'general', 'errorPage', 'monitorPage', 'detailsPage'],
 
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

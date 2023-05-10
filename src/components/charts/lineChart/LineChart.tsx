@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { scaleLinear, scaleTime, line, timeFormat, max, Line, ScaleLinear, ScaleTime } from 'd3'
+import { useTranslation } from 'react-i18next'
 
 interface IService {
   /**
@@ -40,12 +41,14 @@ const color: { [key: string]: string } = {
  * @component
  */
 export const LineChart: React.FC<IProps> = ({ data }) => {
+  const { t } = useTranslation(['detailsPage'])
+
   // header of the chart
   const header: JSX.Element = (
     <g className="bar-header" transform={`translate(${margin.left}, ${margin.top})`}>
       <text>
         <tspan fontFamily="Titillium Web" fontSize="18px" color="#17324D" fontWeight="700">
-          Tempi di risposta dell’e-service
+          {t('lineChartTitle')}
         </tspan>
       </text>
     </g>

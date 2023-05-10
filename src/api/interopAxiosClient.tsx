@@ -6,7 +6,9 @@ class Http {
   private instance: AxiosInstance | null = null
 
   private get http(): AxiosInstance {
-    return this.instance != null ? this.instance : createAxiosInstance()
+    return this.instance != null
+      ? this.instance
+      : createAxiosInstance(import.meta.env.VITE_API_ENDPOINT)
   }
 
   getServices<T = any, R = AxiosResponse<T>>(payload: getServicesType): Promise<R> {
@@ -23,12 +25,24 @@ class Http {
     })
   }
 
-  getProducers<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+  getProducers<T = any, R = AxiosResponse<T>>(payload: number): Promise<R> {
     return this.http.get<T, R>('/producers', {
       params: {
         producerName: payload,
       },
     })
+  }
+
+  getServiceMainData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/mainData/${payload}`)
+  }
+
+  getServiceProbingData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/probingData/${payload}`)
+  }
+
+  getServiceStatisticsData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/statistics/${payload}`)
   }
 }
 

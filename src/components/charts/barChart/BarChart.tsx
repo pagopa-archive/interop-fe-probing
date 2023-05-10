@@ -1,61 +1,56 @@
-import { useId } from "react";
-
-import { max, scaleLinear, scaleBand, ScaleLinear, ScaleBand } from "d3";
+import { useId } from 'react'
+import { max, scaleLinear, scaleBand, ScaleLinear, ScaleBand } from 'd3'
+import { useTranslation } from 'react-i18next'
 
 interface IService {
   /**
    * status of the service
    */
-  status: string;
+  status: string
   /**
    * percentages of the service
    */
-  value: number;
+  value: number
 }
 
 interface IProps {
-  data: Array<IService>;
+  data: Array<IService>
 }
 // margin convention often used with D3
-const margin = { top: 20, right: 30, bottom: 20, left: 30 };
-const width = 300;
-const height = 200;
+const margin = { top: 20, right: 30, bottom: 20, left: 30 }
+const width = 300
+const height = 200
 
-const color = ["#17324D", "#A2ADB8", "#FE6666"];
+const color = ['#17324D', '#A2ADB8', '#FE6666']
 
 /**
  * Bar chart component
  * @component
  */
 export const BarChart: React.FC<IProps> = ({ data }) => {
-  const xMax: number = max(data, (d: IService) => d.value) as number;
+  const { t } = useTranslation(['detailsPage'])
+
+  const xMax: number = max(data, (d: IService) => d.value) as number
 
   // x scale
-  const x: ScaleLinear<number, number, never> = scaleLinear()
-    .domain([0, xMax])
-    .range([0, width]);
+  const x: ScaleLinear<number, number, never> = scaleLinear().domain([0, xMax]).range([0, width])
 
   // x scale
   const y: ScaleBand<string> = scaleBand()
     .domain(data.map((d) => d.status))
     .rangeRound([0, height - margin.left])
-    .paddingInner(0.25);
+    .paddingInner(0.25)
 
   // header of the chart
   const header: JSX.Element = (
     <g className="bar-header" transform={`translate(0, ${margin.top})`}>
       <text>
-        <tspan
-          fontFamily="Titillium Web"
-          fontSize="18px"
-          color="#17324D"
-          fontWeight="700"
-        >
-          Performance dell’e-service
+        <tspan fontFamily="Titillium Web" fontSize="18px" color="#17324D" fontWeight="700">
+          {t('barChartTitle')}
         </tspan>
       </text>
     </g>
-  );
+  )
 
   // bars and bars' titles
   const bars: JSX.Element = (
@@ -78,12 +73,12 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
             fontWeight="600"
             transform={`translate(10, ${y.bandwidth() * 0.7})`}
           >
-            {d.value + "%"}
+            {d.value + '%'}
           </text>
         </g>
       ))}
     </g>
-  );
+  )
 
   return (
     <svg
@@ -95,5 +90,5 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
       {header}
       {bars}
     </svg>
-  );
-};
+  )
+}
