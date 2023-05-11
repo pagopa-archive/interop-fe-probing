@@ -1,6 +1,6 @@
-import { useId } from 'react'
 import { max, scaleLinear, scaleBand, ScaleLinear, ScaleBand } from 'd3'
 import { useTranslation } from 'react-i18next'
+import { v4 as uuid } from 'uuid'
 
 interface IService {
   /**
@@ -56,7 +56,7 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
   const bars: JSX.Element = (
     <g transform={`translate(0, ${margin.top * 2})`}>
       {data.map((d: IService, i: number) => (
-        <g key={useId()}>
+        <g key={uuid()}>
           <rect
             className="bar"
             y={y(d.status) as number}

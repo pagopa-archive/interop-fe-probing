@@ -1,53 +1,54 @@
-import { Checkbox, FormControlLabel, Grid } from "@mui/material";
+import { Checkbox, FormControlLabel, Grid } from '@mui/material'
+import { v4 as uuid } from 'uuid'
 
 interface ILegendElement {
-  label: string;
-  color: string;
+  label: string
+  color: string
 }
 
 interface IProps {
-  legendElements: ILegendElement[];
+  legendElements: ILegendElement[]
 }
 
 export const ChartsLegend: React.FC<IProps> = ({ legendElements }) => {
   return (
     <Grid container direction="column">
       {legendElements.map((item: ILegendElement) => (
-        <Grid item key={item.label}>
+        <Grid item key={uuid()}>
           <FormControlLabel
             label={item.label}
             sx={{
-              cursor: "default !important",
-              "& .MuiTypography-root": {
-                color: "#17324D !important",
+              cursor: 'default !important',
+              '& .MuiTypography-root': {
+                color: '#17324D !important',
               },
-              "& .MuiButtonBase-root": {
-                color: "white !important",
-                padding: "0px 9px",
+              '& .MuiButtonBase-root': {
+                color: 'white !important',
+                padding: '0px 9px',
               },
             }}
             disabled
             control={
               <Checkbox
                 sx={{
-                  "& .MuiSvgIcon-root": {
+                  '& .MuiSvgIcon-root': {
                     zIndex: 1,
                   },
-                  "& .PrivateSwitchBase-input": {
-                    width: "auto",
-                    height: "auto",
-                    top: "auto",
-                    left: "auto",
-                    opacity: "1",
-                    visibility: "hidden",
+                  '& .PrivateSwitchBase-input': {
+                    width: 'auto',
+                    height: 'auto',
+                    top: 'auto',
+                    left: 'auto',
+                    opacity: '1',
+                    visibility: 'hidden',
 
-                    "&::before": {
+                    '&::before': {
                       content: '""',
-                      position: "absolute",
+                      position: 'absolute',
                       background: `${item.color}`,
-                      height: "100%",
-                      width: "100%",
-                      visibility: "visible",
+                      height: '100%',
+                      width: '100%',
+                      visibility: 'visible',
                     },
                   },
                 }}
@@ -57,5 +58,5 @@ export const ChartsLegend: React.FC<IProps> = ({ legendElements }) => {
         </Grid>
       ))}
     </Grid>
-  );
-};
+  )
+}

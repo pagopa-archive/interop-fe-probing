@@ -5,6 +5,7 @@ import LockIcon from '@mui/icons-material/Lock'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { v4 as uuid } from 'uuid'
 
 interface MainData {
   eserviceName: string
@@ -87,7 +88,7 @@ export const InformationBlock: React.FC<IProps> = ({
         <Grid item container direction="column" mb={5}>
           {blocksInfo[0].blocks.map((block) => {
             return block === 'eserviceName' ? (
-              <Grid item key={block}>
+              <Grid item key={uuid()}>
                 <InformationContainer
                   key={block}
                   label={t(block).toUpperCase()}
@@ -171,7 +172,7 @@ export const InformationBlock: React.FC<IProps> = ({
           </Grid>
           <Grid item container direction="column">
             {blocksInfo[1].blocks.map((block) => (
-              <Grid item key={block}>
+              <Grid item key={uuid()}>
                 <InformationContainer
                   key={block}
                   label={t(block).toUpperCase()}
@@ -182,9 +183,9 @@ export const InformationBlock: React.FC<IProps> = ({
                         label={
                           block === 'state'
                             ? probingData[block as keyof ProbingData]
-                            : ChipLabel[probingData[block] as any]
+                            : ChipLabel[probingData[block].toString() as keyof ChipLabel]
                         }
-                        color={ChipColor[probingData[block] as any]}
+                        color={ChipColor[probingData[block].toString() as keyof ChipLabel]}
                       />
                     ) : (
                       (probingData['responseReceived' as keyof ProbingData] as string)

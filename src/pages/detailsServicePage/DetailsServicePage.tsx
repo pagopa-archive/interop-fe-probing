@@ -1,4 +1,4 @@
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography, Button, Alert } from '@mui/material'
 import { BarChart } from '../../components/charts/barChart/BarChart'
 import { LineChart } from '../../components/charts/lineChart/LineChart'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
@@ -9,6 +9,7 @@ import apiRequests from '../../api/apiRequests'
 import { useTranslation } from 'react-i18next'
 import stores from '../../store/Store'
 import { useNavigate, useParams } from 'react-router-dom'
+import { DetailsServicePageSkeleton } from '../../components/skeleton/DetailsServicePageSkeleton'
 
 // elements for the legend component
 const legendElements = [
@@ -44,7 +45,11 @@ export const DetailsServicePage: React.FC = () => {
     return apiRequests.getServiceStatisticsData(value)
   }
 
-  const { data: mainData, isSuccess: mainDataReady } = useQuery({
+  const {
+    data: mainData,
+    isSuccess: mainDataReady,
+    isInitialLoading: mainDataLoading,
+  } = useQuery({
     queryKey: ['serviceMainData', eserviceRecordId],
     queryFn: () => fetchServiceMainData(eserviceRecordId),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
@@ -53,6 +58,7 @@ export const DetailsServicePage: React.FC = () => {
   const {
     data: probingData,
     isSuccess: probingDataReady,
+    isInitialLoading: probingDataLoading,
     refetch,
   } = useQuery({
     queryKey: ['serviceProbingData', eserviceRecordId],
@@ -61,7 +67,11 @@ export const DetailsServicePage: React.FC = () => {
     keepPreviousData: false,
   })
 
-  const { data: statisticsData, isSuccess: statisticsDataReady } = useQuery({
+  const {
+    data: statisticsData,
+    isSuccess: statisticsDataReady,
+    isInitialLoading: statisticsDataLoading,
+  } = useQuery({
     queryKey: ['serviceStatisticsData', eserviceRecordId],
     queryFn: () => fetchServiceStatisticsData(eserviceRecordId),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
@@ -69,81 +79,85 @@ export const DetailsServicePage: React.FC = () => {
 
   return (
     <>
-      {mainDataReady && probingDataReady && statisticsDataReady ? (
+      {mainDataLoading || probingDataLoading || statisticsDataLoading ? (
+        <DetailsServicePageSkeleton />
+      ) : (
         <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
-          <Grid item sx={{ textAlign: 'center' }} my={5}>
-            <Typography variant="h4" component="h1">
-              Probing test 3
-            </Typography>
-            <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
-          </Grid>
-          <Grid item alignSelf={'center'} width={'40%'}>
-            <InformationBlock
-              mainData={mainData}
-              probingData={probingData}
-              reloadProbingDetails={refetch}
-              viewInCatalogue={viewInCatalogue}
-            />
-          </Grid>
-          <Grid item sx={{ mt: 2 }} flexGrow={1}>
-            <Typography
-              sx={{
-                fontSize: '1.4em',
-                fontWeight: 'bold',
-                color: '#17324D',
-                textAlign: 'center',
-              }}
-            >
-              {t('chartsTitle', { ns: 'detailsPage' })}
-            </Typography>
-            <Grid item container justifyContent="center" gap={10}>
-              <Grid item>
-                <LineChart data={statisticsData.values} />
+          {mainDataReady && probingDataReady && statisticsDataReady ? (
+            <>
+              <Grid item sx={{ textAlign: 'center' }} my={5}>
+                <Typography variant="h4" component="h1">
+                  Probing test 3
+                </Typography>
+                <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
               </Grid>
-              <Grid item>
-                <Grid container direction="column" rowSpacing={2}>
+              <Grid item alignSelf={'center'} width={'40%'}>
+                <InformationBlock
+                  mainData={mainData}
+                  probingData={probingData}
+                  reloadProbingDetails={refetch}
+                  viewInCatalogue={viewInCatalogue}
+                />
+              </Grid>
+              <Grid item sx={{ mt: 2 }} flexGrow={1}>
+                <Typography
+                  sx={{
+                    fontSize: '1.4em',
+                    fontWeight: 'bold',
+                    color: '#17324D',
+                    textAlign: 'center',
+                  }}
+                >
+                  {t('chartsTitle', { ns: 'detailsPage' })}
+                </Typography>
+                <Grid item container justifyContent="center" gap={10}>
                   <Grid item>
-                    <BarChart data={statisticsData.percentages} />
+                    <LineChart data={statisticsData.values} />
                   </Grid>
                   <Grid item>
-                    <ChartsLegend legendElements={legendElements} />
+                    <Grid container direction="column" rowSpacing={2}>
+                      <Grid item>
+                        <BarChart data={statisticsData.percentages} />
+                      </Grid>
+                      <Grid item>
+                        <ChartsLegend legendElements={legendElements} />
+                      </Grid>
+                    </Grid>
                   </Grid>
                 </Grid>
               </Grid>
-            </Grid>
-            <Grid
-              item
-              container
-              my={10}
-              direction={'row'}
-              alignItems={'center'}
-              justifyItems={'center'}
-              justifyContent={'center'}
+            </>
+          ) : (
+            <Alert severity="info">{t('errorRequest', { ns: 'general' })}</Alert>
+          )}
+          <Grid
+            item
+            container
+            my={10}
+            direction={'row'}
+            alignItems={'center'}
+            justifyItems={'center'}
+            justifyContent={'center'}
+          >
+            <Button
+              onClick={() => navigate(-1)}
+              color={'primary'}
+              disableRipple
+              sx={{
+                fontWeight: 'bold',
+                border: 'none!important',
+                textTransform: 'none',
+                '&:hover': {
+                  backgroundColor: 'transparent',
+                },
+              }}
+              variant="outlined"
+              startIcon={<ArrowBackIcon />}
             >
-              <Button
-                onClick={() => navigate(-1)}
-                color={'primary'}
-                disableRipple
-                sx={{
-                  fontWeight: 'bold',
-                  border: 'none!important',
-                  textTransform: 'none',
-                  '&:hover': {
-                    backgroundColor: 'transparent',
-                  },
-                }}
-                variant="outlined"
-                startIcon={<ArrowBackIcon />}
-              >
-                {t('goBack', { ns: 'detailsPage' })}
-              </Button>
-            </Grid>
+              {t('goBack', { ns: 'detailsPage' })}
+            </Button>
           </Grid>
         </Grid>
-      ) : (
-        <Typography variant="h4" component="h1">
-          Loading
-        </Typography>
       )}
     </>
   )
