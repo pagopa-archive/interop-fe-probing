@@ -28,19 +28,6 @@ interface IProps {
   viewInCatalogue?: () => void
 }
 
-enum ChipColor {
-  online = 'success',
-  offline = 'error',
-  'n/d' = 'warning',
-  true = 'success',
-  false = 'error',
-}
-
-enum ChipLabel {
-  true = 'active',
-  false = 'suspended',
-}
-
 const blocksInfo: Array<{ title: string; blocks: Array<string> }> = [
   {
     title: 'Informazioni generali',
@@ -88,6 +75,28 @@ export const InformationBlock: React.FC<IProps> = ({
       })
     }
   }, [probingData])
+
+  const getChipColor = (value: string) => {
+    switch (value) {
+      case 'online':
+      case 'true':
+        return 'success'
+      case 'offline':
+      case 'false':
+        return 'error'
+      case 'n/d':
+        return 'warning'
+    }
+  }
+
+  const getChipLabel = (value: boolean) => {
+    switch (value) {
+      case true:
+        return 'active'
+      case false:
+        return 'suspended'
+    }
+  }
 
   return (
     <>
@@ -190,11 +199,11 @@ export const InformationBlock: React.FC<IProps> = ({
                         label={
                           block === 'state'
                             ? probingData[block as keyof ProbingData]
-                            : t(ChipLabel[probingData[block].toString() as keyof ChipLabel], {
+                            : t(getChipLabel(probingData.probingEnabled), {
                                 ns: 'detailsPage',
                               })
                         }
-                        color={ChipColor[probingData[block].toString() as keyof ChipLabel]}
+                        color={getChipColor(probingData[block as keyof ProbingData].toString())}
                       />
                     ) : (
                       format(
