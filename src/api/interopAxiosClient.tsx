@@ -21,11 +21,11 @@ class Http {
         eserviceName: payload.eserviceName,
         state: payload.state,
       },
-      paramsSerializer: (params) => parseParams(params),
+      paramsSerializer: params => parseParams(params),
     })
   }
 
-  getProducers<T = any, R = AxiosResponse<T>>(payload: number): Promise<R> {
+  getProducers<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
     return this.http.get<T, R>('/producers', {
       params: {
         producerName: payload,
@@ -52,7 +52,7 @@ const parseParams = (params: any) => {
   const keys = Object.keys(params)
   let options = ''
 
-  keys.forEach((key) => {
+  keys.forEach(key => {
     if (params[key] !== undefined) {
       const isParamTypeObject = typeof params[key] === 'object'
       const isParamTypeArray = Array.isArray(params[key])
