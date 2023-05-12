@@ -6,9 +6,8 @@ const headers: Readonly<Record<string, string | boolean>> = {
   'X-Requested-With': 'XMLHttpRequest',
 }
 
-export const createAxiosInstance = (baseURL: string): AxiosInstance => {
+export const createAxiosInstance = (): AxiosInstance => {
   const newInstance = axios.create({
-    baseURL,
     headers,
   })
 

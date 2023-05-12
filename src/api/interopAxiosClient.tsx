@@ -6,9 +6,7 @@ class Http {
   private instance: AxiosInstance | null = null
 
   private get http(): AxiosInstance {
-    return this.instance != null
-      ? this.instance
-      : createAxiosInstance(import.meta.env.VITE_API_ENDPOINT)
+    return this.instance != null ? this.instance : createAxiosInstance()
   }
 
   getServices<T = any, R = AxiosResponse<T>>(payload: getServicesType): Promise<R> {
@@ -21,7 +19,7 @@ class Http {
         eserviceName: payload.eserviceName,
         state: payload.state,
       },
-      paramsSerializer: params => parseParams(params),
+      paramsSerializer: (params) => parseParams(params),
     })
   }
 
@@ -52,7 +50,7 @@ const parseParams = (params: any) => {
   const keys = Object.keys(params)
   let options = ''
 
-  keys.forEach(key => {
+  keys.forEach((key) => {
     if (params[key] !== undefined) {
       const isParamTypeObject = typeof params[key] === 'object'
       const isParamTypeArray = Array.isArray(params[key])
