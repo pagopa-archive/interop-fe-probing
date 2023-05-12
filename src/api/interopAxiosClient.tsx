@@ -29,6 +29,8 @@ class Http {
     return this.http.get<T, R>('/producers', {
       params: {
         producerName: payload,
+        offset: 0,
+        limit: 10,
       },
     })
   }
