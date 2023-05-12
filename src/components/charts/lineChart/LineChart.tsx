@@ -84,7 +84,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
       fontSize={10}
       textAnchor="middle"
     >
-      {x.ticks().map((d: number) => (
+      {x.ticks().map((d: Date) => (
         <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={uuid()}>
           <line
             y2={0}
@@ -109,7 +109,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
   // create the y ticks and create from them the horizontal lines of the grid
   const yTicks: JSX.Element = (
     <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
-      {y.ticks().map((d) => (
+      {y.ticks().map(d => (
         <g key={uuid()} opacity="1" className="tick" transform={`translate(0, ${y(d)})`}>
           <line stroke="currentColor" x2={0} strokeOpacity="0.05" />
           <line stroke="currentColor" x2={width} strokeOpacity="0.05" />
