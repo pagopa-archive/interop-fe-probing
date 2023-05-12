@@ -6,6 +6,7 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { v4 as uuid } from 'uuid'
+import format from 'date-fns/format'
 
 interface MainData {
   eserviceName: string
@@ -17,6 +18,7 @@ interface ProbingData {
   probingEnabled: boolean
   state: string
   responseReceived: string
+  eserviceActive: boolean
 }
 
 interface IProps {
@@ -35,8 +37,8 @@ enum ChipColor {
 }
 
 enum ChipLabel {
-  true = 'attivo',
-  false = 'sospenso',
+  true = 'active',
+  false = 'suspended',
 }
 
 const blocksInfo: Array<{ title: string; blocks: Array<string> }> = [
@@ -61,18 +63,23 @@ export const InformationBlock: React.FC<IProps> = ({
     message: '',
   })
 
-  const { t } = useTranslation(['detailsPage'])
+  const { t } = useTranslation(['detailsPage', 'general'])
 
   useEffect(() => {
     if (probingData.probingEnabled === false && probingData.state === 'n/d') {
       setAlert({
         show: true,
-        message: 'Il sistema di monitoraggio è attualmente sospeso',
+        message: 'monitoringSystemSuspendedMessage',
       })
-    } else if (probingData.state === 'offline') {
+    } else if (probingData.state === 'offline' && !probingData.eserviceActive) {
       setAlert({
         show: true,
-        message: 'L’e-service è offline perché non risponde al sistema di monitoraggio',
+        message: 'versionSuspendedMessage',
+      })
+    } else if (probingData.state === 'offline' && probingData.eserviceActive) {
+      setAlert({
+        show: true,
+        message: 'eserviceNotAnswerMessage',
       })
     } else {
       setAlert({
@@ -91,7 +98,7 @@ export const InformationBlock: React.FC<IProps> = ({
               <Grid item key={uuid()}>
                 <InformationContainer
                   key={block}
-                  label={t(block).toUpperCase()}
+                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
                   content={
                     <Grid container>
                       <Button
@@ -115,7 +122,7 @@ export const InformationBlock: React.FC<IProps> = ({
                         endIcon={<LaunchIcon />}
                         onClick={viewInCatalogue}
                       >
-                        {t('viewInCatalog')}
+                        {t('viewInCatalog', { ns: 'detailsPage' })}
                       </Button>
                     </Grid>
                   }
@@ -124,7 +131,7 @@ export const InformationBlock: React.FC<IProps> = ({
             ) : (
               <Grid item key={block}>
                 <InformationContainer
-                  label={t(block).toUpperCase()}
+                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
                   content={mainData[block as keyof MainData]}
                 />
               </Grid>
@@ -140,7 +147,7 @@ export const InformationBlock: React.FC<IProps> = ({
                 color: '#17324D',
               }}
             >
-              {t('realTimeTitle')}
+              {t('realTimeTitle', { ns: 'detailsPage' })}
             </Typography>
           </Grid>
           <Grid
@@ -167,7 +174,7 @@ export const InformationBlock: React.FC<IProps> = ({
               variant="outlined"
               startIcon={<RefreshIcon />}
             >
-              {t('reload')}
+              {t('reload', { ns: 'detailsPage' })}
             </Button>
           </Grid>
           <Grid item container direction="column">
@@ -175,7 +182,7 @@ export const InformationBlock: React.FC<IProps> = ({
               <Grid item key={uuid()}>
                 <InformationContainer
                   key={block}
-                  label={t(block).toUpperCase()}
+                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
                   content={
                     ['probingEnabled', 'state'].includes(block) ? (
                       <Chip
@@ -183,12 +190,19 @@ export const InformationBlock: React.FC<IProps> = ({
                         label={
                           block === 'state'
                             ? probingData[block as keyof ProbingData]
-                            : ChipLabel[probingData[block].toString() as keyof ChipLabel]
+                            : t(ChipLabel[probingData[block].toString() as keyof ChipLabel], {
+                                ns: 'detailsPage',
+                              })
                         }
                         color={ChipColor[probingData[block].toString() as keyof ChipLabel]}
                       />
                     ) : (
-                      (probingData['responseReceived' as keyof ProbingData] as string)
+                      format(
+                        new Date(probingData['responseReceived']),
+                        t('dateFormat', {
+                          ns: 'general',
+                        })
+                      )
                     )
                   }
                 />
@@ -204,7 +218,7 @@ export const InformationBlock: React.FC<IProps> = ({
               }}
               severity="warning"
             >
-              {alert.message}
+              {t(alert.message)}
             </Alert>
           </Grid>
         )}

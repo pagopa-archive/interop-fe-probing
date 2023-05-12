@@ -11,13 +11,6 @@ import stores from '../../store/Store'
 import { useNavigate, useParams } from 'react-router-dom'
 import { DetailsServicePageSkeleton } from '../../components/skeleton/DetailsServicePageSkeleton'
 
-// elements for the legend component
-const legendElements = [
-  { label: 'E-service online', color: '#17324D' },
-  { label: 'Monitoraggio sospeso', color: '#A2ADB8' },
-  { label: 'E-service offline', color: '#FE6666' },
-]
-
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
 }
@@ -30,6 +23,13 @@ export const DetailsServicePage: React.FC = () => {
   const params = useParams()
 
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
+
+  // elements for the legend component
+  const legendElements = [
+    { label: 'E-service online', color: '#17324D' },
+    { label: t('monitoringSuspended', { ns: 'detailsPage' }), color: '#A2ADB8' },
+    { label: 'E-service offline', color: '#FE6666' },
+  ]
 
   const eserviceRecordId = params.id ?? ''
 

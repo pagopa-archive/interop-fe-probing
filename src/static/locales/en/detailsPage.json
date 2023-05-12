@@ -8,9 +8,15 @@
   "reload": "Reload",
   "probingEnabled": "Monitoring state",
   "state": "e-service state",
-  "responseReceived": "Last recorded date",
+  "responseReceived": "Last detection date",
   "chartsTitle": "Monitoring history",
   "lineChartTitle": "e-service response time",
   "barChartTitle": "e-service performances",
-  "goBack": "Go back to e-service list"
+  "goBack": "Go back to e-service list",
+  "active": "active",
+  "suspended": "suspended",
+  "monitoringSuspended": "Monitoring suspended",
+  "versionSuspendedMessage": "The e-service is offline because this version is currently suspended",
+  "eserviceNotAnswerMessage": "The e-service is offline because it doesn't answer to the monitoring system",
+  "monitoringSystemSuspendedMessage": "The monitoring system is currently suspended"
 }

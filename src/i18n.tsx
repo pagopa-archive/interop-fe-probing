@@ -1,7 +1,18 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import Backend from 'i18next-http-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import detailsPageIt from './static/locales/it/detailsPage.json'
+import detailsPageEn from './static/locales/en/detailsPage.json'
+import errorPageIt from './static/locales/it/errorPage.json'
+import errorPageEn from './static/locales/en/errorPage.json'
+import generalIt from './static/locales/it/general.json'
+import generalEn from './static/locales/en/general.json'
+import footerIt from './static/locales/it/footer.json'
+import footerEn from './static/locales/en/footer.json'
+import monitorPageIt from './static/locales/it/monitorPage.json'
+import monitorPageEn from './static/locales/en/monitorPage.json'
+import monitorTableIt from './static/locales/it/monitorTable.json'
+import monitorTableEn from './static/locales/en/monitorTable.json'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -10,12 +21,26 @@ declare module 'i18next' {
 }
 
 i18n
-  .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    backend: {
-      loadPath: 'http://localhost:5173/assets/i18n/{{ns}}/{{lng}}.json',
+    resources: {
+      it: {
+        detailsPage: detailsPageIt,
+        errorPage: errorPageIt,
+        general: generalIt,
+        footer: footerIt,
+        monitorPage: monitorPageIt,
+        monitorTable: monitorTableIt,
+      },
+      en: {
+        detailsPage: detailsPageEn,
+        errorPage: errorPageEn,
+        general: generalEn,
+        footer: footerEn,
+        monitorPage: monitorPageEn,
+        monitorTable: monitorTableEn,
+      },
     },
     // language by default
     fallbackLng: 'it',
