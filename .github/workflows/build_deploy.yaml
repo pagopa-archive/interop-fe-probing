@@ -27,7 +27,7 @@ jobs:
           node-version: '16'
       - name: Clean dependencies
         run: |
-          rm -rf node_modules package-lock.json dist
+          rm -rf node_modules dist
       - name: Install dependencies
         run: |
           npm install --legacy-peer-deps
@@ -62,7 +62,7 @@ jobs:
           node-version: '16'
       - name: Clean dependencies
         run: |
-          rm -rf node_modules package-lock.json dist
+          rm -rf node_modules dist
       - name: Install dependencies
         run: |
           npm install --legacy-peer-deps
