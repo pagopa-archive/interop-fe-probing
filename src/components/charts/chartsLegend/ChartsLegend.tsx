@@ -1,5 +1,4 @@
 import { Checkbox, FormControlLabel, Grid } from '@mui/material'
-import { v4 as uuid } from 'uuid'
 
 interface ILegendElement {
   label: string
@@ -14,7 +13,7 @@ export const ChartsLegend: React.FC<IProps> = ({ legendElements }) => {
   return (
     <Grid container direction="column">
       {legendElements.map((item: ILegendElement) => (
-        <Grid item key={uuid()}>
+        <Grid item key={item.label}>
           <FormControlLabel
             label={item.label}
             sx={{

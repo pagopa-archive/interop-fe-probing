@@ -1,12 +1,11 @@
-import { Chip, Grid, Typography, Button, Alert } from '@mui/material'
+import { Chip, Grid, Typography, Button } from '@mui/material'
 import { InformationContainer } from '@pagopa/interop-fe-commons'
 import LaunchIcon from '@mui/icons-material/Launch'
 import LockIcon from '@mui/icons-material/Lock'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { v4 as uuid } from 'uuid'
 import format from 'date-fns/format'
+import { ProbingDataAlert } from '../probingDataAlert/ProbingDataAlert'
 
 interface MainData {
   eserviceName: string
@@ -45,36 +44,7 @@ export const InformationBlock: React.FC<IProps> = ({
   reloadProbingDetails,
   viewInCatalogue,
 }) => {
-  const [alert, setAlert] = useState({
-    show: false,
-    message: '',
-  })
-
   const { t } = useTranslation(['detailsPage', 'general'])
-
-  useEffect(() => {
-    if (probingData.probingEnabled === false && probingData.state === 'n/d') {
-      setAlert({
-        show: true,
-        message: 'monitoringSystemSuspendedMessage',
-      })
-    } else if (probingData.state === 'offline' && !probingData.eserviceActive) {
-      setAlert({
-        show: true,
-        message: 'versionSuspendedMessage',
-      })
-    } else if (probingData.state === 'offline' && probingData.eserviceActive) {
-      setAlert({
-        show: true,
-        message: 'eserviceNotAnswerMessage',
-      })
-    } else {
-      setAlert({
-        show: false,
-        message: '',
-      })
-    }
-  }, [probingData])
 
   const getChipColor = (value: string) => {
     switch (value) {
@@ -104,7 +74,7 @@ export const InformationBlock: React.FC<IProps> = ({
         <Grid item container direction="column" mb={5}>
           {blocksInfo[0].blocks.map((block) => {
             return block === 'eserviceName' ? (
-              <Grid item key={uuid()}>
+              <Grid item key={block}>
                 <InformationContainer
                   key={block}
                   label={t(block, { ns: 'detailsPage' }).toUpperCase()}
@@ -188,7 +158,7 @@ export const InformationBlock: React.FC<IProps> = ({
           </Grid>
           <Grid item container direction="column">
             {blocksInfo[1].blocks.map((block) => (
-              <Grid item key={uuid()}>
+              <Grid item key={block}>
                 <InformationContainer
                   key={block}
                   label={t(block, { ns: 'detailsPage' }).toUpperCase()}
@@ -219,18 +189,11 @@ export const InformationBlock: React.FC<IProps> = ({
             ))}
           </Grid>
         </Grid>
-        {alert.show && (
-          <Grid item container>
-            <Alert
-              sx={{
-                width: '100%',
-              }}
-              severity="warning"
-            >
-              {t(alert.message)}
-            </Alert>
-          </Grid>
-        )}
+        <ProbingDataAlert
+          probingEnabled={probingData.probingEnabled}
+          state={probingData.state}
+          eserviceActive={probingData.eserviceActive}
+        />
       </Grid>
     </>
   )

@@ -1,6 +1,5 @@
 import { scaleLinear, scaleTime, line, timeFormat, max, Line, ScaleLinear, ScaleTime } from 'd3'
 import { useTranslation } from 'react-i18next'
-import { v4 as uuid } from 'uuid'
 
 interface IService {
   /**
@@ -85,7 +84,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
       textAnchor="middle"
     >
       {x.ticks().map((d: Date) => (
-        <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={uuid()}>
+        <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
           <line
             y2={0}
             transform={`translate(0, ${-height})`}
@@ -109,8 +108,8 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
   // create the y ticks and create from them the horizontal lines of the grid
   const yTicks: JSX.Element = (
     <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
-      {y.ticks().map(d => (
-        <g key={uuid()} opacity="1" className="tick" transform={`translate(0, ${y(d)})`}>
+      {y.ticks().map((d) => (
+        <g key={d} opacity="1" className="tick" transform={`translate(0, ${y(d)})`}>
           <line stroke="currentColor" x2={0} strokeOpacity="0.05" />
           <line stroke="currentColor" x2={width} strokeOpacity="0.05" />
           <text x="-15" dy="0.32em">{`${d}ms`}</text>
@@ -132,7 +131,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     <linearGradient id="linearGradient" gradientUnits="userSpaceOnUse" x1="0" x2={width}>
       {data.map((d: IService) => (
         <stop
-          key={uuid()}
+          key={new Date(d.check_time).getTime()}
           offset={x(new Date(d.check_time)) / width}
           stopColor={color[d.status]}
           stopOpacity="1"
