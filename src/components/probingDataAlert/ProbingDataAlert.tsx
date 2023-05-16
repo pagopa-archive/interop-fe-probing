@@ -1,6 +1,5 @@
 import { Alert, Grid } from '@mui/material'
 import { useTranslation } from 'react-i18next'
-import { useState, useEffect } from 'react'
 
 interface ProbingData {
   probingEnabled: boolean
@@ -13,36 +12,30 @@ export const ProbingDataAlert: React.FC<ProbingData> = ({
   state,
   eserviceActive,
 }) => {
-  const [message, setMessage] = useState('')
-
   const { t } = useTranslation(['detailsPage'])
 
-  useEffect(() => {
-    if (probingEnabled === false && state === 'n/d') {
-      setMessage('monitoringSystemSuspendedMessage')
-    } else if (state === 'offline' && !eserviceActive) {
-      setMessage('versionSuspendedMessage')
-    } else if (state === 'offline' && eserviceActive) {
-      setMessage('eserviceNotAnswerMessage')
-    } else {
-      setMessage('')
-    }
-  }, [probingEnabled, state, eserviceActive])
+  let message = ''
+
+  if (probingEnabled === false && state === 'n/d') {
+    message = 'monitoringSystemSuspendedMessage'
+  } else if (state === 'offline' && !eserviceActive) {
+    message = 'versionSuspendedMessage'
+  } else if (state === 'offline' && eserviceActive) {
+    message = 'eserviceNotAnswerMessage'
+  }
+
+  if (!message) return null
 
   return (
-    <>
-      {message !== '' ? (
-        <Grid item container>
-          <Alert
-            sx={{
-              width: '100%',
-            }}
-            severity="warning"
-          >
-            {t(message)}
-          </Alert>
-        </Grid>
-      ) : null}
-    </>
+    <Grid item container>
+      <Alert
+        sx={{
+          width: '100%',
+        }}
+        severity="warning"
+      >
+        {t(message)}
+      </Alert>
+    </Grid>
   )
 }
