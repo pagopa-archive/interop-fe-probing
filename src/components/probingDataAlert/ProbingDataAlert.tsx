@@ -16,11 +16,11 @@ export const ProbingDataAlert: React.FC<ProbingData> = ({
 
   let message = ''
 
-  if (probingEnabled === false && state === 'n/d') {
+  if (probingEnabled === false && state === 'N/D') {
     message = 'monitoringSystemSuspendedMessage'
-  } else if (state === 'offline' && !eserviceActive) {
+  } else if (state === 'OFFLINE' && !eserviceActive) {
     message = 'versionSuspendedMessage'
-  } else if (state === 'offline' && eserviceActive) {
+  } else if (state === 'OFFLINE' && eserviceActive) {
     message = 'eserviceNotAnswerMessage'
   }
 

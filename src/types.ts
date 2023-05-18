@@ -34,21 +34,17 @@ export interface ServiceProbingData {
 
 export interface ServiceValuesType {
   /**
-   * name of the service
-   */
-  name: string
-  /**
    * status of the service
    */
   status: string
   /**
    * response time for the service
    */
-  response_time: number
+  responseTime: number
   /**
    * check time for the service
    */
-  check_time: string
+  time: string
 }
 
 export interface ServicePercentagesType {

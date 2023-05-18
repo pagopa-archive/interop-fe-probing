@@ -41,8 +41,8 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     .domain([
       // get the previous date of the first check_date in the array
       // because the chart is not including the first one
-      new Date(new Date(data[0].check_time).setDate(new Date(data[0].check_time).getDate() - 1)),
-      new Date(data[data.length - 1].check_time),
+      new Date(new Date(data[0].time).setDate(new Date(data[0].time).getDate() - 1)),
+      new Date(data[data.length - 1].time),
     ])
 
   //y scale
@@ -50,7 +50,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     .domain([
       0,
       max(data, (d: ServiceValuesType) => {
-        return d.response_time || null
+        return d.responseTime || null
       }),
     ] as Array<number>)
 
@@ -100,21 +100,21 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     </g>
   )
 
-  //line generator: each point is [x(d.check_time), y(d.response_time)] where d is an element in data array
+  //line generator: each point is [x(d.time), y(d.responseTime)] where d is an element in data array
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
   const createLine: Line<ServiceValuesType> = line<ServiceValuesType>()
     .x((d: ServiceValuesType) => {
-      return x(new Date(d.check_time))
+      return x(new Date(d.time))
     })
-    .y((d: ServiceValuesType) => y(d.response_time))
+    .y((d: ServiceValuesType) => y(d.responseTime))
 
   // create linear gradient to color the line in different colors depending on the status
   const linearGradient: JSX.Element = (
     <linearGradient id="linearGradient" gradientUnits="userSpaceOnUse" x1="0" x2={width}>
       {data.map((d: ServiceValuesType) => (
         <stop
-          key={new Date(d.check_time).getTime()}
-          offset={x(new Date(d.check_time)) / width}
+          key={new Date(d.time).getTime()}
+          offset={x(new Date(d.time)) / width}
           stopColor={color[d.status]}
           stopOpacity="1"
         ></stop>

@@ -88,7 +88,7 @@ export const DetailsServicePage: React.FC = () => {
             <>
               <Grid item sx={{ textAlign: 'center' }} my={5}>
                 <Typography variant="h4" component="h1">
-                  Probing test 3
+                  {mainData.eserviceName}
                 </Typography>
                 <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
               </Grid>

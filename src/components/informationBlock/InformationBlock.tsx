@@ -36,13 +36,13 @@ export const InformationBlock: React.FC<IProps> = ({
 
   const getChipColor = (value: string) => {
     switch (value) {
-      case 'online':
+      case 'ONLINE':
       case 'true':
         return 'success'
-      case 'offline':
+      case 'OFFLINE':
       case 'false':
         return 'error'
-      case 'n/d':
+      case 'N/D':
         return 'warning'
     }
   }
@@ -149,6 +149,8 @@ export const InformationBlock: React.FC<IProps> = ({
                         label={
                           block === 'state'
                             ? probingData[block as keyof ServiceProbingData]
+                                .toString()
+                                .toLowerCase()
                             : t(getChipLabel(probingData.probingEnabled), {
                                 ns: 'detailsPage',
                               })
