@@ -6,23 +6,11 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import { useTranslation } from 'react-i18next'
 import format from 'date-fns/format'
 import { ProbingDataAlert } from '../probingDataAlert/ProbingDataAlert'
-
-interface MainData {
-  eserviceName: string
-  producerName: string
-  versionNumber: string
-}
-
-interface ProbingData {
-  probingEnabled: boolean
-  state: string
-  responseReceived: string
-  eserviceActive: boolean
-}
+import { ServiceMainData, ServiceProbingData } from '../../types'
 
 interface IProps {
-  mainData: MainData
-  probingData: ProbingData
+  mainData: ServiceMainData
+  probingData: ServiceProbingData
   reloadProbingDetails: () => void
   viewInCatalogue?: () => void
 }
@@ -111,7 +99,7 @@ export const InformationBlock: React.FC<IProps> = ({
               <Grid item key={block}>
                 <InformationContainer
                   label={t(block, { ns: 'detailsPage' }).toUpperCase()}
-                  content={mainData[block as keyof MainData]}
+                  content={mainData[block as keyof ServiceMainData]}
                 />
               </Grid>
             )
@@ -119,15 +107,7 @@ export const InformationBlock: React.FC<IProps> = ({
         </Grid>
         <Grid item container direction="column">
           <Grid item textAlign={'center'}>
-            <Typography
-              sx={{
-                fontSize: '1.4em',
-                fontWeight: 'bold',
-                color: '#17324D',
-              }}
-            >
-              {t('realTimeTitle', { ns: 'detailsPage' })}
-            </Typography>
+            <Typography variant="h5">{t('realTimeTitle', { ns: 'detailsPage' })}</Typography>
           </Grid>
           <Grid
             item
@@ -168,12 +148,14 @@ export const InformationBlock: React.FC<IProps> = ({
                         size={'small'}
                         label={
                           block === 'state'
-                            ? probingData[block as keyof ProbingData]
+                            ? probingData[block as keyof ServiceProbingData]
                             : t(getChipLabel(probingData.probingEnabled), {
                                 ns: 'detailsPage',
                               })
                         }
-                        color={getChipColor(probingData[block as keyof ProbingData].toString())}
+                        color={getChipColor(
+                          probingData[block as keyof ServiceProbingData].toString()
+                        )}
                       />
                     ) : (
                       format(

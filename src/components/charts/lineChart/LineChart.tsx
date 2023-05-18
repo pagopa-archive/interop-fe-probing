@@ -1,27 +1,9 @@
 import { scaleLinear, scaleTime, line, timeFormat, max, Line, ScaleLinear, ScaleTime } from 'd3'
 import { useTranslation } from 'react-i18next'
-
-interface IService {
-  /**
-   * name of the service
-   */
-  name: string
-  /**
-   * status of the service
-   */
-  status: string
-  /**
-   * response time for the service
-   */
-  response_time: number
-  /**
-   * check time for the service
-   */
-  check_time: string
-}
+import { ServiceValuesType } from '../../../types'
 
 interface IProps {
-  data: Array<IService>
+  data: Array<ServiceValuesType>
 }
 
 // margin convention often used with D3
@@ -67,7 +49,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
   const y: ScaleLinear<number, number, never> = scaleLinear()
     .domain([
       0,
-      max(data, (d: IService) => {
+      max(data, (d: ServiceValuesType) => {
         return d.response_time || null
       }),
     ] as Array<number>)
@@ -120,16 +102,16 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
 
   //line generator: each point is [x(d.check_time), y(d.response_time)] where d is an element in data array
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
-  const createLine: Line<IService> = line<IService>()
-    .x((d: IService) => {
+  const createLine: Line<ServiceValuesType> = line<ServiceValuesType>()
+    .x((d: ServiceValuesType) => {
       return x(new Date(d.check_time))
     })
-    .y((d: IService) => y(d.response_time))
+    .y((d: ServiceValuesType) => y(d.response_time))
 
   // create linear gradient to color the line in different colors depending on the status
   const linearGradient: JSX.Element = (
     <linearGradient id="linearGradient" gradientUnits="userSpaceOnUse" x1="0" x2={width}>
-      {data.map((d: IService) => (
+      {data.map((d: ServiceValuesType) => (
         <stop
           key={new Date(d.check_time).getTime()}
           offset={x(new Date(d.check_time)) / width}

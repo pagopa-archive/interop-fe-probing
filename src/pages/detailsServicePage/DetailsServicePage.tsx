@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next'
 import stores from '../../store/Store'
 import { useNavigate, useParams } from 'react-router-dom'
 import { DetailsServicePageSkeleton } from '../../components/skeleton/DetailsServicePageSkeleton'
+import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -33,15 +34,15 @@ export const DetailsServicePage: React.FC = () => {
 
   const eserviceRecordId = params.id ?? ''
 
-  async function fetchServiceMainData(value: string): Promise<any> {
+  async function fetchServiceMainData(value: string): Promise<ServiceMainData> {
     return apiRequests.getServiceMainData(value)
   }
 
-  async function fetchServiceProbingData(value: string): Promise<any> {
+  async function fetchServiceProbingData(value: string): Promise<ServiceProbingData> {
     return apiRequests.getServiceProbingData(value)
   }
 
-  async function fetchServiceStatisticsData(value: string): Promise<any> {
+  async function fetchServiceStatisticsData(value: string): Promise<ServiceStatisticsData> {
     return apiRequests.getServiceStatisticsData(value)
   }
 
@@ -101,10 +102,8 @@ export const DetailsServicePage: React.FC = () => {
               </Grid>
               <Grid item sx={{ mt: 2 }} flexGrow={1}>
                 <Typography
+                  variant="h5"
                   sx={{
-                    fontSize: '1.4em',
-                    fontWeight: 'bold',
-                    color: '#17324D',
                     textAlign: 'center',
                   }}
                 >

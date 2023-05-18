@@ -1,19 +1,9 @@
 import { max, scaleLinear, scaleBand, ScaleLinear, ScaleBand } from 'd3'
 import { useTranslation } from 'react-i18next'
-
-interface IService {
-  /**
-   * status of the service
-   */
-  status: string
-  /**
-   * percentages of the service
-   */
-  value: number
-}
+import { ServicePercentagesType } from '../../../types'
 
 interface IProps {
-  data: Array<IService>
+  data: Array<ServicePercentagesType>
 }
 // margin convention often used with D3
 const margin = { top: 20, right: 30, bottom: 20, left: 30 }
@@ -29,7 +19,7 @@ const color = ['#17324D', '#A2ADB8', '#FE6666']
 export const BarChart: React.FC<IProps> = ({ data }) => {
   const { t } = useTranslation(['detailsPage'])
 
-  const xMax: number = max(data, (d: IService) => d.value) as number
+  const xMax: number = max(data, (d: ServicePercentagesType) => d.value) as number
 
   // x scale
   const x: ScaleLinear<number, number, never> = scaleLinear().domain([0, xMax]).range([0, width])
@@ -54,7 +44,7 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
   // bars and bars' titles
   const bars: JSX.Element = (
     <g transform={`translate(0, ${margin.top * 2})`}>
-      {data.map((d: IService, i: number) => (
+      {data.map((d: ServicePercentagesType, i: number) => (
         <g key={d.status}>
           <rect
             className="bar"
