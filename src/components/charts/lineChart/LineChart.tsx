@@ -35,23 +35,30 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     </g>
   )
 
+  // if the array is empty we get one week ago date as min date
+  // get the previous date of the first check_date in the array
+  // because the chart is not including the first one
+  const minTime =
+    data.length > 0
+      ? new Date(new Date(data[0].time).setDate(new Date(data[0].time).getDate() - 1))
+      : new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
+
+  // if the array is empty we get todays date as max date
+  const maxTime = data.length > 0 ? new Date(data[data.length - 1].time) : new Date()
+
   //x scale
   const x: ScaleTime<number, number, never> = scaleTime()
     .range([0, width])
-    .domain([
-      // get the previous date of the first check_date in the array
-      // because the chart is not including the first one
-      new Date(new Date(data[0].time).setDate(new Date(data[0].time).getDate() - 1)),
-      new Date(data[data.length - 1].time),
-    ])
+    .domain([minTime, maxTime])
 
   //y scale
   const y: ScaleLinear<number, number, never> = scaleLinear()
     .domain([
       0,
+      // if we have null for example when the array is empty the default value is 10
       max(data, (d: ServiceValuesType) => {
         return d.responseTime || null
-      }),
+      }) || 10,
     ] as Array<number>)
 
     .range([height, 0])
