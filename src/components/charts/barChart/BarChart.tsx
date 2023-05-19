@@ -43,7 +43,7 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
 
   // bars and bars' titles
   const bars: JSX.Element = (
-    <g transform={`translate(0, ${margin.top * 2})`}>
+    <g transform={`translate(0, ${margin.top * 2.5})`}>
       {data.map((d: ServicePercentagesType, i: number) => (
         <g key={d.status}>
           <rect

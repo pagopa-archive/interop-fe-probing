@@ -7,9 +7,9 @@ interface IProps {
 }
 
 // margin convention often used with D3
-const margin = { top: 20, right: 30, bottom: 40, left: 60 }
+const margin = { top: 20, right: 30, bottom: 80, left: 60 }
 const width = 700 - margin.left - margin.right
-const height = 350 - margin.top - margin.bottom
+const height = 400 - margin.top - margin.bottom
 
 const color: { [key: string]: string } = {
   OK: '#17324D',
@@ -26,7 +26,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
 
   // header of the chart
   const header: JSX.Element = (
-    <g className="bar-header" transform={`translate(${margin.left}, ${margin.top})`}>
+    <g className="bar-header" transform={`translate(10, ${margin.top})`}>
       <text>
         <tspan fontFamily="Titillium Web" fontSize="18px" color="#17324D" fontWeight="700">
           {t('lineChartTitle')}
@@ -137,7 +137,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
       role="img"
     >
       {header}
-      <g className="scales" transform={`translate(${margin.left}, ${margin.top * 1.5})`}>
+      <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
         {xTicks}
         {yTicks}
       </g>
@@ -148,7 +148,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
         strokeWidth="1"
         fill="none"
         d={createLine(data) || undefined}
-        transform={`translate(${margin.left}, ${margin.top * 1.5})`}
+        transform={`translate(${margin.left}, ${margin.top * 3})`}
       />
     </svg>
   )
