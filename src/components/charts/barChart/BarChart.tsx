@@ -6,7 +6,7 @@ interface IProps {
   data: Array<ServicePercentagesType>
 }
 // margin convention often used with D3
-const margin = { top: 20, right: 30, bottom: 20, left: 30 }
+const margin = { top: 20, right: 100, bottom: 20, left: 30 }
 const width = 300
 const height = 200
 
