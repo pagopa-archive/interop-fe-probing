@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from 'vitest'
 import { cleanup, screen, waitForElementToBeRemoved, within } from '@testing-library/react'
-import MonitoringPage from '../../../pages/monitoring/MonitoringPage'
+import MonitoringTable from '../MonitoringTable'
 import { renderWithRouterAndQuery } from '../../../mocks/mockWrapper'
 
 import _ from 'lodash'
@@ -23,12 +23,12 @@ describe('ErrorPage', () => {
   })
 
   test('render component', () => {
-    const { container } = renderWithRouterAndQuery(<MonitoringPage />)
+    const { container } = renderWithRouterAndQuery(<MonitoringTable />)
     expect(container).toMatchSnapshot()
   })
 
   test('click read more button', async () => {
-    const { container } = renderWithRouterAndQuery(<MonitoringPage />)
+    const { container } = renderWithRouterAndQuery(<MonitoringTable />)
     // wait sceleton to be remove
     await waitForElementToBeRemoved(() => container.getElementsByClassName('MuiSkeleton-root')[0])
 
@@ -41,6 +41,6 @@ describe('ErrorPage', () => {
 
   test('test with existing VITE_PAGINATION_LIMIT environment variable', async () => {
     process.env.VITE_PAGINATION_LIMIT = '8'
-    const { container } = renderWithRouterAndQuery(<MonitoringPage />)
+    const { container } = renderWithRouterAndQuery(<MonitoringTable />)
   })
 })
