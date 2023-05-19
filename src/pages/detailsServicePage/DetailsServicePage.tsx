@@ -86,11 +86,22 @@ export const DetailsServicePage: React.FC = () => {
         <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
           {mainDataReady && probingDataReady && statisticsDataReady ? (
             <>
-              <Grid item sx={{ textAlign: 'center' }} my={5}>
-                <Typography variant="h4" component="h1">
-                  {mainData.eserviceName}
-                </Typography>
-                <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
+              <Grid
+                container
+                item
+                direction="column"
+                sx={{ textAlign: 'center' }}
+                my={5}
+                rowGap={2}
+              >
+                <Grid item>
+                  <Typography variant="h4" component="h1">
+                    {mainData.eserviceName}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
+                </Grid>
               </Grid>
               <Grid item alignSelf={'center'} width={'40%'}>
                 <InformationBlock
@@ -100,15 +111,17 @@ export const DetailsServicePage: React.FC = () => {
                   viewInCatalogue={viewInCatalogue}
                 />
               </Grid>
-              <Grid item sx={{ mt: 2 }} flexGrow={1}>
-                <Typography
-                  variant="h5"
-                  sx={{
-                    textAlign: 'center',
-                  }}
-                >
-                  {t('chartsTitle', { ns: 'detailsPage' })}
-                </Typography>
+              <Grid container item direction="column" sx={{ mt: 2 }} flexGrow={1} rowGap={6}>
+                <Grid item>
+                  <Typography
+                    variant="h5"
+                    sx={{
+                      textAlign: 'center',
+                    }}
+                  >
+                    {t('chartsTitle', { ns: 'detailsPage' })}
+                  </Typography>
+                </Grid>
                 <Grid item container justifyContent="center" gap={10}>
                   <Grid item>
                     <LineChart data={statisticsData.values} />
