@@ -32,6 +32,18 @@ class Http {
       },
     })
   }
+
+  getServiceMainData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/mainData/${payload}`)
+  }
+
+  getServiceProbingData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/probingData/${payload}`)
+  }
+
+  getServiceStatisticsData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
+    return this.http.get<T, R>(`/eservices/statistics/${payload}`)
+  }
 }
 
 const parseParams = (params: any) => {

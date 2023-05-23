@@ -30,9 +30,57 @@ const getProducers = async (payload: string) => {
     })
 }
 
+/**
+ * Return e-service base data
+ * @param {string} payload
+ */
+const getServiceMainData = async (payload: string) => {
+  return await interopAxiosClient
+    .getServiceMainData(payload)
+    .then((result: any) => {
+      return result.data
+    })
+    .catch((error: any) => {
+      throw error
+    })
+}
+
+/**
+ * Return e-service probing data
+ * @param {string} payload
+ */
+const getServiceProbingData = async (payload: string) => {
+  return await interopAxiosClient
+    .getServiceProbingData(payload)
+    .then((result: any) => {
+      return result.data
+    })
+    .catch((error: any) => {
+      throw error
+    })
+}
+
+/**
+ * Return e-service statistics data
+ * @param {string} payload
+ */
+const getServiceStatisticsData = async (payload: string) => {
+  return await interopAxiosClient
+    .getServiceStatisticsData(payload)
+    .then((result: any) => {
+      return result.data
+    })
+    .catch((error: any) => {
+      throw error
+    })
+}
+
 const apiRequests = {
   getServicesApi,
   getProducers,
+  getServiceMainData,
+  getServiceProbingData,
+  getServiceStatisticsData,
 }
 
 export default apiRequests

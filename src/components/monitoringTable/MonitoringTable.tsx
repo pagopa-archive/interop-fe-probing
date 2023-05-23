@@ -161,7 +161,12 @@ export const MonitoringTable: React.FC = () => {
                   }
                 />,
                 service.responseReceived
-                  ? format(new Date(service.responseReceived), "dd/MM/yyyy', ore 'HH:mm")
+                  ? format(
+                      new Date(service.responseReceived),
+                      t('dateFormat', {
+                        ns: 'general',
+                      })
+                    )
                   : '',
               ]}
             >
@@ -169,7 +174,7 @@ export const MonitoringTable: React.FC = () => {
                 size="small"
                 color="primary"
                 component={Link}
-                to={generatePath('/monitoring/serviceDetails/:eserviceRecordId', {
+                to={generatePath('/monitoring/eservices/:eserviceRecordId', {
                   eserviceRecordId: toString(service.eserviceRecordId),
                 })}
               >
