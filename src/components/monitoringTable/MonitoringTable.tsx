@@ -174,7 +174,7 @@ export const MonitoringTable: React.FC = () => {
                 size="small"
                 color="primary"
                 component={Link}
-                to={generatePath('/monitoring/eservices/:eserviceRecordId', {
+                to={generatePath('/monitoraggio/eservice/:eserviceRecordId', {
                   eserviceRecordId: toString(service.eserviceRecordId),
                 })}
               >

@@ -8,14 +8,14 @@ const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: '/monitoring', element: <MonitoringPage /> },
-      { path: '/monitoring/eservices/:id', element: <DetailsServicePage /> },
+      { path: '/monitoraggio', element: <MonitoringPage /> },
+      { path: '/monitoraggio/eservice/:id', element: <DetailsServicePage /> },
       { path: '*', element: <ErrorPage /> },
     ],
   },
   {
     path: '/',
-    element: <Navigate replace to="/monitoring" />,
+    element: <Navigate replace to="/monitoraggio" />,
   },
 ])
 export { router }

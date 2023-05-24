@@ -19,6 +19,7 @@ function App() {
       <Snackbar
         open={stores.useSnackbarStore((state) => state.activated)}
         onClose={() => updateSnackbar(false, '', 'error')}
+        anchorOrigin={{vertical: 'bottom', horizontal: 'right'}}
       >
         <Alert
           onClose={() => updateSnackbar(false, '', 'error')}
