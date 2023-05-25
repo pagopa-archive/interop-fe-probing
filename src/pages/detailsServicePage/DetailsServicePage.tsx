@@ -1,4 +1,4 @@
-import { Grid, Typography, Button, Alert } from '@mui/material'
+import { Grid, Typography, Button } from '@mui/material'
 import { BarChart } from '../../components/charts/barChart/BarChart'
 import { LineChart } from '../../components/charts/lineChart/LineChart'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
