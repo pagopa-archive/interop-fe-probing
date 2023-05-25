@@ -1,6 +1,6 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { createAxiosInstance } from './axiosInstanceCreator'
-import { getServicesType } from './apiRequestTypes'
+import { getServicesType, getServicesTelemetry } from './apiRequestTypes'
 
 class Http {
   private instance: AxiosInstance | null = null
@@ -41,8 +41,14 @@ class Http {
     return this.http.get<T, R>(`/eservices/probingData/${payload}`)
   }
 
-  getServiceStatisticsData<T = any, R = AxiosResponse<T>>(payload: string): Promise<R> {
-    return this.http.get<T, R>(`/eservices/statistics/${payload}`)
+  getServiceStatisticsData<T = any, R = AxiosResponse<T>>(
+    payload: getServicesTelemetry
+  ): Promise<R> {
+    return this.http.get<T, R>(`/eservices/statistics/${payload.eserviceRecordId}`, {
+      params: {
+        pollingFrequency: payload.pollingFrequency,
+      },
+    })
   }
 }
 

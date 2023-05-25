@@ -9,7 +9,9 @@ import apiRequests from '../../api/apiRequests'
 import { useTranslation } from 'react-i18next'
 import stores from '../../store/Store'
 import { useNavigate, useParams } from 'react-router-dom'
-import { DetailsServicePageSkeleton } from '../../components/skeleton/DetailsServicePageSkeleton'
+import { MainDataSkeleton } from '../../components/skeleton/MainDataSkeleton'
+import { ProbingDataSkeleton } from '../../components/skeleton/ProbingDataSkeleton'
+import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 
 const viewInCatalogue = (): void => {
@@ -42,15 +44,18 @@ export const DetailsServicePage: React.FC = () => {
     return apiRequests.getServiceProbingData(value)
   }
 
-  async function fetchServiceStatisticsData(value: string): Promise<ServiceStatisticsData> {
-    return apiRequests.getServiceStatisticsData(value)
+  async function fetchServiceStatisticsData(
+    eserviceRecordId: string,
+    pollingFrequency: number | undefined
+  ): Promise<ServiceStatisticsData> {
+    let payload = {
+      eserviceRecordId: eserviceRecordId,
+      pollingFrequency: pollingFrequency,
+    }
+    return apiRequests.getServiceStatisticsData(payload)
   }
 
-  const {
-    data: mainData,
-    isSuccess: mainDataReady,
-    isInitialLoading: mainDataLoading,
-  } = useQuery({
+  const { data: mainData, isInitialLoading: mainDataLoading } = useQuery({
     queryKey: ['serviceMainData', eserviceRecordId],
     queryFn: () => fetchServiceMainData(eserviceRecordId),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
@@ -58,7 +63,6 @@ export const DetailsServicePage: React.FC = () => {
 
   const {
     data: probingData,
-    isSuccess: probingDataReady,
     isInitialLoading: probingDataLoading,
     refetch,
   } = useQuery({
@@ -68,109 +72,129 @@ export const DetailsServicePage: React.FC = () => {
     keepPreviousData: false,
   })
 
-  const {
-    data: statisticsData,
-    isSuccess: statisticsDataReady,
-    isInitialLoading: statisticsDataLoading,
-  } = useQuery({
-    queryKey: ['serviceStatisticsData', eserviceRecordId],
-    queryFn: () => fetchServiceStatisticsData(eserviceRecordId),
+  const { data: statisticsData, isInitialLoading: statisticsDataLoading } = useQuery({
+    queryKey: ['serviceStatisticsData', eserviceRecordId, mainData?.pollingFrequency],
+    queryFn: () => fetchServiceStatisticsData(eserviceRecordId, mainData?.pollingFrequency),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
+    enabled: !!mainData?.pollingFrequency,
   })
 
   return (
     <>
-      {mainDataLoading || probingDataLoading || statisticsDataLoading ? (
-        <DetailsServicePageSkeleton />
-      ) : (
-        <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
-          {mainDataReady && probingDataReady && statisticsDataReady ? (
-            <>
-              <Grid
-                container
-                item
-                direction="column"
-                sx={{ textAlign: 'center' }}
-                my={5}
-                rowGap={2}
-              >
-                <Grid item>
-                  <Typography variant="h4" component="h1">
-                    {mainData.eserviceName}
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
-                </Grid>
+      <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
+        {mainDataLoading ? (
+          <MainDataSkeleton />
+        ) : (
+          <>
+            <Grid container item direction="column" sx={{ textAlign: 'center' }} my={5} rowGap={2}>
+              <Grid item>
+                <Typography variant="h4" component="h1">
+                  {mainData?.eserviceName}
+                </Typography>
               </Grid>
-              <Grid item alignSelf={'center'} width={'40%'}>
-                <InformationBlock
-                  mainData={mainData}
-                  probingData={probingData}
-                  reloadProbingDetails={refetch}
-                  viewInCatalogue={viewInCatalogue}
-                />
+              <Grid item>
+                <Typography variant="body1">{t('subtitle', { ns: 'detailsPage' })}</Typography>
               </Grid>
-              <Grid container item direction="column" sx={{ mt: 2 }} flexGrow={1} rowGap={6}>
-                <Grid item>
-                  <Typography
-                    variant="h5"
-                    sx={{
-                      textAlign: 'center',
-                    }}
-                  >
-                    {t('chartsTitle', { ns: 'detailsPage' })}
-                  </Typography>
-                </Grid>
-                <Grid item container justifyContent="center" gap={10}>
+            </Grid>
+            <Grid item alignSelf={'center'} width={'40%'}>
+              <InformationBlock
+                mainData={mainData}
+                reloadProbingDetails={refetch}
+                viewInCatalogue={viewInCatalogue}
+              />
+            </Grid>
+          </>
+        )}
+        {probingDataLoading ? (
+          <ProbingDataSkeleton />
+        ) : (
+          <Grid item alignSelf={'center'} width={'40%'}>
+            <InformationBlock
+              probingData={probingData}
+              reloadProbingDetails={refetch}
+              viewInCatalogue={viewInCatalogue}
+            />
+          </Grid>
+        )}
+        {statisticsDataLoading ? (
+          <Grid item sx={{ mt: 2 }} flexGrow={1}>
+            <Grid item container justifyContent="center" gap={10}>
+              <Grid item>
+                <ChartSkeleton width={600} height={415} />
+              </Grid>
+              <Grid item>
+                <Grid container direction="column" rowSpacing={2}>
                   <Grid item>
-                    <LineChart data={statisticsData.values} />
+                    <ChartSkeleton width={360} height={200} />
                   </Grid>
                   <Grid item>
-                    <Grid container direction="column" rowSpacing={2}>
-                      <Grid item>
-                        <BarChart data={statisticsData.percentages} />
-                      </Grid>
-                      <Grid item>
-                        <ChartsLegend legendElements={legendElements} />
-                      </Grid>
+                    <ChartSkeleton width={360} height={200} />
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </Grid>
+        ) : (
+          <Grid container item direction="column" sx={{ mt: 2 }} flexGrow={1} rowGap={6}>
+            <Grid item>
+              <Typography
+                variant="h5"
+                sx={{
+                  textAlign: 'center',
+                }}
+              >
+                {t('chartsTitle', { ns: 'detailsPage' })}
+              </Typography>
+            </Grid>
+            <Grid item container justifyContent="center" gap={10}>
+              {statisticsData?.values && (
+                <Grid item>
+                  <LineChart data={statisticsData?.values} />
+                </Grid>
+              )}
+              {statisticsData?.percentages && (
+                <Grid item>
+                  <Grid container direction="column" rowSpacing={2}>
+                    <Grid item>
+                      <BarChart data={statisticsData.percentages} />
+                    </Grid>
+                    <Grid item>
+                      <ChartsLegend legendElements={legendElements} />
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            </>
-          ) : (
-            <Alert severity="info">{t('errorRequest', { ns: 'general' })}</Alert>
-          )}
-          <Grid
-            item
-            container
-            my={10}
-            direction={'row'}
-            alignItems={'center'}
-            justifyItems={'center'}
-            justifyContent={'center'}
-          >
-            <Button
-              onClick={() => navigate(-1)}
-              color={'primary'}
-              disableRipple
-              sx={{
-                fontWeight: 'bold',
-                border: 'none!important',
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-              }}
-              variant="outlined"
-              startIcon={<ArrowBackIcon />}
-            >
-              {t('goBack', { ns: 'detailsPage' })}
-            </Button>
+              )}
+            </Grid>
           </Grid>
+        )}
+        <Grid
+          item
+          container
+          my={10}
+          direction={'row'}
+          alignItems={'center'}
+          justifyItems={'center'}
+          justifyContent={'center'}
+        >
+          <Button
+            onClick={() => navigate(-1)}
+            color={'primary'}
+            disableRipple
+            sx={{
+              fontWeight: 'bold',
+              border: 'none!important',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: 'transparent',
+              },
+            }}
+            variant="outlined"
+            startIcon={<ArrowBackIcon />}
+          >
+            {t('goBack', { ns: 'detailsPage' })}
+          </Button>
         </Grid>
-      )}
+      </Grid>
     </>
   )
 }

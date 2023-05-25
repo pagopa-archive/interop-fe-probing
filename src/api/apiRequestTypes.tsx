@@ -28,6 +28,14 @@ type GetServicesResponseType = {
   totalElements?: number
 }
 
+/**
+ * @typedef {Object} getServicesTelemetry
+ */
+type getServicesTelemetry = {
+  eserviceRecordId: string
+  pollingFrequency?: number
+}
+
 type ErrorResponse = {
   detail: string
   errors: Array<string>
@@ -37,4 +45,4 @@ type ErrorResponse = {
   traceid: string
 }
 
-export type { ErrorResponse, getServicesType, GetServicesResponseType }
+export type { ErrorResponse, getServicesType, GetServicesResponseType, getServicesTelemetry }

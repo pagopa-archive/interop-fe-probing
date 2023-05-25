@@ -1,4 +1,4 @@
-import { getServicesType } from './apiRequestTypes'
+import { getServicesType, getServicesTelemetry } from './apiRequestTypes'
 import { http as interopAxiosClient } from './interopAxiosClient'
 
 /**
@@ -64,7 +64,7 @@ const getServiceProbingData = async (payload: string) => {
  * Return e-service statistics data
  * @param {string} payload
  */
-const getServiceStatisticsData = async (payload: string) => {
+const getServiceStatisticsData = async (payload: getServicesTelemetry) => {
   return await interopAxiosClient
     .getServiceStatisticsData(payload)
     .then((result: any) => {

@@ -9,8 +9,8 @@ import { ProbingDataAlert } from '../probingDataAlert/ProbingDataAlert'
 import { ServiceMainData, ServiceProbingData } from '../../types'
 
 interface IProps {
-  mainData: ServiceMainData
-  probingData: ServiceProbingData
+  mainData?: ServiceMainData
+  probingData?: ServiceProbingData
   reloadProbingDetails: () => void
   viewInCatalogue?: () => void
 }
@@ -59,125 +59,133 @@ export const InformationBlock: React.FC<IProps> = ({
   return (
     <>
       <Grid container direction={'column'} alignItems="center" mb={5}>
-        <Grid item container direction="column" mb={5}>
-          {blocksInfo[0].blocks.map((block) => {
-            return block === 'eserviceName' ? (
-              <Grid item key={block}>
-                <InformationContainer
-                  key={block}
-                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
-                  content={
-                    <Grid container>
-                      <Button
-                        color={'primary'}
-                        disableRipple // remove onClick effect
-                        sx={{
-                          fontWeight: 'bold',
-                          border: 'none!important',
-                          textTransform: 'none',
-                          alignItems: 'start !important',
-                          p: '0',
-                          '&:hover': {
-                            backgroundColor: 'transparent',
-                          },
-                          '& .MuiButton-startIcon': {
-                            paddingBottom: '1%',
-                          },
-                        }}
-                        variant="outlined"
-                        startIcon={<LockIcon />}
-                        endIcon={<LaunchIcon />}
-                        onClick={viewInCatalogue}
-                      >
-                        {t('viewInCatalog', { ns: 'detailsPage' })}
-                      </Button>
-                    </Grid>
-                  }
-                />
-              </Grid>
-            ) : (
-              <Grid item key={block}>
-                <InformationContainer
-                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
-                  content={mainData[block as keyof ServiceMainData]}
-                />
-              </Grid>
-            )
-          })}
-        </Grid>
-        <Grid item container direction="column">
-          <Grid item textAlign={'center'}>
-            <Typography variant="h5">{t('realTimeTitle', { ns: 'detailsPage' })}</Typography>
+        {mainData && (
+          <Grid item container direction="column" mb={5}>
+            {blocksInfo[0].blocks.map((block) => {
+              return block === 'eserviceName' ? (
+                <Grid item key={block}>
+                  <InformationContainer
+                    key={block}
+                    label={t(block, { ns: 'detailsPage' }).toUpperCase()}
+                    content={
+                      <Grid container>
+                        <Button
+                          color={'primary'}
+                          disableRipple // remove onClick effect
+                          sx={{
+                            fontWeight: 'bold',
+                            border: 'none!important',
+                            textTransform: 'none',
+                            alignItems: 'start !important',
+                            p: '0',
+                            '&:hover': {
+                              backgroundColor: 'transparent',
+                            },
+                            '& .MuiButton-startIcon': {
+                              paddingBottom: '1%',
+                            },
+                          }}
+                          variant="outlined"
+                          startIcon={<LockIcon />}
+                          endIcon={<LaunchIcon />}
+                          onClick={viewInCatalogue}
+                        >
+                          {t('viewInCatalog', { ns: 'detailsPage' })}
+                        </Button>
+                      </Grid>
+                    }
+                  />
+                </Grid>
+              ) : (
+                <Grid item key={block}>
+                  <InformationContainer
+                    label={t(block, { ns: 'detailsPage' }).toUpperCase()}
+                    content={mainData[block as keyof ServiceMainData] as string}
+                  />
+                </Grid>
+              )
+            })}
           </Grid>
-          <Grid
-            item
-            container
-            xs={6}
-            px={2}
-            my={2}
-            justifyContent={'end'}
-            sx={{ backgroundColor: '#F2F2F2' }}
-          >
-            <Button
-              onClick={() => reloadProbingDetails()}
-              color={'primary'}
-              disableRipple
-              sx={{
-                fontWeight: 'bold',
-                border: 'none!important',
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: 'transparent',
-                },
-              }}
-              variant="outlined"
-              startIcon={<RefreshIcon />}
-            >
-              {t('reload', { ns: 'detailsPage' })}
-            </Button>
-          </Grid>
-          <Grid item container direction="column">
-            {blocksInfo[1].blocks.map((block) => (
-              <Grid item key={block}>
-                <InformationContainer
-                  key={block}
-                  label={t(block, { ns: 'detailsPage' }).toUpperCase()}
-                  content={
-                    ['probingEnabled', 'state'].includes(block) ? (
-                      <Chip
-                        size={'small'}
-                        label={
-                          block === 'state'
-                            ? probingData[block as keyof ServiceProbingData]
-                                .toString()
-                                .toLowerCase()
-                            : t(getChipLabel(probingData.probingEnabled), {
-                                ns: 'detailsPage',
-                              })
-                        }
-                        color={getChipColor(
-                          probingData[block as keyof ServiceProbingData].toString()
-                        )}
-                      />
-                    ) : (
-                      format(
-                        new Date(probingData['responseReceived']),
-                        t('dateFormat', {
-                          ns: 'general',
-                        })
-                      )
-                    )
-                  }
-                />
+        )}
+        {probingData && (
+          <>
+            <Grid item container direction="column">
+              <Grid item textAlign={'center'}>
+                <Typography variant="h5">{t('realTimeTitle', { ns: 'detailsPage' })}</Typography>
               </Grid>
-            ))}
-          </Grid>
-        </Grid>
-        <ProbingDataAlert
-          probingEnabled={probingData.probingEnabled}
-          state={probingData.state}
-          eserviceActive={probingData.eserviceActive}
-        />
+              <Grid
+                item
+                container
+                xs={6}
+                px={2}
+                my={2}
+                justifyContent={'end'}
+                sx={{ backgroundColor: '#F2F2F2' }}
+              >
+                <Button
+                  onClick={() => reloadProbingDetails()}
+                  color={'primary'}
+                  disableRipple
+                  sx={{
+                    fontWeight: 'bold',
+                    border: 'none!important',
+                    textTransform: 'none',
+                    '&:hover': {
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                  variant="outlined"
+                  startIcon={<RefreshIcon />}
+                >
+                  {t('reload', { ns: 'detailsPage' })}
+                </Button>
+              </Grid>
+              <Grid item container direction="column">
+                {blocksInfo[1].blocks.map((block) => (
+                  <Grid item key={block}>
+                    <InformationContainer
+                      key={block}
+                      label={t(block, { ns: 'detailsPage' }).toUpperCase()}
+                      content={
+                        ['probingEnabled', 'state'].includes(block) ? (
+                          <Chip
+                            size={'small'}
+                            label={
+                              block === 'state'
+                                ? probingData[block as keyof ServiceProbingData]
+                                    .toString()
+                                    .toLowerCase()
+                                : t(getChipLabel(probingData.probingEnabled), {
+                                    ns: 'detailsPage',
+                                  })
+                            }
+                            color={getChipColor(
+                              probingData[block as keyof ServiceProbingData].toString()
+                            )}
+                          />
+                        ) : probingData['responseReceived'] ? (
+                          format(
+                            new Date(probingData['responseReceived']),
+                            t('dateFormat', {
+                              ns: 'general',
+                            })
+                          )
+                        ) : (
+                          ''
+                        )
+                      }
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+            <ProbingDataAlert
+              probingEnabled={probingData.probingEnabled}
+              state={probingData.state}
+              eserviceActive={probingData.eserviceActive}
+            />
+          </>
+        )}
       </Grid>
     </>
   )
