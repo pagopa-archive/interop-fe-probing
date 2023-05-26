@@ -79,6 +79,7 @@ export const LoginForm = () => {
         updateLogStatus(data.signInUserSession.idToken.jwtToken)
         setSpinner(false)
         navigate('/monitoraggio')
+        updateSnackbar(true, t('loginSuccessMessage', { ns: 'loginPage' }), 'success')
       })
       .catch((error) => {
         setSpinner(false)
