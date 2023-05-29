@@ -44,7 +44,7 @@ class Http {
   getServiceStatisticsData<T = any, R = AxiosResponse<T>>(
     payload: getServicesTelemetry
   ): Promise<R> {
-    return this.http.get<T, R>(`/eservices/statistics/${payload.eserviceRecordId}`, {
+    return this.http.get<T, R>(`/eservices/${payload.eserviceRecordId}`, {
       params: {
         pollingFrequency: payload.pollingFrequency,
       },
