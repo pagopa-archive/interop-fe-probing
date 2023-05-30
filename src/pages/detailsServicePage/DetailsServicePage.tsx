@@ -1,8 +1,9 @@
-import { Grid, Typography, Button } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { BarChart } from '../../components/charts/barChart/BarChart'
 import { LineChart } from '../../components/charts/lineChart/LineChart'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import { InformationBlock } from '../../components/informationBlock/InformationBlock'
+import { MainDataInformationBlock } from '../../components/informationBlock/MainDataInformationBlock'
+import { ProbingDataInformationBlock } from '../../components/informationBlock/ProbingDataInformationBlock'
 import { ChartsLegend } from '../../components/charts/chartsLegend/ChartsLegend'
 import { useQuery } from '@tanstack/react-query'
 import apiRequests from '../../api/apiRequests'
@@ -13,6 +14,7 @@ import { MainDataSkeleton } from '../../components/skeleton/MainDataSkeleton'
 import { ProbingDataSkeleton } from '../../components/skeleton/ProbingDataSkeleton'
 import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
+import { ButtonNaked } from '@pagopa/mui-italia'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -82,7 +84,7 @@ export const DetailsServicePage: React.FC = () => {
   return (
     <>
       <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
-        {mainDataLoading ? (
+        {mainDataLoading || !mainData ? (
           <MainDataSkeleton />
         ) : (
           <>
@@ -97,23 +99,15 @@ export const DetailsServicePage: React.FC = () => {
               </Grid>
             </Grid>
             <Grid item alignSelf={'center'} width={'40%'}>
-              <InformationBlock
-                mainData={mainData}
-                reloadProbingDetails={refetch}
-                viewInCatalogue={viewInCatalogue}
-              />
+              <MainDataInformationBlock mainData={mainData} viewInCatalogue={viewInCatalogue} />
             </Grid>
           </>
         )}
-        {probingDataLoading ? (
+        {probingDataLoading || !probingData ? (
           <ProbingDataSkeleton />
         ) : (
           <Grid item alignSelf={'center'} width={'40%'}>
-            <InformationBlock
-              probingData={probingData}
-              reloadProbingDetails={refetch}
-              viewInCatalogue={viewInCatalogue}
-            />
+            <ProbingDataInformationBlock probingData={probingData} reloadProbingDetails={refetch} />
           </Grid>
         )}
         {statisticsDataLoading ? (
@@ -176,23 +170,14 @@ export const DetailsServicePage: React.FC = () => {
           justifyItems={'center'}
           justifyContent={'center'}
         >
-          <Button
+          <ButtonNaked
             onClick={() => navigate(-1)}
-            color={'primary'}
-            disableRipple
-            sx={{
-              fontWeight: 'bold',
-              border: 'none!important',
-              textTransform: 'none',
-              '&:hover': {
-                backgroundColor: 'transparent',
-              },
-            }}
-            variant="outlined"
+            color="primary"
+            size="small"
             startIcon={<ArrowBackIcon />}
           >
             {t('goBack', { ns: 'detailsPage' })}
-          </Button>
+          </ButtonNaked>
         </Grid>
       </Grid>
     </>

@@ -16,7 +16,7 @@ import toLower from 'lodash/toLower'
 import toString from 'lodash/toString'
 import { useQuery } from '@tanstack/react-query'
 import apiRequests from '../../api/apiRequests'
-import { getServicesType, GetServicesResponseType } from '../../api/apiRequestTypes'
+import { GetServicesType, GetServicesResponseType } from '../../api/apiRequestTypes'
 import stores from '../../store/Store'
 import format from 'date-fns/format'
 import { useTranslation } from 'react-i18next'
@@ -105,7 +105,7 @@ export const MonitoringTable: React.FC = () => {
       eserviceName: filtersParams.eserviceName,
       state: filtersParams.state,
     }
-    let response = apiRequests.getServicesApi(payload as getServicesType)
+    let response = apiRequests.getServicesApi(payload as GetServicesType)
     return response
   }
 

@@ -1,7 +1,7 @@
 /**
- * @typedef {Object} getServicesTypegetServicesType
+ * @typedef {Object} GetServicesType
  */
-type getServicesType = {
+type GetServicesType = {
   offset: number | undefined
   limit: number | undefined
   producerName: string | undefined
@@ -29,9 +29,9 @@ type GetServicesResponseType = {
 }
 
 /**
- * @typedef {Object} getServicesTelemetry
+ * @typedef {Object} GetServicesTelemetry
  */
-type getServicesTelemetry = {
+type GetServicesTelemetry = {
   eserviceRecordId: string
   pollingFrequency?: number
 }
@@ -45,4 +45,4 @@ type ErrorResponse = {
   traceid: string
 }
 
-export type { ErrorResponse, getServicesType, GetServicesResponseType, getServicesTelemetry }
+export type { ErrorResponse, GetServicesType, GetServicesResponseType, GetServicesTelemetry }
