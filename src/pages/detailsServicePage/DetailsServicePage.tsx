@@ -83,7 +83,7 @@ export const DetailsServicePage: React.FC = () => {
 
   return (
     <>
-      <Grid container direction="column" spacing={1} sx={{ height: '100%' }}>
+      <Grid container direction="column" spacing={1} sx={{ height: '100%', bgcolor: 'white' }}>
         {mainDataLoading || !mainData ? (
           <MainDataSkeleton />
         ) : (
