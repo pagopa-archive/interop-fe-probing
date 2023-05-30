@@ -74,7 +74,7 @@ export const LoginForm = () => {
 
   const onSubmit = async (data: { [key: string]: string }) => {
     setSpinner(true)
-    await login(data.username, data.password)
+    login(data.username, data.password)
       .then((data) => {
         updateLogStatus(data.signInUserSession.idToken.jwtToken)
         setSpinner(false)

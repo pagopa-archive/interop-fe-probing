@@ -1,14 +1,6 @@
-import {
-  HeaderAccount,
-  HeaderProduct,
-  JwtUser,
-  ProductSwitchItem,
-  RootLinkType,
-} from '@pagopa/mui-italia'
+import { HeaderAccount, HeaderProduct, ProductSwitchItem, RootLinkType } from '@pagopa/mui-italia'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../authetication/auth'
-import { getStorage } from '../../authetication/storage'
-import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import stores from '../../store/Store'
 
@@ -38,7 +30,7 @@ const Header = () => {
   const [updateLogStatus] = stores.useLogStatusStore((state) => [state.updateLogStatus])
 
   const handleLogout = async () => {
-    await logout()
+    logout()
       .then((res) => {
         updateLogStatus(false)
         navigate('/login')
