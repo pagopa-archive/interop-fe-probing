@@ -20,7 +20,8 @@ async function login(username: string, password: string) {
 
 async function logout() {
   try {
-    Auth.signOut().then(() => sessionStorage.clear())
+    await Auth.signOut()
+    sessionStorage.clear()
   } catch (error) {
     console.log('error signing out: ', error)
   }

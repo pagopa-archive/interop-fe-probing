@@ -38,11 +38,9 @@ export const Form: React.FC<FormData> = ({
     <Card
       elevation={16}
       sx={{
-        width: '50%',
-        padding: '5%',
-        boxShadow: '0px 3px 3px -2px ',
-        backgroundColor: 'background.common',
+        p: 4,
         borderRadius: '16px',
+        maxWidth: '480px',
       }}
     >
       <form onSubmit={handleSubmit((data) => submitFunction(data))}>
