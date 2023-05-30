@@ -52,7 +52,7 @@ export const ProbingDataInformationBlock: React.FC<IProps> = ({
             item
             container
             xs={6}
-            px={2}
+            p={2}
             my={2}
             justifyContent={'end'}
             sx={{ backgroundColor: '#F2F2F2' }}
