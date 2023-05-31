@@ -13,6 +13,8 @@ import monitorPageIt from './static/locales/it/monitorPage.json'
 import monitorPageEn from './static/locales/en/monitorPage.json'
 import monitorTableIt from './static/locales/it/monitorTable.json'
 import monitorTableEn from './static/locales/en/monitorTable.json'
+import loginPageIt from './static/locales/it/loginPage.json'
+import loginPageEn from './static/locales/en/loginPage.json'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -32,6 +34,7 @@ i18n
         footer: footerIt,
         monitorPage: monitorPageIt,
         monitorTable: monitorTableIt,
+        loginPage: loginPageIt,
       },
       en: {
         detailsPage: detailsPageEn,
@@ -40,6 +43,7 @@ i18n
         footer: footerEn,
         monitorPage: monitorPageEn,
         monitorTable: monitorTableEn,
+        loginPage: loginPageEn,
       },
     },
     // language by default

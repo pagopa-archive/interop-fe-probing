@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { AlertProps } from '@mui/material'
-
+import { JwtUser } from '@pagopa/mui-italia'
 type AlertSeverity = AlertProps['severity']
 
 interface SpinnerType {
@@ -13,6 +13,11 @@ interface SnackbarType {
   message: string
   severity: AlertSeverity
   updateSnackbar: (newState: boolean, newMessage: string, newServerity: AlertSeverity) => void
+}
+
+interface LogStatusType {
+  status: JwtUser | false
+  updateLogStatus: (newState: JwtUser | false) => void
 }
 
 const useSpinnerStore = create<SpinnerType>((set) => ({
@@ -28,9 +33,15 @@ const useSnackbarStore = create<SnackbarType>((set) => ({
     set({ activated: newState, message: newMessage, severity: newServerity }),
 }))
 
+const useLogStatusStore = create<LogStatusType>((set) => ({
+  status: false,
+  updateLogStatus: (newState: JwtUser | false) => set({ status: newState }),
+}))
+
 const stores = {
   useSpinnerStore,
   useSnackbarStore,
+  useLogStatusStore,
 }
 
 export default stores
