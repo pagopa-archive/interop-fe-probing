@@ -11,6 +11,10 @@ export interface ServiceMainData {
    * version of the service
    */
   versionNumber: string
+  /**
+   * polling frequency for the service
+   */
+  pollingFrequency: number
 }
 
 export interface ServiceProbingData {

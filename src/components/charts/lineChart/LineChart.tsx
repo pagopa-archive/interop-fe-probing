@@ -13,7 +13,7 @@ const height = 400 - margin.top - margin.bottom
 
 const color: { [key: string]: string } = {
   OK: '#17324D',
-  'n/d': '#A2ADB8',
+  'N/D': '#A2ADB8',
   KO: '#FE6666',
 }
 
@@ -40,7 +40,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
   // because the chart is not including the first one
   const minTime =
     data.length > 0
-      ? new Date(new Date(data[0].time).setDate(new Date(data[0].time).getDate() - 1))
+      ? new Date(new Date(data[0].time))
       : new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
 
   // if the array is empty we get todays date as max date
@@ -113,7 +113,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     .x((d: ServiceValuesType) => {
       return x(new Date(d.time))
     })
-    .y((d: ServiceValuesType) => y(d.responseTime))
+    .y((d: ServiceValuesType) => y(d.responseTime ? d.responseTime : 0))
 
   // create linear gradient to color the line in different colors depending on the status
   const linearGradient: JSX.Element = (
