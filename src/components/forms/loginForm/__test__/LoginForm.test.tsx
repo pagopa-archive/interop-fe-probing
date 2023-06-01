@@ -54,7 +54,7 @@ describe('LoginForm', () => {
     try {
       await user.click(submitButton)
     } catch (error: unknown) {
-      if (err instanceof Error) {
+      if (error instanceof Error) {
         expect(error.message).toBe('UNKNOWN ERROR')
       }
     }

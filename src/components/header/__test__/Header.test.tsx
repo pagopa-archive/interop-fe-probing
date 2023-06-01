@@ -72,7 +72,7 @@ describe('Header', () => {
     try {
       await user.click(button)
     } catch (error: unknown) {
-      if (err instanceof Error) {
+      if (error instanceof Error) {
         expect(error.message).toBe('UNKNOWN ERROR')
       }
     }

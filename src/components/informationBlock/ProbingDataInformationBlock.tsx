@@ -79,14 +79,14 @@ export const ProbingDataInformationBlock: React.FC<IProps> = ({
                         label={
                           block === 'state'
                             ? probingData[block as keyof ServiceProbingData]
-                                .toString()
+                                ?.toString()
                                 .toLowerCase()
                             : t(getChipLabel(probingData.probingEnabled), {
                                 ns: 'detailsPage',
                               })
                         }
                         color={getChipColor(
-                          probingData[block as keyof ServiceProbingData].toString()
+                          probingData[block as keyof ServiceProbingData]?.toString() ?? 'false'
                         )}
                       />
                     ) : probingData['responseReceived'] ? (
