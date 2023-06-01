@@ -33,7 +33,296 @@ exports[`LineChart > render component 1`] = `
         opacity="0.4"
         text-anchor="middle"
         transform="translate(0, 300)"
-      />
+      >
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(14.082727816358025, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            01 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(64.91606114969136, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(115.7493944830247, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(166.58272781635804, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(217.41606114969136, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(268.2493944830247, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(319.082727816358, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(369.91606114969136, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(420.74939448302473, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(471.582727816358, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(522.4160611496914, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(573.2493944830247, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+        </g>
+      </g>
       <g
         font-family="Poppins"
         font-size="10"
@@ -65,95 +354,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0, 270)"
-        >
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="0"
-          />
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="610"
-          />
-          <text
-            dy="0.32em"
-            x="-15"
-          >
-            1ms
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0, 240)"
-        >
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="0"
-          />
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="610"
-          />
-          <text
-            dy="0.32em"
-            x="-15"
-          >
-            2ms
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0, 210)"
-        >
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="0"
-          />
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="610"
-          />
-          <text
-            dy="0.32em"
-            x="-15"
-          >
-            3ms
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0, 180)"
-        >
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="0"
-          />
-          <line
-            stroke="currentColor"
-            stroke-opacity="0.05"
-            x2="610"
-          />
-          <text
-            dy="0.32em"
-            x="-15"
-          >
-            4ms
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0, 150)"
+          transform="translate(0, 278.57142857142856)"
         >
           <line
             stroke="currentColor"
@@ -175,7 +376,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0, 120)"
+          transform="translate(0, 257.14285714285717)"
         >
           <line
             stroke="currentColor"
@@ -191,13 +392,13 @@ exports[`LineChart > render component 1`] = `
             dy="0.32em"
             x="-15"
           >
-            6ms
+            10ms
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0, 90.00000000000001)"
+          transform="translate(0, 235.71428571428572)"
         >
           <line
             stroke="currentColor"
@@ -213,13 +414,13 @@ exports[`LineChart > render component 1`] = `
             dy="0.32em"
             x="-15"
           >
-            7ms
+            15ms
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0, 59.999999999999986)"
+          transform="translate(0, 214.28571428571428)"
         >
           <line
             stroke="currentColor"
@@ -235,13 +436,13 @@ exports[`LineChart > render component 1`] = `
             dy="0.32em"
             x="-15"
           >
-            8ms
+            20ms
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0, 29.999999999999993)"
+          transform="translate(0, 192.85714285714283)"
         >
           <line
             stroke="currentColor"
@@ -257,7 +458,183 @@ exports[`LineChart > render component 1`] = `
             dy="0.32em"
             x="-15"
           >
-            9ms
+            25ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 171.42857142857142)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            30ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 150)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            35ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 128.57142857142858)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            40ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 107.14285714285712)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            45ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 85.71428571428571)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            50ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 64.28571428571429)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            55ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 42.85714285714287)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            60ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 21.42857142857142)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            65ms
           </text>
         </g>
         <g
@@ -279,7 +656,7 @@ exports[`LineChart > render component 1`] = `
             dy="0.32em"
             x="-15"
           >
-            10ms
+            70ms
           </text>
         </g>
       </g>
@@ -291,24 +668,24 @@ exports[`LineChart > render component 1`] = `
       x2="610"
     >
       <stop
-        offset="NaN"
+        offset="0"
         stop-color="#17324D"
         stop-opacity="1"
       />
       <stop
-        offset="NaN"
+        offset="0.6666666666666666"
         stop-color="#17324D"
         stop-opacity="1"
       />
       <stop
-        offset="NaN"
+        offset="1"
         stop-color="#17324D"
         stop-opacity="1"
       />
     </lineargradient>
     <path
       class="line"
-      d="MNaN,300LNaN,300LNaN,300"
+      d="M0,85.714L406.667,0L610,300"
       fill="none"
       stroke="url(#linearGradient)"
       stroke-width="1"
