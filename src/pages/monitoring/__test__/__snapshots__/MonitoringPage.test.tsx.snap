@@ -3,17 +3,21 @@
 exports[`MonitoringPage > render component 1`] = `
 <div>
   <div
-    class="MuiGrid-root MuiGrid-container css-1sr3xcx-MuiGrid-root"
+    class="MuiGrid-root MuiGrid-container css-tnf1w2-MuiGrid-root"
   >
     <div
       class="MuiGrid-root MuiGrid-item css-bjrcl7-MuiGrid-root"
     >
       <h1
         class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-      />
+      >
+        title
+      </h1>
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-      />
+      >
+        subtitle
+      </p>
     </div>
     <div
       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-10 css-1hszbec-MuiGrid-root"
@@ -30,6 +34,14 @@ exports[`MonitoringPage > render component 1`] = `
             <div
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for=":r0:"
+                id=":r0:-label"
+              >
+                serviceNameFilter
+              </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root"
               >
@@ -65,12 +77,10 @@ exports[`MonitoringPage > render component 1`] = `
                   class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-ihdtdm"
+                    class="css-yjsfm1"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
+                    <span>
+                      serviceNameFilter
                     </span>
                   </legend>
                 </fieldset>
@@ -82,10 +92,19 @@ exports[`MonitoringPage > render component 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+              label="serviceProducerFilter"
             >
               <div
                 class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
               >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r1:"
+                  id=":r1:-label"
+                >
+                  serviceProducerFilter
+                </label>
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
                 >
@@ -133,12 +152,10 @@ exports[`MonitoringPage > render component 1`] = `
                     class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                   >
                     <legend
-                      class="css-ihdtdm"
+                      class="css-yjsfm1"
                     >
-                      <span
-                        class="notranslate"
-                      >
-                        ​
+                      <span>
+                        serviceProducerFilter
                       </span>
                     </legend>
                   </fieldset>
@@ -152,6 +169,14 @@ exports[`MonitoringPage > render component 1`] = `
             <div
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             >
+              <label
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for=":r3:"
+                id=":r3:-label"
+              >
+                serviceVersionFilter
+              </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root"
               >
@@ -188,12 +213,10 @@ exports[`MonitoringPage > render component 1`] = `
                   class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                 >
                   <legend
-                    class="css-ihdtdm"
+                    class="css-yjsfm1"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
+                    <span>
+                      serviceVersionFilter
                     </span>
                   </legend>
                 </fieldset>
@@ -205,10 +228,19 @@ exports[`MonitoringPage > render component 1`] = `
           >
             <div
               class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-4xbbh5-MuiAutocomplete-root"
+              label="serviceStateFilter"
             >
               <div
                 class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-wb57ya-MuiFormControl-root-MuiTextField-root"
               >
+                <label
+                  class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1pysi21-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r4:"
+                  id=":r4:-label"
+                >
+                  serviceStateFilter
+                </label>
                 <div
                   class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root"
                 >
@@ -256,12 +288,10 @@ exports[`MonitoringPage > render component 1`] = `
                     class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
                   >
                     <legend
-                      class="css-ihdtdm"
+                      class="css-yjsfm1"
                     >
-                      <span
-                        class="notranslate"
-                      >
-                        ​
+                      <span>
+                        serviceStateFilter
                       </span>
                     </legend>
                   </fieldset>
@@ -299,6 +329,7 @@ exports[`MonitoringPage > render component 1`] = `
                 />
               </svg>
             </span>
+            refresh
           </button>
         </div>
       </div>
@@ -317,23 +348,33 @@ exports[`MonitoringPage > render component 1`] = `
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
-              />
+              >
+                serviceName
+              </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
-              />
+              >
+                serviceVersion
+              </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
-              />
+              >
+                serviceProducer
+              </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
-              />
+              >
+                serviceState
+              </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"
-              />
+              >
+                lastDetectionDate
+              </th>
               <th
                 class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-1ygcj2i-MuiTableCell-root"
                 scope="col"

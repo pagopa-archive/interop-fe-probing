@@ -65,7 +65,9 @@ exports[`Footer > render component 1`] = `
                       aria-label="Vai al link: Chi siamo"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/it/societa/chi-siamo/"
-                    />
+                    >
+                      whoWeAre
+                    </a>
                   </li>
                   <li>
                     <a
@@ -90,7 +92,9 @@ exports[`Footer > render component 1`] = `
                       aria-label="Vai al link: Lavora con noi"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/it/lavora-con-noi/"
-                    />
+                    >
+                      workWithUs
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -117,6 +121,11 @@ exports[`Footer > render component 1`] = `
               <div
                 class="MuiStack-root css-1wxx94d-MuiStack-root"
               >
+                <span
+                  class="MuiTypography-root MuiTypography-overline css-b3fch5-MuiTypography-root"
+                >
+                  resources
+                </span>
                 <ul
                   class="MuiStack-root css-1yxcpto-MuiStack-root"
                 >
@@ -125,49 +134,63 @@ exports[`Footer > render component 1`] = `
                       aria-label="Vai al link: Informativa Privacy"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/it/privacy-policy/"
-                    />
+                    >
+                      privacyPolicy
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Termini e Condizioni"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/it/termini-e-condizioni-di-utilizzo-del-sito/"
-                    />
+                    >
+                      conditions
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Certificazioni"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/it/"
-                    />
+                    >
+                      certifications
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Sicurezza delle informazioni"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://www.pagopa.it/static/781646994f1f8ddad2d95af3aaedac3d/Sicurezza-delle-informazioni_PagoPA-S.p.A..pdf"
-                    />
+                    >
+                      securityInformation
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Diritto alla protezione dei dati personali"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://privacyportal-de.onetrust.com/webform/77f17844-04c3-4969-a11d-462ee77acbe1/9ab6533d-be4a-482e-929a-0d8d2ab29df8"
-                    />
+                    >
+                      personalData
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Preferenze Cookie"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://pagopa.portaleamministrazionetrasparente.it/pagina811_cookie-policy.html"
-                    />
+                    >
+                      cookie
+                    </a>
                   </li>
                   <li>
                     <a
                       aria-label="Vai al link: Società trasparente"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.html"
-                    />
+                    >
+                      transparency
+                    </a>
                   </li>
                   <li>
                     <a
@@ -183,7 +206,9 @@ exports[`Footer > render component 1`] = `
                       aria-label="Vai al link: Modello 321"
                       class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone css-nuw6va-MuiTypography-root-MuiLink-root"
                       href="https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.htmls"
-                    />
+                    >
+                      model321
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -197,6 +222,11 @@ exports[`Footer > render component 1`] = `
                 <div
                   class="MuiStack-root css-1wxx94d-MuiStack-root"
                 >
+                  <span
+                    class="MuiTypography-root MuiTypography-overline css-b3fch5-MuiTypography-root"
+                  >
+                    follow
+                  </span>
                   <div
                     class="MuiStack-root css-1xk2sgm-MuiStack-root"
                   >
@@ -287,7 +317,9 @@ exports[`Footer > render component 1`] = `
                           aria-label="Vai al link: Accessibilità"
                           class="MuiTypography-root MuiTypography-subtitle2 MuiLink-root MuiLink-underlineNone MuiLink-button css-8kggap-MuiTypography-root-MuiLink-root"
                           href="https://form.agid.gov.it/view/eca3487c-f3cb-40be-a590-212eafc70058/"
-                        />
+                        >
+                          accessibility
+                        </button>
                       </li>
                     </ul>
                     <div
@@ -365,6 +397,7 @@ exports[`Footer > render component 1`] = `
                 PagoPA S.p.A.
               </strong>
                
+              legalInfo
             </span>
           </p>
         </div>

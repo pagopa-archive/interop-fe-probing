@@ -1,0 +1,173 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProbingDataAlert > render component 1`] = `<div />`;
+
+exports[`ProbingDataAlert > render component 2`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardWarning MuiAlert-standard css-1j916qe-MuiPaper-root-MuiAlert-root"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+          data-testid="ReportProblemOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        eserviceNotAnswerMessage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProbingDataAlert > render component 3`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardWarning MuiAlert-standard css-1j916qe-MuiPaper-root-MuiAlert-root"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+          data-testid="ReportProblemOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        monitoringSystemSuspendedMessage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProbingDataAlert > render component case 1 1`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardWarning MuiAlert-standard css-1j916qe-MuiPaper-root-MuiAlert-root"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+          data-testid="ReportProblemOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        versionSuspendedMessage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProbingDataAlert > render component case 2 1`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardWarning MuiAlert-standard css-1j916qe-MuiPaper-root-MuiAlert-root"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+          data-testid="ReportProblemOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        eserviceNotAnswerMessage
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ProbingDataAlert > render component case 3 1`] = `
+<div>
+  <div
+    class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
+  >
+    <div
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-standardWarning MuiAlert-standard css-1j916qe-MuiPaper-root-MuiAlert-root"
+      role="alert"
+    >
+      <div
+        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+          data-testid="ReportProblemOutlinedIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+          />
+        </svg>
+      </div>
+      <div
+        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+      >
+        monitoringSystemSuspendedMessage
+      </div>
+    </div>
+  </div>
+</div>
+`;
