@@ -21,7 +21,12 @@ beforeEach(() => {
         i18n: {
           changeLanguage: vi.fn(),
         },
-        t: vi.fn(),
+        t: (str: string) => {
+          if (str === 'dateFormat') {
+            return "dd/MM/yyyy', at 'HH:mm"
+          }
+          return str
+        },
       }
     },
   }))

@@ -5,27 +5,7 @@ import { login } from '../../../authetication/auth'
 import { useNavigate } from 'react-router-dom'
 import { Form } from '../../form/Form'
 import stores from '../../../store/Store'
-
-interface SpinnerProps {
-  open: boolean
-  setSpinner: Function
-  message: string
-}
-
-const Spinner: React.FC<SpinnerProps> = ({ open, setSpinner, message }) => {
-  return (
-    <Dialog open={open} onClose={() => setSpinner(false)}>
-      <Stack alignItems="center">
-        <CircularProgress />
-      </Stack>
-      <DialogContent>
-        <DialogContentText color="primary" sx={{ fontWeight: 'bold', fontSize: 14 }}>
-          {message}
-        </DialogContentText>
-      </DialogContent>
-    </Dialog>
-  )
-}
+import { Spinner } from '../../spinner/Spinner'
 
 /**
  * default values of the form fields
