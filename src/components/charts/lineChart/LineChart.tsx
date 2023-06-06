@@ -113,7 +113,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     .x((d: ServiceValuesType) => {
       return x(new Date(d.time))
     })
-    .y((d: ServiceValuesType) => y(d.responseTime))
+    .y((d: ServiceValuesType) => y(d.responseTime ? d.responseTime : 0))
 
   // create linear gradient to color the line in different colors depending on the status
   const linearGradient: JSX.Element = (

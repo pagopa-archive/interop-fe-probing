@@ -6,7 +6,7 @@ const MonitoringPage = () => {
   const { t } = useTranslation(['monitorPage'])
 
   return (
-    <Grid container sx={{ height: '100%' }} justifyContent="center">
+    <Grid container sx={{ height: '100%', bgcolor: 'white' }} justifyContent="center">
       <Grid item sx={{ textAlign: 'center' }} my={5}>
         <Typography variant="h4" component="h1">
           {t('title')}

@@ -1,0 +1,15 @@
+{
+  "username": "Nome utente",
+  "password": "Password",
+  "login": "Accedi",
+  "forgotPassword1": "Hai dimenticato la password? ",
+  "forgotPassword2": "Clicca qui",
+  "forgotPassword3": " per ripristinarla",
+  "incorrectPassword": "Password non corretta",
+  "incorrectUsername": "Nome utente non corretta",
+  "loginSpinnerMessage": "Stiamo effettuando l’autenticazione. Attendere, prego",
+  "loginError": "Il nome utente o la password non sono corretti. Ritenta oppure effettua il ripristino della password",
+  "loginTooManyRequests": "Hai effettuato troppi tentativi errati. Per questioni di sicurezza, l’accesso a questo account è bloccato per un’ora",
+  "logoutSuccessMessage": "Logout effettuato correttamente",
+  "loginSuccessMessage": "Login effettuato correttamente"
+}
