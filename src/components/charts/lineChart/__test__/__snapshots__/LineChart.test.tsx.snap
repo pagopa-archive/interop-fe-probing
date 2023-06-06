@@ -37,7 +37,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(14.082727816358025, 0)"
+          transform="translate(22.554950038580248, 0)"
         >
           <line
             stroke="currentColor"
@@ -61,7 +61,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(64.91606114969136, 0)"
+          transform="translate(73.38828337191359, 0)"
         >
           <line
             stroke="currentColor"
@@ -85,7 +85,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(115.7493944830247, 0)"
+          transform="translate(124.2216167052469, 0)"
         >
           <line
             stroke="currentColor"
@@ -109,7 +109,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(166.58272781635804, 0)"
+          transform="translate(175.05495003858027, 0)"
         >
           <line
             stroke="currentColor"
@@ -133,7 +133,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(217.41606114969136, 0)"
+          transform="translate(225.8882833719136, 0)"
         >
           <line
             stroke="currentColor"
@@ -157,7 +157,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(268.2493944830247, 0)"
+          transform="translate(276.7216167052469, 0)"
         >
           <line
             stroke="currentColor"
@@ -181,7 +181,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(319.082727816358, 0)"
+          transform="translate(327.5549500385803, 0)"
         >
           <line
             stroke="currentColor"
@@ -205,7 +205,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(369.91606114969136, 0)"
+          transform="translate(378.38828337191353, 0)"
         >
           <line
             stroke="currentColor"
@@ -229,7 +229,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(420.74939448302473, 0)"
+          transform="translate(429.2216167052469, 0)"
         >
           <line
             stroke="currentColor"
@@ -253,7 +253,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(471.582727816358, 0)"
+          transform="translate(480.0549500385803, 0)"
         >
           <line
             stroke="currentColor"
@@ -277,7 +277,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(522.4160611496914, 0)"
+          transform="translate(530.8882833719135, 0)"
         >
           <line
             stroke="currentColor"
@@ -301,7 +301,7 @@ exports[`LineChart > render component 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(573.2493944830247, 0)"
+          transform="translate(581.7216167052469, 0)"
         >
           <line
             stroke="currentColor"
