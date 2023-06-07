@@ -29,7 +29,7 @@ export interface ServiceProbingData {
   /**
    * last detection date
    */
-  responseReceived: string
+  responseReceived: string | null
   /**
    * active status of the e-service
    */

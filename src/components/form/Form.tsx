@@ -59,6 +59,7 @@ export const Form: React.FC<FormData> = ({
                   }) => (
                     <>
                       <TextField
+                        id={field.name}
                         type={field.type}
                         label={field.label}
                         value={value}

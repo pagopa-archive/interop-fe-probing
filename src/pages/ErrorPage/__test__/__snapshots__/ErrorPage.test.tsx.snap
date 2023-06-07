@@ -10,10 +10,14 @@ exports[`ErrorPage > render component 1`] = `
     >
       <h1
         class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-      />
+      >
+        title
+      </h1>
       <p
         class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-      />
+      >
+        subtitle
+      </p>
     </div>
   </div>
 </div>
