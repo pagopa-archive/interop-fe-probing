@@ -5,6 +5,7 @@ import { DetailsServicePage } from '../pages/detailsServicePage/DetailsServicePa
 import ErrorPage from '../pages/ErrorPage/ErrorPage'
 import LoginPage from '../pages/loginPage/LoginPage'
 import { PasswordRecoveryPage } from '../pages/passwordRecoveryPage/PasswordRecoveryPage'
+import { PasswordResetPage } from '../pages/passwordResetPage/PasswordResetPage'
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: '/monitoraggio/eservice/:id', element: <DetailsServicePage /> },
       { path: '/login', element: <LoginPage /> },
       { path: '/recupero-password', element: <PasswordRecoveryPage /> },
+      { path: '/ripristino-password', element: <PasswordResetPage /> },
       { path: '*', element: <ErrorPage /> },
     ],
   },

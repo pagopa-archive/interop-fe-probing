@@ -75,6 +75,8 @@ export const LoginForm = () => {
         submitButton={t('login', { ns: 'loginPage' })}
         submitFunction={onSubmit}
         defaultValues={defaultFormValues}
+        buttonDisable={'onValid'}
+        validationMode={'onSubmit'}
       />
       <Spinner
         open={spinner}
