@@ -1,6 +1,5 @@
 import awsmobile from './aws-exports'
 import { Auth, Amplify } from 'aws-amplify'
-import axios from 'axios'
 
 Amplify.configure(awsmobile)
 

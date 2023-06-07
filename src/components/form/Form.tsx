@@ -1,7 +1,7 @@
 import { Grid, Button, FormHelperText, Card, Typography, TextField } from '@mui/material'
-import { Controller, MultipleFieldErrors, useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
-import _ from 'lodash'
+import entries from 'lodash/entries'
 
 interface Field {
   name: string
@@ -87,7 +87,7 @@ export const Form: React.FC<FormData> = ({
                           name={field.name}
                           render={({ messages }) => {
                             return messages
-                              ? _.entries(messages).map(([type, message]) => (
+                              ? entries(messages).map(([type, message]) => (
                                   <FormHelperText key={type} error>
                                     {t !== undefined ? t(message, { ns: 'passwordResetPage' }) : ''}
                                   </FormHelperText>
