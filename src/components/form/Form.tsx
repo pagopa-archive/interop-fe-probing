@@ -6,6 +6,7 @@ interface Field {
   label: string
   type: string
   rules: { [key: string]: any }
+  width?: string
 }
 
 interface FormData {
@@ -64,6 +65,11 @@ export const Form: React.FC<FormData> = ({
                         label={field.label}
                         value={value}
                         onChange={onChange}
+                        sx={{
+                          ...(field.width && {
+                            width: field.width,
+                          }),
+                        }}
                       />
                       <FormHelperText error>
                         {errors[field.name] ? errors[field.name]?.message : ' '}
