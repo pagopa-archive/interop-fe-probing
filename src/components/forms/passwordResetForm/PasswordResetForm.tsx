@@ -19,7 +19,12 @@ const defaultFormValues: { [key: string]: string } = {
 }
 
 /**
- * password validation regex
+ * password validation regex that checks for:
+ * at least 12 characters length
+ * at least one lowercase letter
+ * at least one uppercase letter
+ * at least one number
+ * at least one special character from: !@#$%^&()+."-?{}`~[]*=|;:'<>,/\
  */
 const PASSWORD_REGEX =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )[\w!@#$%^&()+."\-\?{}`~[\]*=|;:'<>,\/\\]{12,}$/
