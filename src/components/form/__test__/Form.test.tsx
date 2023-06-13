@@ -36,6 +36,8 @@ describe('Form', () => {
         submitButton={'Submit'}
         submitFunction={onSubmit}
         defaultValues={defaultFormValues}
+        buttonDisable={'onValid'}
+        validationMode={'onSubmit'}
       />
     )
     expect(container).toMatchSnapshot()

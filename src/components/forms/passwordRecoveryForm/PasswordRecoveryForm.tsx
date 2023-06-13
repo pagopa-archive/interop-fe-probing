@@ -64,6 +64,8 @@ export const PasswordRecoveryForm: React.FC<IProps> = ({ setRecoverySuccess }) =
         submitButton={t('submit', { ns: 'passwordRecoveryPage' })}
         submitFunction={onSubmit}
         defaultValues={defaultFormValues}
+        buttonDisable={'onValid'}
+        validationMode={'onSubmit'}
       />
       <Spinner
         open={spinner}

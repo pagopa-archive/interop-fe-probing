@@ -35,4 +35,12 @@ async function passwordRecovery(username: string) {
   }
 }
 
-export { login, logout, passwordRecovery }
+async function passwordReset(username: string, code: string, new_password: string) {
+  try {
+    await Auth.forgotPasswordSubmit(username, code, new_password)
+  } catch (error) {
+    throw error
+  }
+}
+
+export { login, logout, passwordRecovery, passwordReset }
