@@ -18,6 +18,9 @@ const defaultFormValues: { [key: string]: string } = {
   confirmPassword: '',
 }
 
+/**
+ * password validation regex
+ */
 const PASSWORD_REGEX =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )[\w!@#$%^&()+."\-\?{}`~[\]*=|;:'<>,\/\\]{12,}$/
 
@@ -66,8 +69,8 @@ export const PasswordResetForm: React.FC<IProps> = ({ setResetSuccess }) => {
           message: 'passwordRegexError',
         },
         validate: {
-          validateEquality: (_: string, values: { [key: string]: string }) =>
-            values.password === _ || 'passwordEqualityError',
+          validateEquality: (confirmPasswordValue: string, values: { [key: string]: string }) =>
+            values.password === confirmPasswordValue || 'passwordEqualityError',
         },
       },
       width: '500px',

@@ -34,15 +34,7 @@ const SuccessScreen: React.FC<SuccessScreenProps> = ({
       <Typography variant="body1" align={'center'}>
         {subtitle}
       </Typography>
-      <Button
-        sx={{
-          backgroundColor: 'primary.main',
-          '&:hover': { backgroundColor: 'primary.dark' },
-        }}
-        size="large"
-        variant="contained"
-        onClick={() => onSubmitButton()}
-      >
+      <Button size="large" variant="contained" onClick={() => onSubmitButton()}>
         <Typography sx={{ color: 'white' }}> {submitButton}</Typography>
       </Button>
     </Stack>
