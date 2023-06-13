@@ -19,12 +19,19 @@ exports[`LoginForm > render component 1`] = `
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 for="username"
                 id="username-label"
               >
                 username
+                <span
+                  aria-hidden="true"
+                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
+                >
+                   
+                  *
+                </span>
               </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -33,6 +40,7 @@ exports[`LoginForm > render component 1`] = `
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
                   id="username"
+                  required=""
                   type="email"
                   value=""
                 />
@@ -45,20 +53,13 @@ exports[`LoginForm > render component 1`] = `
                   >
                     <span>
                       username
+                       
+                      *
                     </span>
                   </legend>
                 </fieldset>
               </div>
             </div>
-            <p
-              class="MuiFormHelperText-root Mui-error css-1d1r5q-MuiFormHelperText-root"
-            >
-              <span
-                class="notranslate"
-              >
-                ​
-              </span>
-            </p>
           </div>
           <div
             class="MuiGrid-root MuiGrid-container MuiGrid-item css-1f064cs-MuiGrid-root"
@@ -67,12 +68,19 @@ exports[`LoginForm > render component 1`] = `
               class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-required MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 for="password"
                 id="password-label"
               >
                 password
+                <span
+                  aria-hidden="true"
+                  class="MuiFormLabel-asterisk MuiInputLabel-asterisk css-wgai2y-MuiFormLabel-asterisk"
+                >
+                   
+                  *
+                </span>
               </label>
               <div
                 class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
@@ -81,6 +89,7 @@ exports[`LoginForm > render component 1`] = `
                   aria-invalid="false"
                   class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
                   id="password"
+                  required=""
                   type="password"
                   value=""
                 />
@@ -93,20 +102,13 @@ exports[`LoginForm > render component 1`] = `
                   >
                     <span>
                       password
+                       
+                      *
                     </span>
                   </legend>
                 </fieldset>
               </div>
             </div>
-            <p
-              class="MuiFormHelperText-root Mui-error css-1d1r5q-MuiFormHelperText-root"
-            >
-              <span
-                class="notranslate"
-              >
-                ​
-              </span>
-            </p>
           </div>
         </div>
         <div
