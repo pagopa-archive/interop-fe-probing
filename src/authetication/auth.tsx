@@ -14,7 +14,7 @@ async function login(username: string, password: string) {
     sessionStorage.setItem('accessToken', accessToken)
     return user
   } catch (error) {
-    console.log('error signing in', error)
+    throw error
   }
 }
 
@@ -23,8 +23,24 @@ async function logout() {
     await Auth.signOut()
     sessionStorage.clear()
   } catch (error) {
-    console.log('error signing out: ', error)
+    throw error
   }
 }
 
-export { login, logout }
+async function passwordRecovery(username: string) {
+  try {
+    await Auth.forgotPassword(username)
+  } catch (error) {
+    throw error
+  }
+}
+
+async function passwordReset(username: string, code: string, new_password: string) {
+  try {
+    await Auth.forgotPasswordSubmit(username, code, new_password)
+  } catch (error) {
+    throw error
+  }
+}
+
+export { login, logout, passwordRecovery, passwordReset }

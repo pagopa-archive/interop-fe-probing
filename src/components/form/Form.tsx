@@ -1,11 +1,14 @@
 import { Grid, Button, FormHelperText, Card, Typography, TextField } from '@mui/material'
 import { Controller, useForm } from 'react-hook-form'
+import { ErrorMessage } from '@hookform/error-message'
+import entries from 'lodash/entries'
 
 interface Field {
   name: string
   label: string
   type: string
   rules: { [key: string]: any }
+  width?: string
 }
 
 interface FormData {
@@ -13,6 +16,9 @@ interface FormData {
   submitButton: string
   submitFunction: Function
   defaultValues: { [key: string]: string }
+  buttonDisable: 'onValid' | 'never'
+  validationMode: 'onSubmit' | 'onChange'
+  t?: Function
 }
 
 export const Form: React.FC<FormData> = ({
@@ -20,6 +26,9 @@ export const Form: React.FC<FormData> = ({
   submitButton,
   submitFunction,
   defaultValues,
+  buttonDisable,
+  validationMode,
+  t,
 }) => {
   /**
    * form functionalities from react-hook-forms
@@ -30,8 +39,9 @@ export const Form: React.FC<FormData> = ({
     formState: { errors, isValid },
   } = useForm({
     defaultValues: defaultValues,
-    mode: 'onSubmit',
-    reValidateMode: 'onSubmit',
+    mode: validationMode,
+    reValidateMode: validationMode,
+    criteriaMode: 'all',
   })
 
   return (
@@ -59,14 +69,33 @@ export const Form: React.FC<FormData> = ({
                   }) => (
                     <>
                       <TextField
+                        id={field.name}
+                        required
                         type={field.type}
                         label={field.label}
                         value={value}
                         onChange={onChange}
+                        sx={{
+                          ...(field.width && {
+                            width: field.width,
+                          }),
+                        }}
                       />
-                      <FormHelperText error>
-                        {errors[field.name] ? errors[field.name]?.message : ' '}
-                      </FormHelperText>
+                      {errors[field.name] && (
+                        <ErrorMessage
+                          errors={errors}
+                          name={field.name}
+                          render={({ messages }) => {
+                            return messages
+                              ? entries(messages).map(([type, message]) => (
+                                  <FormHelperText key={type} error>
+                                    {t !== undefined ? t(message, { ns: 'passwordResetPage' }) : ''}
+                                  </FormHelperText>
+                                ))
+                              : null
+                          }}
+                        />
+                      )}
                     </>
                   )}
                 />
@@ -83,7 +112,7 @@ export const Form: React.FC<FormData> = ({
               size="large"
               type="submit"
               variant="contained"
-              disabled={!isValid}
+              disabled={buttonDisable === 'onValid' ? !isValid : false}
             >
               <Typography sx={{ color: 'white' }}> {submitButton}</Typography>
             </Button>

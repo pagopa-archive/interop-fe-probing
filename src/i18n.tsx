@@ -15,6 +15,10 @@ import monitorTableIt from './static/locales/it/monitorTable.json'
 import monitorTableEn from './static/locales/en/monitorTable.json'
 import loginPageIt from './static/locales/it/loginPage.json'
 import loginPageEn from './static/locales/en/loginPage.json'
+import passwordRecoveryPageIt from './static/locales/it/passwordRecoveryPage.json'
+import passwordRecoveryPageEn from './static/locales/en/passwordRecoveryPage.json'
+import passwordResetPageIt from './static/locales/it/passwordResetPage.json'
+import passwordResetPageEn from './static/locales/en/passwordResetPage.json'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
@@ -35,6 +39,8 @@ i18n
         monitorPage: monitorPageIt,
         monitorTable: monitorTableIt,
         loginPage: loginPageIt,
+        passwordRecoveryPage: passwordRecoveryPageIt,
+        passwordResetPage: passwordResetPageIt,
       },
       en: {
         detailsPage: detailsPageEn,
@@ -44,6 +50,8 @@ i18n
         monitorPage: monitorPageEn,
         monitorTable: monitorTableEn,
         loginPage: loginPageEn,
+        passwordRecoveryPage: passwordRecoveryPageEn,
+        passwordResetPage: passwordResetPageEn,
       },
     },
     // language by default

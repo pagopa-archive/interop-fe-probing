@@ -1,69 +1,58 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CircularProgress, DialogContent, DialogContentText, Dialog, Stack } from '@mui/material'
-import { login } from '../../../authetication/auth'
-import { useNavigate } from 'react-router-dom'
+import { passwordRecovery } from '../../../authetication/auth'
 import { Form } from '../../form/Form'
 import stores from '../../../store/Store'
 import { Spinner } from '../../spinner/Spinner'
+
+interface IProps {
+  setRecoverySuccess: Function
+}
 
 /**
  * default values of the form fields
  */
 const defaultFormValues: { [key: string]: string } = {
-  username: '',
-  password: '',
+  email: '',
 }
 
 /**
  * Generating the login form
  * @component
  */
-export const LoginForm = () => {
+export const PasswordRecoveryForm: React.FC<IProps> = ({ setRecoverySuccess }) => {
   const [spinner, setSpinner] = useState(false)
 
-  const { t } = useTranslation(['loginPage'])
-
-  const navigate = useNavigate()
+  const { t } = useTranslation(['passwordRecoveryPage'])
 
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
-
-  const [updateLogStatus] = stores.useLogStatusStore((state) => [state.updateLogStatus])
 
   /**
    * properties of the form fields
    */
   const fieldsProperties = {
-    username: {
-      name: 'username',
-      label: t('username', { ns: 'loginPage' }),
+    email: {
+      name: 'email',
+      label: 'Email',
       type: 'email',
       rules: {
-        required: t('incorrectUsername', { ns: 'loginPage' }),
+        required: true,
       },
-    },
-    password: {
-      name: 'password',
-      label: t('password', { ns: 'loginPage' }),
-      type: 'password',
-      rules: {
-        required: t('incorrectPassword', { ns: 'loginPage' }),
-      },
+      width: '500px',
     },
   }
 
   const onSubmit = async (data: { [key: string]: string }) => {
     setSpinner(true)
-    login(data.username, data.password)
-      .then((data) => {
-        updateLogStatus(data.signInUserSession.idToken.jwtToken)
+    passwordRecovery(data.email)
+      .then(() => {
         setSpinner(false)
-        navigate('/monitoraggio')
-        updateSnackbar(true, t('loginSuccessMessage', { ns: 'loginPage' }), 'success')
+        setRecoverySuccess(true)
       })
       .catch((error) => {
         setSpinner(false)
-        const message = t('loginError', { ns: 'loginPage' })
+        const message = t('recoveryError', { ns: 'passwordRecoveryPage' })
         updateSnackbar(true, message, 'error')
       })
   }
@@ -71,8 +60,8 @@ export const LoginForm = () => {
   return (
     <>
       <Form
-        fields={[fieldsProperties.username, fieldsProperties.password]}
-        submitButton={t('login', { ns: 'loginPage' })}
+        fields={[fieldsProperties.email]}
+        submitButton={t('submit', { ns: 'passwordRecoveryPage' })}
         submitFunction={onSubmit}
         defaultValues={defaultFormValues}
         buttonDisable={'onValid'}
@@ -81,7 +70,7 @@ export const LoginForm = () => {
       <Spinner
         open={spinner}
         setSpinner={setSpinner}
-        message={t('loginSpinnerMessage', { ns: 'loginPage' })}
+        message={t('spinnerMessage', { ns: 'passwordRecoveryPage' })}
       />
     </>
   )

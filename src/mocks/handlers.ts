@@ -94,4 +94,57 @@ export const handlers = [
     ]
     return res(ctx.json(mockResponse))
   }),
+
+  rest.get('http://localhost:3000/eservices/mainData/', (req, res, ctx) => {
+    const mockResponse = {
+      eserviceName: 'Probing test 3',
+      producerName: 'Comune di Milano',
+      versionNumber: '7',
+      pollingFrequency: 5,
+    }
+    return res(ctx.json(mockResponse))
+  }),
+
+  rest.get('http://localhost:3000/eservices/probingData/', (req, res, ctx) => {
+    const mockResponse = {
+      probingEnabled: true,
+      state: 'offline',
+      responseReceived: '2023-04-27T14:55:25Z',
+      eserviceActive: false,
+    }
+    return res(ctx.json(mockResponse))
+  }),
+
+  rest.get('http://localhost:3000/telemetryData/eservices/', (req, res, ctx) => {
+    const mockResponse = {
+      values: [
+        {
+          responseTime: 640,
+          status: 'OK',
+          time: '2023-05-16T13:17:01.579Z',
+        },
+        {
+          responseTime: 98,
+          status: 'OK',
+          time: '2023-05-16T13:33:07.271Z',
+        },
+        {
+          responseTime: 6,
+          status: 'OK',
+          time: '2023-05-16T13:39:01.371Z',
+        },
+      ],
+      percentages: [
+        {
+          value: 94.28572,
+          status: 'OK',
+        },
+        {
+          value: 5.714286,
+          status: 'KO',
+        },
+      ],
+    }
+    return res(ctx.json(mockResponse))
+  }),
 ]
