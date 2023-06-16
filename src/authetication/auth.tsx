@@ -20,23 +20,12 @@ async function login(username: string, password: string) {
 
 async function refreshToken() {
   try {
-    const user = await Auth.currentAuthenticatedUser()
-    const refreshToken = sessionStorage.getItem('refreshToken')
-    user.refreshSession(refreshToken!, () => {
-      sessionStorage.setItem(
-        'token',
-        user
-          .getSignInUserSession()
-          .getIdToken()
-          .getJwtToken()!
-      )
-      sessionStorage.setItem(
-        'accessToken',
-        user
-          .getSignInUserSession()
-          .getAccessToken()
-          .getJwtToken()!
-      )
+    const cognitoUser = await Auth.currentAuthenticatedUser()
+    const { refreshToken } = cognitoUser.getSignInUserSession()
+    cognitoUser.refreshSession(refreshToken, (err: any, session: any) => {
+      const { idToken, accessToken } = session
+      sessionStorage.setItem('token', idToken.jwtToken)
+      sessionStorage.setItem('accessToken', accessToken.jwtToken)
     })
   } catch (error) {
     throw error
