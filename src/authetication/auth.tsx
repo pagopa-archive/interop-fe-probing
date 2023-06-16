@@ -18,6 +18,31 @@ async function login(username: string, password: string) {
   }
 }
 
+async function refreshToken() {
+  try {
+    const user = await Auth.currentAuthenticatedUser()
+    const refreshToken = sessionStorage.getItem('refreshToken')
+    user.refreshSession(refreshToken!, () => {
+      sessionStorage.setItem(
+        'token',
+        user
+          .getSignInUserSession()
+          .getIdToken()
+          .getJwtToken()!
+      )
+      sessionStorage.setItem(
+        'accessToken',
+        user
+          .getSignInUserSession()
+          .getAccessToken()
+          .getJwtToken()!
+      )
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
 async function logout() {
   try {
     await Auth.signOut()
@@ -43,4 +68,4 @@ async function passwordReset(username: string, code: string, new_password: strin
   }
 }
 
-export { login, logout, passwordRecovery, passwordReset }
+export { login, logout, passwordRecovery, passwordReset, refreshToken }
