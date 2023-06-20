@@ -143,7 +143,7 @@ export const DetailsServicePage: React.FC = () => {
             <Grid item container justifyContent="center" gap={10}>
               {statisticsData?.values && (
                 <Grid item>
-                  <LineChart data={statisticsData?.values} />
+                  <LineChart data={statisticsData.values} failures={statisticsData.failures} />
                 </Grid>
               )}
               {statisticsData?.percentages && (

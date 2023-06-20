@@ -57,6 +57,11 @@ exports[`LineChart > render component 1`] = `
           >
             01 / 12
           </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
         </g>
         <g
           class="tick"
@@ -80,6 +85,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
           </text>
         </g>
         <g
@@ -105,6 +115,11 @@ exports[`LineChart > render component 1`] = `
           >
             02 / 12
           </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
         </g>
         <g
           class="tick"
@@ -128,6 +143,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
           </text>
         </g>
         <g
@@ -153,6 +173,11 @@ exports[`LineChart > render component 1`] = `
           >
             02 / 12
           </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
         </g>
         <g
           class="tick"
@@ -176,6 +201,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
           </text>
         </g>
         <g
@@ -201,6 +231,11 @@ exports[`LineChart > render component 1`] = `
           >
             03 / 12
           </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
         </g>
         <g
           class="tick"
@@ -224,6 +259,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
           </text>
         </g>
         <g
@@ -249,6 +289,11 @@ exports[`LineChart > render component 1`] = `
           >
             03 / 12
           </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
         </g>
         <g
           class="tick"
@@ -272,6 +317,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             04 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
           </text>
         </g>
         <g
@@ -297,6 +347,11 @@ exports[`LineChart > render component 1`] = `
           >
             04 / 12
           </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
         </g>
         <g
           class="tick"
@@ -320,6 +375,11 @@ exports[`LineChart > render component 1`] = `
             y="15"
           >
             04 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
           </text>
         </g>
       </g>
@@ -661,36 +721,25 @@ exports[`LineChart > render component 1`] = `
         </g>
       </g>
     </g>
-    <lineargradient
-      gradientUnits="userSpaceOnUse"
-      id="linearGradient"
-      x1="0"
-      x2="610"
-    >
-      <stop
-        offset="0"
-        stop-color="#17324D"
-        stop-opacity="1"
-      />
-      <stop
-        offset="0.6666666666666666"
-        stop-color="#17324D"
-        stop-opacity="1"
-      />
-      <stop
-        offset="1"
-        stop-color="#17324D"
-        stop-opacity="1"
-      />
-    </lineargradient>
     <path
       class="line"
-      d="M0,85.714L406.667,0L610,300"
+      d="M0,85.714C0,85.714,303.676,-41.579,406.667,0C502.842,38.827,610,300,610,300"
       fill="none"
-      stroke="url(#linearGradient)"
+      stroke="#17324D"
       stroke-width="1"
       transform="translate(60, 60)"
     />
+    <g
+      class="points"
+      transform="translate(60, 60)"
+    >
+      <circle
+        cx="-40267.0978277392"
+        fill="#FE6666"
+        r="3"
+        transform="translate(0, 300)"
+      />
+    </g>
   </svg>
 </div>
 `;
