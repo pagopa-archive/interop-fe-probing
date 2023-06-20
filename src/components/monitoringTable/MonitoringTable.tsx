@@ -18,11 +18,10 @@ import { useQuery } from '@tanstack/react-query'
 import apiRequests from '../../api/apiRequests'
 import { GetServicesType, GetServicesResponseType } from '../../api/apiRequestTypes'
 import stores from '../../store/Store'
-import format from 'date-fns/format'
+import { format, subDays } from 'date-fns'
 import { useTranslation } from 'react-i18next'
 import { TableSkeleton } from '../skeleton/TableSkeleton'
 import { Link } from 'react-router-dom'
-import { generatePath } from 'react-router'
 import RefreshIcon from '@mui/icons-material/Refresh'
 
 type EServiceListQueryFilters = {
@@ -119,6 +118,20 @@ export const MonitoringTable: React.FC = () => {
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
   })
 
+  const generatePath = (eserviceRecordId: string) => {
+    let path = `/monitoraggio/eservice/${eserviceRecordId}`
+    if (sessionStorage.getItem('token')) {
+      const startDate = format(subDays(new Date(), 2), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'").replaceAll(
+        ':',
+        '%3A'
+      )
+      const endDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'").replaceAll(':', '%3A')
+      path = `${path}?startDate=${startDate}&endDate=${endDate}`
+    }
+
+    return path
+  }
+
   return (
     <>
       <Filters
@@ -174,9 +187,7 @@ export const MonitoringTable: React.FC = () => {
                 size="small"
                 color="primary"
                 component={Link}
-                to={generatePath('/monitoraggio/eservice/:eserviceRecordId', {
-                  eserviceRecordId: toString(service.eserviceRecordId),
-                })}
+                to={generatePath(toString(service.eserviceRecordId))}
               >
                 {t('readMore')}
               </ButtonNaked>

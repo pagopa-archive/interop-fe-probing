@@ -4,8 +4,6 @@ import { screen, cleanup, act, renderHook } from '@testing-library/react'
 import Header from '../Header'
 import { renderWithRouterAndQuery } from '../../../mocks/mockWrapper'
 import * as router from 'react-router'
-import stores from '../../../store/Store'
-import { JwtUser } from '@pagopa/mui-italia'
 import * as auth from '../../../authetication/auth'
 
 describe('Header', () => {
@@ -28,11 +26,8 @@ describe('Header', () => {
   })
 
   test('click Esci button and simulate success', async () => {
-    // mock zustand log status
-    const { result } = renderHook(() => stores.useLogStatusStore())
-    act(() => {
-      const jwtUser: JwtUser = { id: 'asd' }
-      result.current.updateLogStatus(jwtUser)
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      return 'asd'
     })
 
     vi.spyOn(auth, 'logout').mockImplementation(async () => {
@@ -51,15 +46,12 @@ describe('Header', () => {
   })
 
   test('click Esci button and simulate error', async () => {
-    // mock zustand log status
-    const { result } = renderHook(() => stores.useLogStatusStore())
-    act(() => {
-      const jwtUser: JwtUser = { id: 'asd' }
-      result.current.updateLogStatus(jwtUser)
-    })
-
     vi.spyOn(auth, 'logout').mockImplementation(async () => {
       throw new Error('UNKNOWN ERROR')
+    })
+
+    vi.spyOn(Storage.prototype, 'getItem').mockImplementation(() => {
+      return 'asd'
     })
 
     const navigate = vi.fn()
