@@ -33,15 +33,9 @@ const useSnackbarStore = create<SnackbarType>((set) => ({
     set({ activated: newState, message: newMessage, severity: newServerity }),
 }))
 
-const useLogStatusStore = create<LogStatusType>((set) => ({
-  status: false,
-  updateLogStatus: (newState: JwtUser | false) => set({ status: newState }),
-}))
-
 const stores = {
   useSpinnerStore,
   useSnackbarStore,
-  useLogStatusStore,
 }
 
 export default stores

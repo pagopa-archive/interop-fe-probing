@@ -1,4 +1,10 @@
-import { HeaderAccount, HeaderProduct, ProductSwitchItem, RootLinkType } from '@pagopa/mui-italia'
+import {
+  HeaderAccount,
+  HeaderProduct,
+  ProductSwitchItem,
+  RootLinkType,
+  JwtUser,
+} from '@pagopa/mui-italia'
 import { useNavigate } from 'react-router-dom'
 import { logout } from '../../authetication/auth'
 import { useTranslation } from 'react-i18next'
@@ -27,12 +33,9 @@ const Header = () => {
 
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
 
-  const [updateLogStatus] = stores.useLogStatusStore((state) => [state.updateLogStatus])
-
   const handleLogout = async () => {
     logout()
       .then((res) => {
-        updateLogStatus(false)
         navigate('/login')
         updateSnackbar(true, t('logoutSuccessMessage', { ns: 'loginPage' }), 'success')
       })
@@ -45,7 +48,11 @@ const Header = () => {
     <header>
       <HeaderAccount
         enableAssistanceButton={false}
-        loggedUser={stores.useLogStatusStore((state) => state.status)}
+        loggedUser={
+          sessionStorage.getItem('token')
+            ? ({ id: sessionStorage.getItem('token') } as JwtUser)
+            : false
+        }
         rootLink={link}
         onAssistanceClick={() => {
           console.log('Clicked/Tapped on Assistance')

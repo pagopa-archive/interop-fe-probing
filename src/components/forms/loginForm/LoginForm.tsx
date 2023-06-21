@@ -28,8 +28,6 @@ export const LoginForm = () => {
 
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
 
-  const [updateLogStatus] = stores.useLogStatusStore((state) => [state.updateLogStatus])
-
   /**
    * properties of the form fields
    */
@@ -56,7 +54,6 @@ export const LoginForm = () => {
     setSpinner(true)
     login(data.username, data.password)
       .then((data) => {
-        updateLogStatus(data.signInUserSession.idToken.jwtToken)
         setSpinner(false)
         navigate('/monitoraggio')
         updateSnackbar(true, t('loginSuccessMessage', { ns: 'loginPage' }), 'success')
