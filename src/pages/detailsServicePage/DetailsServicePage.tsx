@@ -16,6 +16,7 @@ import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
 import { Filters, useFilters } from '@pagopa/interop-fe-commons'
+import { subMonths } from 'date-fns'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -49,11 +50,15 @@ export const DetailsServicePage: React.FC = () => {
       name: 'startDate',
       type: 'datepicker',
       label: t('startDateTime', { ns: 'detailsPage' }),
+      maxDate: new Date(),
+      minDate: subMonths(new Date(), 1),
     },
     {
       name: 'endDate',
       type: 'datepicker',
       label: t('endDateTime', { ns: 'detailsPage' }),
+      maxDate: new Date(),
+      minDate: subMonths(new Date(), 1),
     },
   ])
 
