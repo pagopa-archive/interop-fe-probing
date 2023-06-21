@@ -141,9 +141,12 @@ export const DetailsServicePage: React.FC = () => {
               </Typography>
             </Grid>
             <Grid item container justifyContent="center" gap={10}>
-              {statisticsData?.values && (
+              {statisticsData?.performances && (
                 <Grid item>
-                  <LineChart data={statisticsData.values} failures={statisticsData.failures} />
+                  <LineChart
+                    data={statisticsData.performances}
+                    failures={statisticsData.failures}
+                  />
                 </Grid>
               )}
               {statisticsData?.percentages && (

@@ -1,9 +1,9 @@
 import { describe, expect, test } from 'vitest'
 import { render } from '@testing-library/react'
 import { LineChart } from '../LineChart'
-import { ServiceValuesType, ServiceFailuresType } from '../../../../types'
+import { ServicePerformancesType, ServiceFailuresType } from '../../../../types'
 
-const data: Array<ServiceValuesType> = [
+const data: Array<ServicePerformancesType> = [
   {
     responseTime: 50,
     time: '2023-12-01T14:20:15.995Z',

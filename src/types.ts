@@ -36,7 +36,7 @@ export interface ServiceProbingData {
   eserviceActive: boolean
 }
 
-export interface ServiceValuesType {
+export interface ServicePerformancesType {
   /**
    * response time for the service
    */
@@ -71,6 +71,6 @@ export interface ServicePercentagesType {
 
 export interface ServiceStatisticsData {
   percentages: Array<ServicePercentagesType>
-  values: Array<ServiceValuesType>
+  performances: Array<ServicePerformancesType>
   failures: Array<ServiceFailuresType>
 }

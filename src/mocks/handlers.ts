@@ -117,7 +117,7 @@ export const handlers = [
 
   rest.get('http://localhost:3000/telemetryData/eservices/', (req, res, ctx) => {
     const mockResponse = {
-      values: [
+      performances: [
         {
           responseTime: 640,
           status: 'OK',

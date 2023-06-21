@@ -10,12 +10,12 @@ import {
   curveCatmullRom,
 } from 'd3'
 import { useTranslation } from 'react-i18next'
-import { ServiceValuesType, ServiceFailuresType } from '../../../types'
+import { ServicePerformancesType, ServiceFailuresType } from '../../../types'
 
 const curveType = curveCatmullRom.alpha(0.5)
 
 interface IProps {
-  data: Array<ServiceValuesType>
+  data: Array<ServicePerformancesType>
   failures: Array<ServiceFailuresType>
 }
 
@@ -69,7 +69,7 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     .domain([
       0,
       // if we have null for example when the array is empty the default value is 10
-      max(data, (d: ServiceValuesType) => {
+      max(data, (d: ServicePerformancesType) => {
         return d.responseTime || null
       }) || 10,
     ] as Array<number>)
@@ -123,12 +123,12 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
 
   //line generator: each point is [x(d.time), y(d.responseTime)] where d is an element in data array
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
-  const createLine: Line<ServiceValuesType> = line<ServiceValuesType>()
+  const createLine: Line<ServicePerformancesType> = line<ServicePerformancesType>()
     .curve(curveType)
-    .x((d: ServiceValuesType) => {
+    .x((d: ServicePerformancesType) => {
       return x(new Date(d.time))
     })
-    .y((d: ServiceValuesType) => y(d.responseTime ? d.responseTime : 0))
+    .y((d: ServicePerformancesType) => y(d.responseTime ? d.responseTime : 0))
 
   const failuresPoints = (
     <g className="points" transform={`translate(${margin.left}, ${margin.top * 3})`}>
