@@ -1,6 +1,10 @@
 import { AxiosInstance, AxiosResponse } from 'axios'
 import { createAxiosInstance } from './axiosInstanceCreator'
-import { GetServicesType, GetServicesTelemetry } from './apiRequestTypes'
+import {
+  GetServicesType,
+  GetServicesTelemetry,
+  GetServicesFilteredTelemetry,
+} from './apiRequestTypes'
 
 class Http {
   private instance: AxiosInstance | null = null
@@ -47,6 +51,22 @@ class Http {
     return this.http.get<T, R>(`/telemetryData/eservices/${payload.eserviceRecordId}`, {
       params: {
         pollingFrequency: payload.pollingFrequency,
+      },
+    })
+  }
+
+  getServiceFilteredStatisticsData<T = any, R = AxiosResponse<T>>(
+    payload: GetServicesFilteredTelemetry
+  ): Promise<R> {
+    const idToken = sessionStorage.getItem('token')
+    return this.http.get<T, R>(`/telemetryData/eservices/filtered/${payload.eserviceRecordId}`, {
+      params: {
+        pollingFrequency: payload.pollingFrequency,
+        startDate: payload.startDate,
+        endDate: payload.endDate,
+      },
+      headers: {
+        Authorization: `Bearer ${idToken}`,
       },
     })
   }
