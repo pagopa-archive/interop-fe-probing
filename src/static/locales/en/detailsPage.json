@@ -18,5 +18,8 @@
   "monitoringSuspended": "Monitoring suspended",
   "versionSuspendedMessage": "The e-service is offline because this version is currently suspended",
   "eserviceNotAnswerMessage": "The e-service is offline because it doesn't answer to the monitoring system",
-  "monitoringSystemSuspendedMessage": "The monitoring system is currently suspended"
+  "monitoringSystemSuspendedMessage": "The monitoring system is currently suspended",
+  "startDateTime": "Period start date and time",
+  "endDateTime": "Period end date and time",
+  "deleteEverything": "Delete everything"
 }

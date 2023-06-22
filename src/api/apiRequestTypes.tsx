@@ -36,6 +36,16 @@ type GetServicesTelemetry = {
   pollingFrequency?: number
 }
 
+/**
+ * @typedef {Object} GetServicesFilteredTelemetry
+ */
+type GetServicesFilteredTelemetry = {
+  eserviceRecordId: string
+  pollingFrequency?: number
+  startDate: string
+  endDate: string
+}
+
 type ErrorResponse = {
   detail: string
   errors: Array<string>
@@ -45,4 +55,10 @@ type ErrorResponse = {
   traceid: string
 }
 
-export type { ErrorResponse, GetServicesType, GetServicesResponseType, GetServicesTelemetry }
+export type {
+  ErrorResponse,
+  GetServicesType,
+  GetServicesResponseType,
+  GetServicesTelemetry,
+  GetServicesFilteredTelemetry,
+}

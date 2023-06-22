@@ -15,6 +15,8 @@ import { ProbingDataSkeleton } from '../../components/skeleton/ProbingDataSkelet
 import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
+import { Filters, useFilters } from '@pagopa/interop-fe-commons'
+import { subMonths } from 'date-fns'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -29,6 +31,8 @@ export const DetailsServicePage: React.FC = () => {
 
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
 
+  const logStatus = sessionStorage.getItem('token')
+
   // elements for the legend component
   const legendElements = [
     { label: 'E-service online', color: '#17324D' },
@@ -37,6 +41,26 @@ export const DetailsServicePage: React.FC = () => {
   ]
 
   const eserviceRecordId = params.id ?? ''
+
+  const {
+    filtersParams: { startDate, endDate },
+    ...handlers
+  } = useFilters([
+    {
+      name: 'startDate',
+      type: 'datepicker',
+      label: t('startDateTime', { ns: 'detailsPage' }),
+      maxDate: new Date(),
+      minDate: subMonths(new Date(), 1),
+    },
+    {
+      name: 'endDate',
+      type: 'datepicker',
+      label: t('endDateTime', { ns: 'detailsPage' }),
+      maxDate: new Date(),
+      minDate: subMonths(new Date(), 1),
+    },
+  ])
 
   async function fetchServiceMainData(value: string): Promise<ServiceMainData> {
     return apiRequests.getServiceMainData(value)
@@ -54,7 +78,13 @@ export const DetailsServicePage: React.FC = () => {
       eserviceRecordId: eserviceRecordId,
       pollingFrequency: pollingFrequency,
     }
-    return apiRequests.getServiceStatisticsData(payload)
+    return startDate && endDate
+      ? apiRequests.getServiceFilteredStatisticsData({
+          ...payload,
+          startDate: startDate.toString(),
+          endDate: endDate.toString(),
+        })
+      : apiRequests.getServiceStatisticsData(payload)
   }
 
   const { data: mainData, isInitialLoading: mainDataLoading } = useQuery({
@@ -75,10 +105,17 @@ export const DetailsServicePage: React.FC = () => {
   })
 
   const { data: statisticsData, isInitialLoading: statisticsDataLoading } = useQuery({
-    queryKey: ['serviceStatisticsData', eserviceRecordId, mainData?.pollingFrequency],
+    queryKey: [
+      'serviceStatisticsData',
+      eserviceRecordId,
+      mainData?.pollingFrequency,
+      startDate,
+      endDate,
+    ],
     queryFn: () => fetchServiceStatisticsData(eserviceRecordId, mainData?.pollingFrequency),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
-    enabled: !!mainData?.pollingFrequency,
+    enabled:
+      !!mainData?.pollingFrequency && ((!!startDate && !!endDate) || (!startDate && !endDate)),
   })
 
   return (
@@ -140,6 +177,12 @@ export const DetailsServicePage: React.FC = () => {
                 {t('chartsTitle', { ns: 'detailsPage' })}
               </Typography>
             </Grid>
+            {logStatus && (
+              <Grid item justifyContent="center" sx={{ ml: 10 }}>
+                <Filters {...handlers} />
+              </Grid>
+            )}
+
             <Grid item container justifyContent="center" gap={10}>
               {statisticsData?.values && (
                 <Grid item>
@@ -171,7 +214,7 @@ export const DetailsServicePage: React.FC = () => {
           justifyContent={'center'}
         >
           <ButtonNaked
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/monitoraggio')}
             color="primary"
             size="small"
             startIcon={<ArrowBackIcon />}

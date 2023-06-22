@@ -18,5 +18,8 @@
   "monitoringSuspended": "Monitoraggio sospeso",
   "versionSuspendedMessage": "L’e-service è offline perché questa versione è attualmente sospesa",
   "eserviceNotAnswerMessage": "L’e-service è offline perché non risponde al sistema di monitoraggio",
-  "monitoringSystemSuspendedMessage": "Il sistema di monitoraggio è attualmente sospeso"
+  "monitoringSystemSuspendedMessage": "Il sistema di monitoraggio è attualmente sospeso",
+  "startDateTime": "Data e ora inizio periodo",
+  "endDateTime": "Data e ora fine periodo",
+  "deleteEverything": "Elimina tutto"
 }
