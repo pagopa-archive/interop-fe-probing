@@ -120,11 +120,19 @@ export const MonitoringTable: React.FC = () => {
 
   const generatePath = (eserviceRecordId: string) => {
     let path = `/monitoraggio/eservice/${eserviceRecordId}`
+    let now = new Date()
+    let nowUtc = new Date(
+      now.getUTCFullYear(),
+      now.getUTCMonth(),
+      now.getUTCDate(),
+      now.getUTCHours(),
+      now.getUTCMinutes()
+    )
     if (sessionStorage.getItem('token')) {
       const urlParams = new URLSearchParams({
-        startDate: format(subDays(new Date(), 2), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
-        endDate: format(new Date(), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
-      }).toString()
+        startDate: format(subDays(nowUtc, 3), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
+        endDate: format(nowUtc, "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
+      })
       path = `${path}?${urlParams}`
     }
 

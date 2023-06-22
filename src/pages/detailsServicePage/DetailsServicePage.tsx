@@ -115,7 +115,8 @@ export const DetailsServicePage: React.FC = () => {
     queryFn: () => fetchServiceStatisticsData(eserviceRecordId, mainData?.pollingFrequency),
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
     enabled:
-      !!mainData?.pollingFrequency && ((!!startDate && !!endDate) || (!startDate && !endDate)),
+      !!mainData?.pollingFrequency &&
+      ((!!startDate && !!endDate && startDate < endDate) || (!startDate && !endDate)),
   })
 
   return (
@@ -178,7 +179,7 @@ export const DetailsServicePage: React.FC = () => {
               </Typography>
             </Grid>
             {logStatus && (
-              <Grid item justifyContent="center" sx={{ ml: 10 }}>
+              <Grid item justifyContent="center" sx={{ mx: 10 }}>
                 <Filters {...handlers} />
               </Grid>
             )}
