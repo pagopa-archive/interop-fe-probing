@@ -1,9 +1,22 @@
-import { scaleLinear, scaleTime, line, timeFormat, max, Line, ScaleLinear, ScaleTime } from 'd3'
+import {
+  scaleLinear,
+  scaleTime,
+  line,
+  timeFormat,
+  max,
+  Line,
+  ScaleLinear,
+  ScaleTime,
+  curveCatmullRom,
+} from 'd3'
 import { useTranslation } from 'react-i18next'
-import { ServiceValuesType } from '../../../types'
+import { ServicePerformancesType, ServiceFailuresType } from '../../../types'
+
+const curveType = curveCatmullRom.alpha(0.5)
 
 interface IProps {
-  data: Array<ServiceValuesType>
+  data: Array<ServicePerformancesType>
+  failures: Array<ServiceFailuresType>
 }
 
 // margin convention often used with D3
@@ -21,7 +34,7 @@ const color: { [key: string]: string } = {
  * Line chart component
  * @component
  */
-export const LineChart: React.FC<IProps> = ({ data }) => {
+export const LineChart: React.FC<IProps> = ({ data, failures }) => {
   const { t } = useTranslation(['detailsPage'])
 
   // header of the chart
@@ -56,7 +69,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
     .domain([
       0,
       // if we have null for example when the array is empty the default value is 10
-      max(data, (d: ServiceValuesType) => {
+      max(data, (d: ServicePerformancesType) => {
         return d.responseTime || null
       }) || 10,
     ] as Array<number>)
@@ -89,6 +102,7 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
           <text y="15" dy="0.71em">
             {timeFormat('%d / %m')(new Date(d))}
           </text>
+          <text y="35">{timeFormat('%H:%M')(new Date(d))}</text>
         </g>
       ))}
     </g>
@@ -109,24 +123,24 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
 
   //line generator: each point is [x(d.time), y(d.responseTime)] where d is an element in data array
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
-  const createLine: Line<ServiceValuesType> = line<ServiceValuesType>()
-    .x((d: ServiceValuesType) => {
+  const createLine: Line<ServicePerformancesType> = line<ServicePerformancesType>()
+    .curve(curveType)
+    .x((d: ServicePerformancesType) => {
       return x(new Date(d.time))
     })
-    .y((d: ServiceValuesType) => y(d.responseTime ? d.responseTime : 0))
+    .y((d: ServicePerformancesType) => y(d.responseTime ? d.responseTime : 0))
 
-  // create linear gradient to color the line in different colors depending on the status
-  const linearGradient: JSX.Element = (
-    <linearGradient id="linearGradient" gradientUnits="userSpaceOnUse" x1="0" x2={width}>
-      {data.map((d: ServiceValuesType) => (
-        <stop
-          key={new Date(d.time).getTime()}
-          offset={x(new Date(d.time)) / width}
-          stopColor={color[d.status]}
-          stopOpacity="1"
-        ></stop>
+  const failuresPoints = (
+    <g className="points" transform={`translate(${margin.left}, ${margin.top * 3})`}>
+      {failures.map((failure) => (
+        <circle
+          transform={`translate(0, ${height})`}
+          cx={x(new Date(failure.time))}
+          r="3"
+          fill={color[failure.status]}
+        ></circle>
       ))}
-    </linearGradient>
+    </g>
   )
 
   return (
@@ -141,15 +155,15 @@ export const LineChart: React.FC<IProps> = ({ data }) => {
         {xTicks}
         {yTicks}
       </g>
-      {linearGradient}
       <path
         className="line"
-        stroke="url(#linearGradient)"
+        stroke="#17324D"
         strokeWidth="1"
         fill="none"
         d={createLine(data) || undefined}
         transform={`translate(${margin.left}, ${margin.top * 3})`}
       />
+      {failuresPoints}
     </svg>
   )
 }

@@ -1,6 +1,7 @@
 import { max, scaleLinear, scaleBand, ScaleLinear, ScaleBand } from 'd3'
 import { useTranslation } from 'react-i18next'
 import { ServicePercentagesType } from '../../../types'
+import round from 'lodash/round'
 
 interface IProps {
   data: Array<ServicePercentagesType>
@@ -62,7 +63,7 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
             fontWeight="600"
             transform={`translate(10, ${y.bandwidth() * 0.7})`}
           >
-            {d.value + '%'}
+            {round(d.value, 1) + '%'}
           </text>
         </g>
       ))}

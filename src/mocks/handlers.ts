@@ -117,7 +117,7 @@ export const handlers = [
 
   rest.get('http://localhost:3000/telemetryData/eservices/', (req, res, ctx) => {
     const mockResponse = {
-      values: [
+      performances: [
         {
           responseTime: 640,
           status: 'OK',
@@ -134,6 +134,11 @@ export const handlers = [
           time: '2023-05-16T13:39:01.371Z',
         },
       ],
+      failures:[  {
+        status: 'KO',
+        time: '2023-05-17T13:30:00Z',
+      },
+    ],
       percentages: [
         {
           value: 94.28572,
