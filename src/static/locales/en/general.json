@@ -1,5 +1,6 @@
 {
   "errorRequest": "Error during request",
   "refresh": "Refresh",
-  "dateFormat": "dd/MM/yyyy', at 'HH:mm"
+  "dateFormat": "dd/MM/yyyy', at 'HH:mm",
+  "expiredSession": "Your session has expired. You will be redirected to the Login page."
 }

@@ -1,8 +1,18 @@
 import Header from '../../components/header/Header'
 import Footer from '../../components/footer/Footer'
 import { Outlet, useNavigate } from 'react-router-dom'
-import { useEffect } from 'react'
-import { logout, refreshToken } from '../../authetication/auth'
+import { useEffect, useState } from 'react'
+import { logout } from '../../authetication/auth'
+import { Spinner } from '../../components/spinner/Spinner'
+import { useTranslation } from 'react-i18next'
+
+const parseJwt = (token: string) => {
+  try {
+    return JSON.parse(atob(token.split('.')[1]))
+  } catch (e) {
+    return null
+  }
+}
 
 /**
  * Main layout of the application with header and footer
@@ -11,30 +21,33 @@ import { logout, refreshToken } from '../../authetication/auth'
 const MainLayout = () => {
   const navigate = useNavigate()
 
+  const [spinner, setSpinner] = useState(false)
+
+  const { t } = useTranslation(['general'])
+
   useEffect(() => {
     if (sessionStorage.getItem('token')) {
-      //Refresh the access and id token every 59 minutes
       const idTokenInterval = setInterval(() => {
-        console.log('idTokenInterval')
-        refreshToken()
-      }, 3540000)
-
-      //Log the user out once the refresh token has expired (30 days)
-      const refreshTokenInterval = setInterval(() => {
-        if (sessionStorage.getItem('token')) {
-          logout()
-            .then(() => {
-              navigate('/login')
-            })
-            .catch((error: any) => {
-              throw error
-            })
+        const decodedJwt = parseJwt(sessionStorage.getItem('token') as string)
+        if (decodedJwt.exp * 1000 < Date.now()) {
+          setSpinner(true)
+          const spinnerInterval = setInterval(() => {
+            setSpinner(false)
+            logout()
+              .then(() => {
+                navigate('/login')
+              })
+              .catch((error: any) => {
+                throw error
+              })
+          }, 5000)
+          return () => {
+            clearInterval(spinnerInterval)
+          }
         }
-      }, 2147483647) // around 24.8 days which is the max delay
-      // }, 2 592 000 000) //30 days - too large delay
+      }, 1000)
       return () => {
         clearInterval(idTokenInterval)
-        clearInterval(refreshTokenInterval)
       }
     }
   }, [sessionStorage.getItem('token')])
@@ -44,6 +57,11 @@ const MainLayout = () => {
       <Header />
       <Outlet />
       <Footer />
+      <Spinner
+        open={spinner}
+        setSpinner={setSpinner}
+        message={t('expiredSession', { ns: 'general' })}
+      />
     </>
   )
 }

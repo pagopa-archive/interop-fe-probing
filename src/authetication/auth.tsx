@@ -18,20 +18,6 @@ async function login(username: string, password: string) {
   }
 }
 
-async function refreshToken() {
-  try {
-    const cognitoUser = await Auth.currentAuthenticatedUser()
-    const { refreshToken } = cognitoUser.getSignInUserSession()
-    cognitoUser.refreshSession(refreshToken, (err: any, session: any) => {
-      const { idToken, accessToken } = session
-      sessionStorage.setItem('token', idToken.jwtToken)
-      sessionStorage.setItem('accessToken', accessToken.jwtToken)
-    })
-  } catch (error) {
-    throw error
-  }
-}
-
 async function logout() {
   try {
     await Auth.signOut()
@@ -57,4 +43,4 @@ async function passwordReset(username: string, code: string, new_password: strin
   }
 }
 
-export { login, logout, passwordRecovery, passwordReset, refreshToken }
+export { login, logout, passwordRecovery, passwordReset }
