@@ -1,17 +1,17 @@
-name: 'PROD CI/CD'
+name: 'UAT CI/CD'
 on:
   push:
     branches:
       - 'main'
       - 'master'
     tags:
-      - 'v*'
+      - 'rc*'
 
 jobs:
-  deploy_prod:
-    name: Build and deploy frontend in production environment
+  deploy_uat:
+    name: Build and deploy frontend in UAT environment
     runs-on: ubuntu-latest
-    environment: prod
+    environment: uat
     env:
       VITE_REACT_QUERY_STALE_TIME: ${{ vars.VITE_REACT_QUERY_STALE_TIME }}
       VITE_PAGINATION_LIMIT: ${{ vars.VITE_PAGINATION_LIMIT }}
