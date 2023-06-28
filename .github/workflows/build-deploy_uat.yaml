@@ -1,0 +1,50 @@
+name: 'UAT CI/CD'
+on:
+  push:
+    branches:
+      - 'main'
+      - 'master'
+    tags:
+      - 'rc*'
+
+jobs:
+  deploy_uat:
+    name: Build and deploy frontend in UAT environment
+    runs-on: ubuntu-latest
+    environment: uat
+    env:
+      VITE_REACT_QUERY_STALE_TIME: ${{ vars.VITE_REACT_QUERY_STALE_TIME }}
+      VITE_PAGINATION_LIMIT: ${{ vars.VITE_PAGINATION_LIMIT }}
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@67fbcbb121271f7775d2e7715933280b06314838
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Clean dependencies
+        run: |
+          rm -rf node_modules dist
+      - name: Install dependencies
+        run: |
+          npm install --legacy-peer-deps
+      - name: Set environment variables
+        run: |
+          envsubst < .env
+      - name: Build project
+        run: |
+          npm run build
+      - name: Copy files to S3 Hosting bucket
+        run: |
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+      - name: Create invalidation for Cloudfront Distribution
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.DISTRIBUTION_ID }} --paths "/*"
