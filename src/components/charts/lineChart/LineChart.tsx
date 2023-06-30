@@ -11,6 +11,7 @@ import {
 } from 'd3'
 import { useTranslation } from 'react-i18next'
 import { ServicePerformancesType, ServiceFailuresType } from '../../../types'
+import { Grid } from '@mui/material'
 
 const curveType = curveCatmullRom.alpha(0.5)
 
@@ -125,6 +126,9 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
   const createLine: Line<ServicePerformancesType> = line<ServicePerformancesType>()
     .curve(curveType)
+    .defined(function (d) {
+      return d.responseTime !== 0
+    })
     .x((d: ServicePerformancesType) => {
       return x(new Date(d.time))
     })
@@ -134,7 +138,7 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     <g className="points" transform={`translate(${margin.left}, ${margin.top * 3})`}>
       {failures.map((failure) => (
         <circle
-          transform={`translate(0, ${height})`}
+          key={x(new Date(failure.time))}
           cx={x(new Date(failure.time))}
           r="3"
           fill={color[failure.status]}
@@ -143,27 +147,70 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     </g>
   )
 
+  // create the x ticks for the failures chart
+  const xTicksFailures: JSX.Element = (
+    <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="middle">
+      {x.ticks().map((d: Date) => (
+        <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
+          <text y="15" dy="0.71em">
+            {timeFormat('%d / %m')(new Date(d))}
+          </text>
+          <text y="35">{timeFormat('%H:%M')(new Date(d))}</text>
+        </g>
+      ))}
+    </g>
+  )
+
+  // header of the chart
+  const failuresHeader: JSX.Element = (
+    <g className="failures-header" transform={`translate(10, ${margin.top})`}>
+      <text>
+        <tspan fontFamily="Titillium Web" fontSize="18px" color="#17324D" fontWeight="700">
+          {t('lineChartFailuresTitle')}
+        </tspan>
+      </text>
+    </g>
+  )
+
   return (
-    <svg
-      className="line-chart-container"
-      width={width + margin.left + margin.right}
-      height={height + margin.top + margin.bottom}
-      role="img"
-    >
-      {header}
-      <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
-        {xTicks}
-        {yTicks}
-      </g>
-      <path
-        className="line"
-        stroke="#17324D"
-        strokeWidth="1"
-        fill="none"
-        d={createLine(data) || undefined}
-        transform={`translate(${margin.left}, ${margin.top * 3})`}
-      />
-      {failuresPoints}
-    </svg>
+    <Grid container direction={'column'} rowGap={4}>
+      <Grid item>
+        <svg
+          className="line-chart-container"
+          width={width + margin.left + margin.right}
+          height={height + margin.top + margin.bottom}
+          role="img"
+        >
+          {header}
+          <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
+            {xTicks}
+            {yTicks}
+          </g>
+          <path
+            className="line"
+            stroke="#17324D"
+            strokeWidth="1"
+            fill="none"
+            d={createLine(data) || undefined}
+            transform={`translate(${margin.left}, ${margin.top * 3})`}
+          />
+        </svg>
+      </Grid>
+
+      <Grid item>
+        <svg
+          className="line-chart-container-failures"
+          width={width + margin.left + margin.right}
+          height={height + margin.top + margin.bottom}
+          role="img"
+        >
+          {failuresHeader}
+          <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
+            {xTicksFailures}
+          </g>
+          {failuresPoints}
+        </svg>
+      </Grid>
+    </Grid>
   )
 }
