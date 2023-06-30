@@ -35,20 +35,16 @@ const MainLayout = () => {
             setSpinner(false)
             logout()
               .then(() => {
+                clearInterval(spinnerInterval)
+                clearInterval(idTokenInterval)
                 navigate('/login')
               })
               .catch((error: any) => {
                 throw error
               })
           }, 5000)
-          return () => {
-            clearInterval(spinnerInterval)
-          }
         }
       }, 1000)
-      return () => {
-        clearInterval(idTokenInterval)
-      }
     }
   }, [sessionStorage.getItem('token')])
 
