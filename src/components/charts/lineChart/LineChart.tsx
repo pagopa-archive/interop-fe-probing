@@ -201,7 +201,7 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
         <svg
           className="line-chart-container-failures"
           width={width + margin.left + margin.right}
-          height={height + margin.top + margin.bottom}
+          height={100}
           role="img"
         >
           {failuresHeader}
