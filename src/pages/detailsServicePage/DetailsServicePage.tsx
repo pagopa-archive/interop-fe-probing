@@ -51,14 +51,12 @@ export const DetailsServicePage: React.FC = () => {
       type: 'datepicker',
       label: t('startDateTime', { ns: 'detailsPage' }),
       maxDate: new Date(),
-      minDate: subMonths(new Date(), 1),
     },
     {
       name: 'endDate',
       type: 'datepicker',
       label: t('endDateTime', { ns: 'detailsPage' }),
       maxDate: new Date(),
-      minDate: subMonths(new Date(), 1),
     },
   ])
 
