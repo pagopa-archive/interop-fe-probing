@@ -16,7 +16,7 @@ import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
 import { Filters, useFilters } from '@pagopa/interop-fe-commons'
-import { subMonths } from 'date-fns'
+import { subMonths, isAfter, addMonths, format } from 'date-fns'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -78,11 +78,34 @@ export const DetailsServicePage: React.FC = () => {
       eserviceRecordId: eserviceRecordId,
       pollingFrequency: pollingFrequency,
     }
-    return startDate && endDate
+    let endDateUtc = new Date(endDate as string)
+    endDateUtc = new Date(
+      endDateUtc.getUTCFullYear(),
+      endDateUtc.getUTCMonth(),
+      endDateUtc.getUTCDate(),
+      endDateUtc.getUTCHours(),
+      endDateUtc.getUTCMinutes()
+    )
+    let startDateUtc = new Date(startDate as string)
+    startDateUtc = new Date(
+      startDateUtc.getUTCFullYear(),
+      startDateUtc.getUTCMonth(),
+      startDateUtc.getUTCDate(),
+      startDateUtc.getUTCHours(),
+      startDateUtc.getUTCMinutes()
+    )
+
+    return startDate || endDate
       ? apiRequests.getServiceFilteredStatisticsData({
           ...payload,
-          startDate: startDate.toString(),
-          endDate: endDate.toString(),
+          startDate: startDate
+            ? startDate.toString()
+            : format(subMonths(endDateUtc, 3), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
+          endDate: endDate
+            ? endDate.toString()
+            : startDate && !isAfter(addMonths(new Date(startDate as string), 3), new Date())
+            ? format(addMonths(startDateUtc, 3), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'")
+            : (new Date() as unknown as string),
         })
       : apiRequests.getServiceStatisticsData(payload)
   }
@@ -116,7 +139,10 @@ export const DetailsServicePage: React.FC = () => {
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
     enabled:
       !!mainData?.pollingFrequency &&
-      ((!!startDate && !!endDate && startDate < endDate) || (!startDate && !endDate)),
+      ((!!startDate && !!endDate && startDate < endDate) ||
+        !!startDate ||
+        !!endDate ||
+        (!startDate && !endDate)),
   })
 
   return (
@@ -190,6 +216,8 @@ export const DetailsServicePage: React.FC = () => {
                   <LineChart
                     data={statisticsData.performances}
                     failures={statisticsData.failures}
+                    startDate={startDate?.toString()}
+                    endDate={endDate?.toString()}
                   />
                 </Grid>
               )}

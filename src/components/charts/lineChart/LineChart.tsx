@@ -12,12 +12,15 @@ import {
 import { useTranslation } from 'react-i18next'
 import { ServicePerformancesType, ServiceFailuresType } from '../../../types'
 import { Grid } from '@mui/material'
+import { subMonths, isAfter, addMonths } from 'date-fns'
 
 const curveType = curveCatmullRom.alpha(0.5)
 
 interface IProps {
   data: Array<ServicePerformancesType>
   failures: Array<ServiceFailuresType>
+  startDate?: string
+  endDate?: string
 }
 
 // margin convention often used with D3
@@ -35,7 +38,7 @@ const color: { [key: string]: string } = {
  * Line chart component
  * @component
  */
-export const LineChart: React.FC<IProps> = ({ data, failures }) => {
+export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate }) => {
   const { t } = useTranslation(['detailsPage'])
 
   // header of the chart
@@ -49,16 +52,17 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     </g>
   )
 
-  // if the array is empty we get one week ago date as min date
-  // get the previous date of the first check_date in the array
-  // because the chart is not including the first one
-  const minTime =
-    data.length > 0
-      ? new Date(new Date(data[0].time))
-      : new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
+  const minTime = startDate
+    ? new Date(startDate)
+    : endDate
+    ? subMonths(new Date(endDate), 3)
+    : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)
 
-  // if the array is empty we get todays date as max date
-  const maxTime = data.length > 0 ? new Date(data[data.length - 1].time) : new Date()
+  const maxTime = endDate
+    ? new Date(endDate)
+    : startDate && !isAfter(addMonths(new Date(startDate), 3), new Date())
+    ? addMonths(new Date(startDate), 3)
+    : new Date()
 
   //x scale
   const x: ScaleTime<number, number, never> = scaleTime()
