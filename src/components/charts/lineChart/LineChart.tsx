@@ -59,7 +59,11 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
     : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)
 
   const maxTime = endDate
-    ? new Date(endDate)
+    ? startDate && startDate > endDate
+      ? !isAfter(addMonths(new Date(startDate), 3), new Date())
+        ? addMonths(new Date(startDate), 3)
+        : new Date()
+      : new Date(endDate)
     : startDate && !isAfter(addMonths(new Date(startDate), 3), new Date())
     ? addMonths(new Date(startDate), 3)
     : new Date()
