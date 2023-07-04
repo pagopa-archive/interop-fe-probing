@@ -16,7 +16,7 @@ import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
 import { Filters, useFilters } from '@pagopa/interop-fe-commons'
-import { subMonths, isAfter, addMonths, format } from 'date-fns'
+import { subMonths, isAfter, addMonths, format, differenceInDays } from 'date-fns'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -137,9 +137,12 @@ export const DetailsServicePage: React.FC = () => {
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
     enabled:
       !!mainData?.pollingFrequency &&
-      ((!!startDate && !!endDate && startDate < endDate) ||
-        !!startDate ||
-        !!endDate ||
+      ((!!startDate &&
+        !!endDate &&
+        startDate < endDate &&
+        differenceInDays(new Date(endDate as string), new Date(startDate as string)) < 93) ||
+        (!!startDate && !endDate) ||
+        (!!endDate && !startDate) ||
         (!startDate && !endDate)),
   })
 
