@@ -17,6 +17,7 @@ import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../.
 import { ButtonNaked } from '@pagopa/mui-italia'
 import { Filters, useFilters } from '@pagopa/interop-fe-commons'
 import { subMonths, isAfter, addMonths, format, differenceInDays } from 'date-fns'
+import { useEffect, useState } from 'react'
 
 const viewInCatalogue = (): void => {
   console.log('view in catalogue')
@@ -32,6 +33,12 @@ export const DetailsServicePage: React.FC = () => {
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
 
   const logStatus = sessionStorage.getItem('token')
+
+  const [minFilterStartDate, setMinFilterStartDate] = useState(subMonths(new Date(), 3))
+  const [maxFilterStartDate, setMaxFilterStartDate] = useState(new Date())
+
+  const [minFilterEndDate, setMinFilterEndDate] = useState(undefined)
+  const [maxFilterEndDate, setMaxFilterEndDate] = useState(new Date())
 
   // elements for the legend component
   const legendElements = [
@@ -50,13 +57,15 @@ export const DetailsServicePage: React.FC = () => {
       name: 'startDate',
       type: 'datepicker',
       label: t('startDateTime', { ns: 'detailsPage' }),
-      maxDate: new Date(),
+      maxDate: maxFilterStartDate,
+      minDate: minFilterStartDate,
     },
     {
       name: 'endDate',
       type: 'datepicker',
       label: t('endDateTime', { ns: 'detailsPage' }),
-      maxDate: new Date(),
+      maxDate: maxFilterEndDate,
+      minDate: minFilterEndDate,
     },
   ])
 
@@ -92,7 +101,6 @@ export const DetailsServicePage: React.FC = () => {
       startDateUtc.getUTCHours(),
       startDateUtc.getUTCMinutes()
     )
-
     return startDate || endDate
       ? apiRequests.getServiceFilteredStatisticsData({
           ...payload,
@@ -145,6 +153,25 @@ export const DetailsServicePage: React.FC = () => {
         (!!endDate && !startDate) ||
         (!startDate && !endDate)),
   })
+
+  useEffect(() => {
+    if (startDate !== undefined) {
+      isAfter(addMonths(new Date(startDate as string), 3), new Date())
+        ? setMaxFilterEndDate(new Date())
+        : setMaxFilterEndDate(addMonths(new Date(startDate as string), 3))
+    } else {
+      setMaxFilterEndDate(new Date())
+      setMinFilterEndDate(undefined)
+    }
+  }, [startDate])
+
+  useEffect(() => {
+    if (endDate !== undefined) {
+      setMinFilterStartDate(subMonths(new Date(endDate as string), 3))
+    } else {
+      setMinFilterStartDate(subMonths(new Date(), 3))
+    }
+  }, [endDate])
 
   return (
     <>
