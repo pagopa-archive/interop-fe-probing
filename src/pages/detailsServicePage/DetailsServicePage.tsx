@@ -141,9 +141,7 @@ export const DetailsServicePage: React.FC = () => {
         !!endDate &&
         startDate < endDate &&
         differenceInDays(new Date(endDate as string), new Date(startDate as string)) < 93) ||
-        (!!startDate && !endDate) ||
-        (!!endDate && !startDate) ||
-        (!startDate && !endDate)),
+        !(!!startDate && !!endDate)),
   })
 
   return (
