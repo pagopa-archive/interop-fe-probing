@@ -83,25 +83,19 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
 
   // create the x ticks and create from them the vertical lines of the grid
   const xTicks: JSX.Element = (
-    <g
-      transform={`translate(0, ${height})`}
-      fontFamily="Poppins"
-      opacity={0.4}
-      fontSize={10}
-      textAnchor="middle"
-    >
+    <g transform={`translate(0, ${height})`} opacity="40%" fontSize={10} textAnchor="middle">
       {x.ticks().map((d: Date) => (
         <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
           <line
             y2={0}
             transform={`translate(0, ${-height})`}
-            strokeOpacity="0.05"
+            strokeOpacity="0.2"
             stroke="currentColor"
           />
           <line
             y2={height}
             transform={`translate(0, ${-height})`}
-            strokeOpacity="0.05"
+            strokeOpacity="0.2"
             stroke="currentColor"
           />
           <text y="15" dy="0.71em">
@@ -115,11 +109,11 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
 
   // create the y ticks and create from them the horizontal lines of the grid
   const yTicks: JSX.Element = (
-    <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
+    <g opacity="40%" fontSize={10} textAnchor="end">
       {y.ticks().map((d) => (
         <g key={d} opacity="1" className="tick" transform={`translate(0, ${y(d)})`}>
-          <line stroke="currentColor" x2={0} strokeOpacity="0.05" />
-          <line stroke="currentColor" x2={width} strokeOpacity="0.05" />
+          <line stroke="currentColor" x2={0} strokeOpacity="0.2" />
+          <line stroke="currentColor" x2={width} strokeOpacity="0.2" />
           <text x="-15" dy="0.32em">{`${d}ms`}</text>
         </g>
       ))}
@@ -153,7 +147,7 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
 
   // create the x ticks for the failures chart
   const xTicksFailures: JSX.Element = (
-    <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="middle">
+    <g opacity="40%" fontSize={10} textAnchor="middle">
       {x.ticks().map((d: Date) => (
         <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
           <text y="15" dy="0.71em">
@@ -211,6 +205,12 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
           {failuresHeader}
           <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
             {xTicksFailures}
+            <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
+              <g opacity="1" className="tick">
+                <line stroke="currentColor" x2={0} strokeOpacity="0.2" />
+                <line stroke="currentColor" x2={width} strokeOpacity="0.2" />
+              </g>
+            </g>
           </g>
           {failuresPoints}
         </svg>
