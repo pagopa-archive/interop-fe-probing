@@ -34,10 +34,8 @@ export const DetailsServicePage: React.FC = () => {
 
   const logStatus = sessionStorage.getItem('token')
 
-  const [minFilterStartDate, setMinFilterStartDate] = useState(subMonths(new Date(), 3))
-  const [maxFilterStartDate, setMaxFilterStartDate] = useState(new Date())
+  const [minFilterStartDate, setMinFilterStartDate] = useState(subMonths(new Date(), 12))
 
-  const [minFilterEndDate, setMinFilterEndDate] = useState(undefined)
   const [maxFilterEndDate, setMaxFilterEndDate] = useState(new Date())
 
   // elements for the legend component
@@ -57,7 +55,7 @@ export const DetailsServicePage: React.FC = () => {
       name: 'startDate',
       type: 'datepicker',
       label: t('startDateTime', { ns: 'detailsPage' }),
-      maxDate: maxFilterStartDate,
+      maxDate: new Date(),
       minDate: minFilterStartDate,
     },
     {
@@ -65,7 +63,7 @@ export const DetailsServicePage: React.FC = () => {
       type: 'datepicker',
       label: t('endDateTime', { ns: 'detailsPage' }),
       maxDate: maxFilterEndDate,
-      minDate: minFilterEndDate,
+      minDate: subMonths(new Date(), 12),
     },
   ])
 
@@ -159,7 +157,6 @@ export const DetailsServicePage: React.FC = () => {
         : setMaxFilterEndDate(addMonths(new Date(startDate as string), 3))
     } else {
       setMaxFilterEndDate(new Date())
-      setMinFilterEndDate(undefined)
     }
   }, [startDate])
 
@@ -167,7 +164,7 @@ export const DetailsServicePage: React.FC = () => {
     if (endDate !== undefined) {
       setMinFilterStartDate(subMonths(new Date(endDate as string), 3))
     } else {
-      setMinFilterStartDate(subMonths(new Date(), 3))
+      setMinFilterStartDate(subMonths(new Date(), 12))
     }
   }, [endDate])
 
