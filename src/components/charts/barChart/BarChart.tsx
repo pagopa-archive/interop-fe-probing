@@ -11,7 +11,11 @@ const margin = { top: 20, right: 100, bottom: 20, left: 30 }
 const width = 300
 const height = 200
 
-const color = ['#17324D', '#A2ADB8', '#FE6666']
+const color: { [key: string]: string } = {
+  OK: '#17324D',
+  'N/D': '#A2ADB8',
+  KO: '#FE6666',
+}
 
 /**
  * Bar chart component
@@ -45,28 +49,30 @@ export const BarChart: React.FC<IProps> = ({ data }) => {
   // bars and bars' titles
   const bars: JSX.Element = (
     <g transform={`translate(0, ${margin.top * 2.5})`}>
-      {data.map((d: ServicePercentagesType, i: number) => (
-        <g key={d.status}>
-          <rect
-            className="bar"
-            y={y(d.status) as number}
-            width={x(d.value) as number}
-            height={y.bandwidth()}
-            fill={color[i % 4]}
-          ></rect>
-          <text
-            x={x(d.value) as number}
-            y={y(d.status) as number}
-            fontFamily="Titillium Web"
-            fontSize="24px"
-            color="#17324D"
-            fontWeight="600"
-            transform={`translate(10, ${y.bandwidth() * 0.7})`}
-          >
-            {round(d.value, 1) + '%'}
-          </text>
-        </g>
-      ))}
+      {data
+        .filter((percentage) => percentage.value)
+        .map((d: ServicePercentagesType, i: number) => (
+          <g key={d.status}>
+            <rect
+              className="bar"
+              y={y(d.status) as number}
+              width={x(d.value) as number}
+              height={y.bandwidth()}
+              fill={color[d.status]}
+            ></rect>
+            <text
+              x={x(d.value) as number}
+              y={y(d.status) as number}
+              fontFamily="Titillium Web"
+              fontSize="24px"
+              color="#17324D"
+              fontWeight="600"
+              transform={`translate(10, ${y.bandwidth() * 0.7})`}
+            >
+              {round(d.value, 1) + '%'}
+            </text>
+          </g>
+        ))}
     </g>
   )
 
