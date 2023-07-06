@@ -15,6 +15,14 @@ export interface ServiceMainData {
    * polling frequency for the service
    */
   pollingFrequency: number
+  /**
+   * eservice Id
+   */
+  eserviceId: string
+  /**
+   * version Id
+   */
+  versionId: string
 }
 
 export interface ServiceProbingData {

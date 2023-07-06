@@ -19,10 +19,6 @@ import { Filters, useFilters } from '@pagopa/interop-fe-commons'
 import { subMonths, isAfter, addMonths, format, differenceInDays } from 'date-fns'
 import { useEffect, useState } from 'react'
 
-const viewInCatalogue = (): void => {
-  console.log('view in catalogue')
-}
-
 export const DetailsServicePage: React.FC = () => {
   const { t } = useTranslation(['general', 'detailsPage'])
 
@@ -186,7 +182,7 @@ export const DetailsServicePage: React.FC = () => {
               </Grid>
             </Grid>
             <Grid item alignSelf={'center'} width={'40%'}>
-              <MainDataInformationBlock mainData={mainData} viewInCatalogue={viewInCatalogue} />
+              <MainDataInformationBlock mainData={mainData} />
             </Grid>
           </>
         )}
