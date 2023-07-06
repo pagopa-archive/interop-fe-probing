@@ -270,7 +270,7 @@ export const DetailsServicePage: React.FC = () => {
             size="small"
             startIcon={<ArrowBackIcon />}
           >
-            {t('goBack', { ns: 'detailsPage' })}
+            {t('goBack', { ns: 'general' })}
           </ButtonNaked>
         </Grid>
       </Grid>

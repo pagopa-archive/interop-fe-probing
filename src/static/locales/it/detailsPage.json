@@ -13,7 +13,6 @@
   "lineChartTitle": "Tempi di risposta",
   "barChartTitle": "Operatività",
   "lineChartFailuresTitle": "Anomalie registrate",
-  "goBack": "Torna alla lista degli e-service",
   "active": "attivo",
   "suspended": "sospeso",
   "monitoringSuspended": "Monitoraggio sospeso",
