@@ -51,22 +51,38 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
       </text>
     </g>
   )
+  //startDate: start date selected on the filters
+  //endDate: end date selected on the filters
 
+  //min date that appears on the graphs
+  //which is selected based on the filters selected : startDate -> endDate - 3 months -> yesterday
   const minTime = startDate
     ? new Date(startDate)
     : endDate
     ? subMonths(new Date(endDate), 3)
     : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)
 
-  const maxTime = endDate
-    ? startDate && startDate > endDate
-      ? !isAfter(addMonths(new Date(startDate), 3), new Date())
-        ? addMonths(new Date(startDate), 3)
-        : new Date()
-      : new Date(endDate)
-    : startDate && !isAfter(addMonths(new Date(startDate), 3), new Date())
-    ? addMonths(new Date(startDate), 3)
-    : new Date()
+  //max date that appears on the graphs
+  //which is chosen based on the filters selected
+  const maxTime =
+    //if end date is selected
+    endDate
+      ? //if both filters are selected and start date is after the end date
+        startDate && startDate > endDate
+        ? // then if startDate + 3 months is not in the future
+          !isAfter(addMonths(new Date(startDate), 3), new Date())
+          ? // then startDate + 3 months
+            addMonths(new Date(startDate), 3)
+          : // otherwise today
+            new Date()
+        : // otherwise endDate
+          new Date(endDate)
+      : // then if startDate + 3 months is not in the future
+      startDate && !isAfter(addMonths(new Date(startDate), 3), new Date())
+      ? // then startDate + 3 months
+        addMonths(new Date(startDate), 3)
+      : // otherwise today
+        new Date()
 
   //x scale
   const x: ScaleTime<number, number, never> = scaleTime()
