@@ -27,7 +27,7 @@
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/lodash": "^4.14.191",
-    "aws-amplify": "^5.2.2",
+    "aws-amplify": "^5.3.3",
     "axios": "^0.27",
     "d3": "^7.8.4",
     "date-fns": "^2.29.3",
