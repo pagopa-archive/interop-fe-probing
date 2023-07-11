@@ -1,9 +1,6 @@
 name: 'UAT CI/CD'
 on:
   push:
-    branches:
-      - 'main'
-      - 'master'
     tags:
       - 'rc*'
 
