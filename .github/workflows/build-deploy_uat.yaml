@@ -2,7 +2,7 @@ name: 'UAT CI/CD'
 on:
   push:
     tags:
-      - 'rc*'
+      - '*-rc'
 
 jobs:
   deploy_uat:
