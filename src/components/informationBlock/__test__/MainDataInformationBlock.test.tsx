@@ -7,13 +7,13 @@ const mainData = {
   producerName: 'Comune di Milano',
   versionNumber: '7',
   pollingFrequency: 5,
+  versionId: 'versionId',
+  eserviceId: 'eserviceId',
 }
 
 describe('MainDataInformationBlock', () => {
   test('render component', () => {
-    const { container } = render(
-      <MainDataInformationBlock mainData={mainData} viewInCatalogue={vi.fn()} />
-    )
+    const { container } = render(<MainDataInformationBlock mainData={mainData} />)
     expect(container).toMatchSnapshot()
   })
 })

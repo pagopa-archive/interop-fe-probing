@@ -16,11 +16,8 @@ import { ChartSkeleton } from '../../components/skeleton/ChartSkeleton'
 import { ServiceMainData, ServiceProbingData, ServiceStatisticsData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
 import { Filters, useFilters } from '@pagopa/interop-fe-commons'
-import { subMonths } from 'date-fns'
-
-const viewInCatalogue = (): void => {
-  console.log('view in catalogue')
-}
+import { subMonths, isAfter, addMonths, format, differenceInDays } from 'date-fns'
+import { useEffect, useState } from 'react'
 
 export const DetailsServicePage: React.FC = () => {
   const { t } = useTranslation(['general', 'detailsPage'])
@@ -32,6 +29,10 @@ export const DetailsServicePage: React.FC = () => {
   const [updateSnackbar] = stores.useSnackbarStore((state) => [state.updateSnackbar])
 
   const logStatus = sessionStorage.getItem('token')
+
+  const [minFilterStartDate, setMinFilterStartDate] = useState(subMonths(new Date(), 12))
+
+  const [maxFilterEndDate, setMaxFilterEndDate] = useState(new Date())
 
   // elements for the legend component
   const legendElements = [
@@ -51,14 +52,14 @@ export const DetailsServicePage: React.FC = () => {
       type: 'datepicker',
       label: t('startDateTime', { ns: 'detailsPage' }),
       maxDate: new Date(),
-      minDate: subMonths(new Date(), 1),
+      minDate: minFilterStartDate,
     },
     {
       name: 'endDate',
       type: 'datepicker',
       label: t('endDateTime', { ns: 'detailsPage' }),
-      maxDate: new Date(),
-      minDate: subMonths(new Date(), 1),
+      maxDate: maxFilterEndDate,
+      minDate: subMonths(new Date(), 12),
     },
   ])
 
@@ -78,11 +79,33 @@ export const DetailsServicePage: React.FC = () => {
       eserviceRecordId: eserviceRecordId,
       pollingFrequency: pollingFrequency,
     }
-    return startDate && endDate
+    let endDateUtc = new Date(endDate as string)
+    endDateUtc = new Date(
+      endDateUtc.getUTCFullYear(),
+      endDateUtc.getUTCMonth(),
+      endDateUtc.getUTCDate(),
+      endDateUtc.getUTCHours(),
+      endDateUtc.getUTCMinutes()
+    )
+    let startDateUtc = new Date(startDate as string)
+    startDateUtc = new Date(
+      startDateUtc.getUTCFullYear(),
+      startDateUtc.getUTCMonth(),
+      startDateUtc.getUTCDate(),
+      startDateUtc.getUTCHours(),
+      startDateUtc.getUTCMinutes()
+    )
+    return startDate || endDate
       ? apiRequests.getServiceFilteredStatisticsData({
           ...payload,
-          startDate: startDate.toString(),
-          endDate: endDate.toString(),
+          startDate: startDate
+            ? startDate.toString()
+            : format(subMonths(endDateUtc, 3), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'"),
+          endDate: endDate
+            ? endDate.toString()
+            : startDate && !isAfter(addMonths(new Date(startDate as string), 3), new Date())
+            ? format(addMonths(startDateUtc, 3), "yyyy-MM-dd'T'HH:mm:ss.sss'Z'")
+            : (new Date() as unknown as string),
         })
       : apiRequests.getServiceStatisticsData(payload)
   }
@@ -116,8 +139,30 @@ export const DetailsServicePage: React.FC = () => {
     onError: (error) => updateSnackbar(true, t('errorRequest', { ns: 'general' }), 'error'),
     enabled:
       !!mainData?.pollingFrequency &&
-      ((!!startDate && !!endDate && startDate < endDate) || (!startDate && !endDate)),
+      ((!!startDate &&
+        !!endDate &&
+        startDate < endDate &&
+        differenceInDays(new Date(endDate as string), new Date(startDate as string)) < 93) ||
+        !(!!startDate && !!endDate)),
   })
+
+  useEffect(() => {
+    if (startDate !== undefined) {
+      isAfter(addMonths(new Date(startDate as string), 3), new Date())
+        ? setMaxFilterEndDate(new Date())
+        : setMaxFilterEndDate(addMonths(new Date(startDate as string), 3))
+    } else {
+      setMaxFilterEndDate(new Date())
+    }
+  }, [startDate])
+
+  useEffect(() => {
+    if (endDate !== undefined) {
+      setMinFilterStartDate(subMonths(new Date(endDate as string), 3))
+    } else {
+      setMinFilterStartDate(subMonths(new Date(), 12))
+    }
+  }, [endDate])
 
   return (
     <>
@@ -137,7 +182,7 @@ export const DetailsServicePage: React.FC = () => {
               </Grid>
             </Grid>
             <Grid item alignSelf={'center'} width={'40%'}>
-              <MainDataInformationBlock mainData={mainData} viewInCatalogue={viewInCatalogue} />
+              <MainDataInformationBlock mainData={mainData} />
             </Grid>
           </>
         )}
@@ -190,6 +235,8 @@ export const DetailsServicePage: React.FC = () => {
                   <LineChart
                     data={statisticsData.performances}
                     failures={statisticsData.failures}
+                    startDate={startDate?.toString()}
+                    endDate={endDate?.toString()}
                   />
                 </Grid>
               )}
@@ -223,7 +270,7 @@ export const DetailsServicePage: React.FC = () => {
             size="small"
             startIcon={<ArrowBackIcon />}
           >
-            {t('goBack', { ns: 'detailsPage' })}
+            {t('goBack', { ns: 'general' })}
           </ButtonNaked>
         </Grid>
       </Grid>

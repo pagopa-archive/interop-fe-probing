@@ -5,16 +5,17 @@ import LockIcon from '@mui/icons-material/Lock'
 import { useTranslation } from 'react-i18next'
 import { ServiceMainData } from '../../types'
 import { ButtonNaked } from '@pagopa/mui-italia'
+import { Link } from 'react-router-dom'
+import { generatePath } from 'react-router'
 
 interface IProps {
   mainData: ServiceMainData
-  viewInCatalogue?: () => void
 }
 
 const blocksInfo: Array<string> = ['producerName', 'versionNumber', 'eserviceName']
 
-export const MainDataInformationBlock: React.FC<IProps> = ({ mainData, viewInCatalogue }) => {
-  const { t } = useTranslation(['detailsPage', 'general'])
+export const MainDataInformationBlock: React.FC<IProps> = ({ mainData }) => {
+  const { i18n, t } = useTranslation(['detailsPage', 'general'])
 
   return (
     <>
@@ -31,7 +32,16 @@ export const MainDataInformationBlock: React.FC<IProps> = ({ mainData, viewInCat
                     size="small"
                     startIcon={<LockIcon />}
                     endIcon={<LaunchIcon />}
-                    onClick={viewInCatalogue}
+                    component={Link}
+                    target="_blank"
+                    to={generatePath(
+                      'https://selfcare.interop.pagopa.it/ui/:lang/fruizione/catalogo-e-service/:eserviceId/:versionId',
+                      {
+                        lang: i18n.languages ? i18n.languages[0] : 'it',
+                        eserviceId: mainData.eserviceId,
+                        versionId: mainData.versionId,
+                      }
+                    )}
                   >
                     {t('viewInCatalog', { ns: 'detailsPage' })}
                   </ButtonNaked>

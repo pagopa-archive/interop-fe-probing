@@ -11,12 +11,16 @@ import {
 } from 'd3'
 import { useTranslation } from 'react-i18next'
 import { ServicePerformancesType, ServiceFailuresType } from '../../../types'
+import { Grid } from '@mui/material'
+import { subMonths, isAfter, addMonths } from 'date-fns'
 
 const curveType = curveCatmullRom.alpha(0.5)
 
 interface IProps {
   data: Array<ServicePerformancesType>
   failures: Array<ServiceFailuresType>
+  startDate?: string
+  endDate?: string
 }
 
 // margin convention often used with D3
@@ -34,7 +38,7 @@ const color: { [key: string]: string } = {
  * Line chart component
  * @component
  */
-export const LineChart: React.FC<IProps> = ({ data, failures }) => {
+export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate }) => {
   const { t } = useTranslation(['detailsPage'])
 
   // header of the chart
@@ -47,17 +51,38 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
       </text>
     </g>
   )
+  //startDate: start date selected on the filters
+  //endDate: end date selected on the filters
 
-  // if the array is empty we get one week ago date as min date
-  // get the previous date of the first check_date in the array
-  // because the chart is not including the first one
-  const minTime =
-    data.length > 0
-      ? new Date(new Date(data[0].time))
-      : new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000)
+  //min date that appears on the graphs
+  //which is selected based on the filters selected : startDate -> endDate - 3 months -> yesterday
+  const minTime = startDate
+    ? new Date(startDate)
+    : endDate
+    ? subMonths(new Date(endDate), 3)
+    : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)
 
-  // if the array is empty we get todays date as max date
-  const maxTime = data.length > 0 ? new Date(data[data.length - 1].time) : new Date()
+  //max date that appears on the graphs
+  //which is chosen based on the filters selected
+  const maxTime =
+    //if end date is selected
+    endDate
+      ? //if both filters are selected and start date is after the end date
+        startDate && startDate > endDate
+        ? // then if startDate + 3 months is not in the future
+          !isAfter(addMonths(new Date(startDate), 3), new Date())
+          ? // then startDate + 3 months
+            addMonths(new Date(startDate), 3)
+          : // otherwise today
+            new Date()
+        : // otherwise endDate
+          new Date(endDate)
+      : // then if startDate + 3 months is not in the future
+      startDate && !isAfter(addMonths(new Date(startDate), 3), new Date())
+      ? // then startDate + 3 months
+        addMonths(new Date(startDate), 3)
+      : // otherwise today
+        new Date()
 
   //x scale
   const x: ScaleTime<number, number, never> = scaleTime()
@@ -78,25 +103,19 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
 
   // create the x ticks and create from them the vertical lines of the grid
   const xTicks: JSX.Element = (
-    <g
-      transform={`translate(0, ${height})`}
-      fontFamily="Poppins"
-      opacity={0.4}
-      fontSize={10}
-      textAnchor="middle"
-    >
+    <g transform={`translate(0, ${height})`} opacity="40%" fontSize={10} textAnchor="middle">
       {x.ticks().map((d: Date) => (
         <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
           <line
             y2={0}
             transform={`translate(0, ${-height})`}
-            strokeOpacity="0.05"
+            strokeOpacity="0.2"
             stroke="currentColor"
           />
           <line
             y2={height}
             transform={`translate(0, ${-height})`}
-            strokeOpacity="0.05"
+            strokeOpacity="0.2"
             stroke="currentColor"
           />
           <text y="15" dy="0.71em">
@@ -110,11 +129,11 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
 
   // create the y ticks and create from them the horizontal lines of the grid
   const yTicks: JSX.Element = (
-    <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
+    <g opacity="40%" fontSize={10} textAnchor="end">
       {y.ticks().map((d) => (
         <g key={d} opacity="1" className="tick" transform={`translate(0, ${y(d)})`}>
-          <line stroke="currentColor" x2={0} strokeOpacity="0.05" />
-          <line stroke="currentColor" x2={width} strokeOpacity="0.05" />
+          <line stroke="currentColor" x2={0} strokeOpacity="0.2" />
+          <line stroke="currentColor" x2={width} strokeOpacity="0.2" />
           <text x="-15" dy="0.32em">{`${d}ms`}</text>
         </g>
       ))}
@@ -125,6 +144,9 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
   // and x, y are scales (e.g. x(10) returns pixel value of 10 scaled by x)
   const createLine: Line<ServicePerformancesType> = line<ServicePerformancesType>()
     .curve(curveType)
+    .defined(function (d) {
+      return d.responseTime !== 0
+    })
     .x((d: ServicePerformancesType) => {
       return x(new Date(d.time))
     })
@@ -134,7 +156,7 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     <g className="points" transform={`translate(${margin.left}, ${margin.top * 3})`}>
       {failures.map((failure) => (
         <circle
-          transform={`translate(0, ${height})`}
+          key={x(new Date(failure.time))}
           cx={x(new Date(failure.time))}
           r="3"
           fill={color[failure.status]}
@@ -143,27 +165,76 @@ export const LineChart: React.FC<IProps> = ({ data, failures }) => {
     </g>
   )
 
+  // create the x ticks for the failures chart
+  const xTicksFailures: JSX.Element = (
+    <g opacity="40%" fontSize={10} textAnchor="middle">
+      {x.ticks().map((d: Date) => (
+        <g opacity="1" className="tick" transform={`translate(${x(d)}, 0)`} key={d.getTime()}>
+          <text y="15" dy="0.71em">
+            {timeFormat('%d / %m')(new Date(d))}
+          </text>
+          <text y="35">{timeFormat('%H:%M')(new Date(d))}</text>
+        </g>
+      ))}
+    </g>
+  )
+
+  // header of the chart
+  const failuresHeader: JSX.Element = (
+    <g className="failures-header" transform={`translate(10, ${margin.top})`}>
+      <text>
+        <tspan fontFamily="Titillium Web" fontSize="18px" color="#17324D" fontWeight="700">
+          {t('lineChartFailuresTitle')}
+        </tspan>
+      </text>
+    </g>
+  )
+
   return (
-    <svg
-      className="line-chart-container"
-      width={width + margin.left + margin.right}
-      height={height + margin.top + margin.bottom}
-      role="img"
-    >
-      {header}
-      <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
-        {xTicks}
-        {yTicks}
-      </g>
-      <path
-        className="line"
-        stroke="#17324D"
-        strokeWidth="1"
-        fill="none"
-        d={createLine(data) || undefined}
-        transform={`translate(${margin.left}, ${margin.top * 3})`}
-      />
-      {failuresPoints}
-    </svg>
+    <Grid container direction={'column'} rowGap={4}>
+      <Grid item>
+        <svg
+          className="line-chart-container"
+          width={width + margin.left + margin.right}
+          height={height + margin.top + margin.bottom}
+          role="img"
+        >
+          {header}
+          <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
+            {xTicks}
+            {yTicks}
+          </g>
+          <path
+            className="line"
+            stroke="#17324D"
+            strokeWidth="1"
+            fill="none"
+            d={createLine(data) || undefined}
+            transform={`translate(${margin.left}, ${margin.top * 3})`}
+          />
+        </svg>
+      </Grid>
+
+      <Grid item>
+        <svg
+          className="line-chart-container-failures"
+          width={width + margin.left + margin.right}
+          height={100}
+          role="img"
+        >
+          {failuresHeader}
+          <g className="scales" transform={`translate(${margin.left}, ${margin.top * 3})`}>
+            {xTicksFailures}
+            <g fontFamily="Poppins" opacity={0.4} fontSize={10} textAnchor="end">
+              <g opacity="1" className="tick">
+                <line stroke="currentColor" x2={0} strokeOpacity="0.2" />
+                <line stroke="currentColor" x2={width} strokeOpacity="0.2" />
+              </g>
+            </g>
+          </g>
+          {failuresPoints}
+        </svg>
+      </Grid>
+    </Grid>
   )
 }
