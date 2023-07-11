@@ -1,0 +1,745 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LineChart > render component 1`] = `
+<div>
+  <svg
+    class="line-chart-container"
+    height="400"
+    role="img"
+    width="700"
+  >
+    <g
+      class="bar-header"
+      transform="translate(10, 20)"
+    >
+      <text>
+        <tspan
+          color="#17324D"
+          font-family="Titillium Web"
+          font-size="18px"
+          font-weight="700"
+        >
+          lineChartTitle
+        </tspan>
+      </text>
+    </g>
+    <g
+      class="scales"
+      transform="translate(60, 60)"
+    >
+      <g
+        font-family="Poppins"
+        font-size="10"
+        opacity="0.4"
+        text-anchor="middle"
+        transform="translate(0, 300)"
+      >
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(22.554950038580248, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            01 / 12
+          </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(73.38828337191359, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(124.2216167052469, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(175.05495003858027, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(225.8882833719136, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            02 / 12
+          </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(276.7216167052469, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(327.5549500385803, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(378.38828337191353, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(429.2216167052469, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            03 / 12
+          </text>
+          <text
+            y="35"
+          >
+            18:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(480.0549500385803, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+          <text
+            y="35"
+          >
+            00:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(530.8882833719135, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+          <text
+            y="35"
+          >
+            06:00
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(581.7216167052469, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            transform="translate(0, -300)"
+            y2="300"
+          />
+          <text
+            dy="0.71em"
+            y="15"
+          >
+            04 / 12
+          </text>
+          <text
+            y="35"
+          >
+            12:00
+          </text>
+        </g>
+      </g>
+      <g
+        font-family="Poppins"
+        font-size="10"
+        opacity="0.4"
+        text-anchor="end"
+      >
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 300)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            0ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 278.57142857142856)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            5ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 257.14285714285717)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            10ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 235.71428571428572)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            15ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 214.28571428571428)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            20ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 192.85714285714283)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            25ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 171.42857142857142)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            30ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 150)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            35ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 128.57142857142858)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            40ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 107.14285714285712)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            45ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 85.71428571428571)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            50ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 64.28571428571429)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            55ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 42.85714285714287)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            60ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 21.42857142857142)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            65ms
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0, 0)"
+        >
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="0"
+          />
+          <line
+            stroke="currentColor"
+            stroke-opacity="0.05"
+            x2="610"
+          />
+          <text
+            dy="0.32em"
+            x="-15"
+          >
+            70ms
+          </text>
+        </g>
+      </g>
+    </g>
+    <path
+      class="line"
+      d="M0,85.714C0,85.714,303.676,-41.579,406.667,0C502.842,38.827,610,300,610,300"
+      fill="none"
+      stroke="#17324D"
+      stroke-width="1"
+      transform="translate(60, 60)"
+    />
+    <g
+      class="points"
+      transform="translate(60, 60)"
+    >
+      <circle
+        cx="-40267.0978277392"
+        fill="#FE6666"
+        r="3"
+        transform="translate(0, 300)"
+      />
+    </g>
+  </svg>
+</div>
+`;

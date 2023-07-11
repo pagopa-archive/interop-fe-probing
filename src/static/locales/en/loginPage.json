@@ -1,0 +1,15 @@
+{
+  "username": "Username",
+  "password": "Password",
+  "login": "Login",
+  "forgotPassword1": "Did you forget your password? ",
+  "forgotPassword2": "Click here",
+  "forgotPassword3": " to restore it",
+  "incorrectPassword": "Incorrect Password",
+  "incorrectUsername": "Incorrect username",
+  "loginSpinnerMessage": "We are authenticating. Please wait",
+  "loginError": "The username or password is incorrect. Please try again or reset your password",
+  "loginTooManyRequests": "You have made too many incorrect attempts. For security reasons, access to this account is blocked for one hour",
+  "logoutSuccessMessage": "Logged out successfully",
+  "loginSuccessMessage": "Logged in successfully"
+}
