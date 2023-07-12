@@ -154,14 +154,27 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
 
   const failuresPoints = (
     <g className="points" transform={`translate(${margin.left}, ${margin.top * 3})`}>
-      {failures.map((failure) => (
-        <circle
-          key={x(new Date(failure.time))}
-          cx={x(new Date(failure.time))}
-          r="3"
-          fill={color[failure.status]}
-        ></circle>
-      ))}
+      {failures.map((failure, index) => {
+        if (index > 0 && failure.time === failures[index - 1].time) {
+          return (
+            <circle
+              key={x(new Date(failure.time))}
+              cx={x(new Date(failure.time))}
+              cy={-8}
+              r="3"
+              fill={color[failure.status]}
+            ></circle>
+          )
+        }
+        return (
+          <circle
+            key={x(new Date(failure.time))}
+            cx={x(new Date(failure.time))}
+            r="3"
+            fill={color[failure.status]}
+          ></circle>
+        )
+      })}
     </g>
   )
 
