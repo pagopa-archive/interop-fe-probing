@@ -112,13 +112,15 @@ const AppFooter = () => {
         },
         {
           label: t('securityInformation'),
-          href: 'https://www.pagopa.it/static/781646994f1f8ddad2d95af3aaedac3d/Sicurezza-delle-informazioni_PagoPA-S.p.A..pdf',
+          href:
+            'https://www.pagopa.it/static/781646994f1f8ddad2d95af3aaedac3d/Sicurezza-delle-informazioni_PagoPA-S.p.A..pdf',
           ariaLabel: 'Vai al link: Sicurezza delle informazioni',
           linkType: 'internal',
         },
         {
           label: t('personalData'),
-          href: 'https://privacyportal-de.onetrust.com/webform/77f17844-04c3-4969-a11d-462ee77acbe1/9ab6533d-be4a-482e-929a-0d8d2ab29df8',
+          href:
+            'https://privacyportal-de.onetrust.com/webform/77f17844-04c3-4969-a11d-462ee77acbe1/9ab6533d-be4a-482e-929a-0d8d2ab29df8',
           ariaLabel: 'Vai al link: Diritto alla protezione dei dati personali',
           linkType: 'internal',
         },
@@ -130,7 +132,8 @@ const AppFooter = () => {
         },
         {
           label: t('transparency'),
-          href: 'https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.html',
+          href:
+            'https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.html',
           ariaLabel: 'Vai al link: Società trasparente',
           linkType: 'internal',
         },
@@ -142,7 +145,8 @@ const AppFooter = () => {
         },
         {
           label: t('model321'),
-          href: 'https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.htmls',
+          href:
+            'https://pagopa.portaleamministrazionetrasparente.it/pagina746_altri-contenuti.htmls',
           ariaLabel: 'Vai al link: Modello 321',
           linkType: 'internal',
         },
@@ -167,7 +171,7 @@ const AppFooter = () => {
         {
           icon: 'instagram',
           title: 'Instagram',
-          href: 'https://www.instagram.com/pagopa/',
+          href: 'https://www.instagram.com/pagopaspa/',
           ariaLabel: 'Link: vai al sito Instagram di PagoPA S.p.A.',
         },
         {
@@ -193,14 +197,14 @@ const AppFooter = () => {
       <Footer
         loggedUser={false}
         languages={lngs}
-        onLanguageChanged={(language) => {
+        onLanguageChanged={language => {
           handleLanguageChange(language)
         }}
         companyLink={pagoPALink}
         postLoginLinks={postLoginLinks}
         preLoginLinks={preLoginLinks}
         currentLangCode={i18n.languages ? (i18n.languages[0] as LangCode) : 'it'}
-        onExit={(exitAction) => {
+        onExit={exitAction => {
           console.log('Executing exit Action')
           exitAction()
         }}
