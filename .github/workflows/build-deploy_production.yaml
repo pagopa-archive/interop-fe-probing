@@ -3,7 +3,7 @@ on:
   push:
     tags:
       - 'v*'
-      - '!*-rc'
+      - '!v*-rc*'
 
 jobs:
   deploy_prod:
