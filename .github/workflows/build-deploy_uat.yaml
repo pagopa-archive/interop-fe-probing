@@ -12,6 +12,10 @@ jobs:
     env:
       VITE_REACT_QUERY_STALE_TIME: ${{ vars.VITE_REACT_QUERY_STALE_TIME }}
       VITE_PAGINATION_LIMIT: ${{ vars.VITE_PAGINATION_LIMIT }}
+      VITE_AWS_USER_POOL_ID: ${{ vars.VITE_AWS_USER_POOL_ID }}
+      VITE_AWS_USER_POOLS_WEB_CLIENT_ID: ${{ vars.VITE_AWS_USER_POOLS_WEB_CLIENT_ID }}
+      VITE_AWS_PROJECT_REGION: ${{ vars.VITE_AWS_PROJECT_REGION }}
+      VITE_AWS_COGNITO_REGION: ${{ vars.VITE_AWS_COGNITO_REGION }}
     permissions:
       id-token: write
       contents: read
