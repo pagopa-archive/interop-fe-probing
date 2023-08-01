@@ -8,6 +8,10 @@ Per l'installazione delle dipendenze utilizzare il comando `npm install`
 Per il lancio dell'applicazione in locale utilizzare il comando `npm run dev` e valorizzare le variabili d'ambiente nel seguente modo:
 - VITE_REACT_QUERY_STALE_TIME: tempo (in millisecondi) di vita dei dati in cache
 - VITE_PAGINATION_LIMIT: limite massimo sul numero di elementi da mostrare nelle tabelle
+- VITE_AWS_USER_POOL_ID: identificativo user pool cognito
+- VITE_AWS_USER_POOLS_WEB_CLIENT_ID: identificativo web client cognito
+- VITE_AWS_PROJECT_REGION: regione aws del progetto
+- VITE_AWS_COGNITO_REGION: regione aws di cognito
 
 ## Pacchetto di produzione
 Per generare il pacchetto di produzione utilizzare il comando `npm run build`
