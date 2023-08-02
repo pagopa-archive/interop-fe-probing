@@ -241,7 +241,7 @@ export const DetailsServicePage: React.FC = () => {
                 </Grid>
               )}
               {statisticsData?.percentages && (
-                <Grid item>
+                <Grid item sx={{ ml: { xs: -30, md: 0 } }}>
                   <Grid container direction="column" rowSpacing={2}>
                     <Grid item>
                       <BarChart data={statisticsData.percentages} />
