@@ -224,7 +224,7 @@ export const DetailsServicePage: React.FC = () => {
               </Typography>
             </Grid>
             {logStatus && (
-              <Grid item justifyContent="center" sx={{ mx: 10 }}>
+              <Grid item alignSelf={'center'} sx={{ mx: 10, width: { md: '85%', lg: 1250 } }}>
                 <Filters {...handlers} />
               </Grid>
             )}
