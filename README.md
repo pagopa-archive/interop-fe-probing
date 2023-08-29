@@ -12,6 +12,7 @@ Per il lancio dell'applicazione in locale utilizzare il comando `npm run dev` e 
 - VITE_AWS_USER_POOLS_WEB_CLIENT_ID: identificativo web client cognito
 - VITE_AWS_PROJECT_REGION: regione aws del progetto
 - VITE_AWS_COGNITO_REGION: regione aws di cognito
+- VITE_PAGOPA_CATALOGUE: url del catalogo PagoPa
 
 ## Pacchetto di produzione
 Per generare il pacchetto di produzione utilizzare il comando `npm run build`
