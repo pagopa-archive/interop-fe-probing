@@ -17,6 +17,7 @@ jobs:
       VITE_AWS_USER_POOLS_WEB_CLIENT_ID: ${{ vars.VITE_AWS_USER_POOLS_WEB_CLIENT_ID }}
       VITE_AWS_PROJECT_REGION: ${{ vars.VITE_AWS_PROJECT_REGION }}
       VITE_AWS_COGNITO_REGION: ${{ vars.VITE_AWS_COGNITO_REGION }}
+      VITE_PAGOPA_CATALOGUE: ${{ vars.VITE_PAGOPA_CATALOGUE }}
     permissions:
       id-token: write
       contents: read
