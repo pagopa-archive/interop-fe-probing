@@ -34,7 +34,8 @@ export const MainDataInformationBlock: React.FC<IProps> = ({ mainData }) => {
                     component={Link}
                     target="_blank"
                     to={
-                      'https://selfcare.interop.pagopa.it/ui/' +
+                      import.meta.env.VITE_PAGOPA_CATALOGUE +
+                      '/ui/' +
                       (i18n.languages ? i18n.languages[0] : 'it') +
                       '/fruizione/catalogo-e-service/' +
                       mainData.eserviceId +
