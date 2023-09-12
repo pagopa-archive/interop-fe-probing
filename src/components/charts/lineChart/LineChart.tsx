@@ -57,10 +57,10 @@ export const LineChart: React.FC<IProps> = ({ data, failures, startDate, endDate
   //min date that appears on the graphs
   //which is selected based on the filters selected : startDate -> endDate - 3 months -> yesterday
   const minTime = startDate
-    ? new Date(startDate)
+    ? new Date(startDate).setMinutes(0)
     : endDate
-    ? subMonths(new Date(endDate), 3)
-    : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000)
+    ? subMonths(new Date(endDate).setMinutes(0), 3)
+    : new Date(new Date().getTime() - 1 * 24 * 60 * 60 * 1000).setMinutes(0)
 
   //max date that appears on the graphs
   //which is chosen based on the filters selected
