@@ -1,3 +1,8 @@
+## Deprecated
+Replaced by [new implementation](https://github.com/pagopa/interop-probing-core)
+
+---
+
 # interop-fe-probing
 Frontend dell'applicazione per il monitoraggio degli e-service a catalogo PDND
 
